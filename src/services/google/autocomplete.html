@@ -1,0 +1,30 @@
+
+<ion-header>
+    <ion-navbar>
+        <ion-title center> Enter your location </ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="dismiss()">
+                    <span ion-text color="primary" showWhen="ios"> Cancel </span>
+                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <section #primary>
+        <ion-toolbar>
+            <ion-searchbar [(ngModel)]="autocomplete.query" #search (ionInput)="updateSearch()" (ionCancel)="dismiss()"></ion-searchbar>
+            <!--<input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search >-->
+        </ion-toolbar>
+    </section>
+</ion-header>
+<ion-content>
+    <!--<h3> <i class="fa fa-location-arrow" aria-hidden="true"></i> Detect My Location </h3>-->
+    <ion-list>
+        <!--<ion-list-header>-->
+        <!--Locations-->
+        <!--</ion-list-header>-->
+        <ion-item *ngFor="let item of autocompleteItems" (click)="chooseItem(item)">
+            {{ item }}
+    </ion-item>
+</ion-list>
+</ion-content>
+

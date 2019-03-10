@@ -1,0 +1,360 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <img src="assets/imgs/linkUslogo.png" style="width:30px;height:32px; "> 
+  <span style="color: #fff">LINKUS BO</span>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="gotologout()">
+        <span> Welcome </span>
+             <!-- <p style="margin-top:25%;">Sundar, Administrator</p>  -->
+       <ion-icon name="md-power"  style="background-color:#03a9f4 !important;  color: #f68121;"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <layout></layout>
+
+ 
+
+<div class="panel">
+  <div class="panelhead">User master</div>
+<div class="masterdiv">
+      <ion-row>
+        <ion-col col-12 col-md-6 col-lg-4 col-xl-4>
+          <ion-label>
+           User name
+          </ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="branch" (ionChange)="filterUser1()" placeholder="username" (clear)="onClearSearchbar($event)"></ion-input>
+        
+        </ion-col>
+
+
+
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-4>
+          <ion-label>
+          Branch
+          </ion-label>
+          <select class="form-control" id="brach" [(ngModel)]="branchdata" (change)="filterUser('branchname',branchdata)">
+              <option [ngValue]="Select">Select</option>
+            <option>
+                Trichy
+            </option>
+            <option>
+                Chennai
+              </option>
+              </select>
+        
+          
+        </ion-col> 
+
+        <ion-col col-12 col-md-6 col-lg-4 col-xl-4>
+          <ion-label>
+          Mobile
+          </ion-label>
+          <ion-input type="tel" class="form-control" [(ngModel)]="mobilenumber" placeholder="Mobile Number" (ionChange)="filterUser3()" (clear)="onClearSearchbar($event)"></ion-input>
+         
+        </ion-col>
+        <ion-col col-12 col-md-6 col-lg-4 col-xl-4>
+            <ion-label>
+           Email
+            </ion-label>
+            <ion-input type="email"  class="form-control" [(ngModel)]="email" (ionChange)="filterUser2()" (clear)="onClearSearchbar($event)"
+              placeholder="Email"></ion-input>
+          
+          </ion-col>
+  
+  
+  
+          <ion-col col-12 col-md-6 col-lg-4 col-xl-4>
+            <ion-label>
+            Status 
+            </ion-label>
+           
+                <select class="s1" id="status" class="form-control" [(ngModel)] = "status" (change)="filterUser('userStatus',status)">
+                    <option [ngValue]="Select">Select</option>
+                  <option>
+                      Active
+                  </option>
+                  <option>
+                      Inactive
+                    </option>
+                    </select>
+             
+          
+          </ion-col> 
+         
+      </ion-row>
+  
+    </div>
+    <ion-row style="margin-top: 20px">
+        <ion-col col-8>
+          <div style="margin-left: 29px">
+            <!-- <span (click)="gotolinkusaddusermaster()">
+              <ion-icon name="md-add" style="font-weight: 600;font-size: 15px;border: 1px solid #dadada;padding: 5px;padding-left: 10px;padding-right: 10px;"></ion-icon>
+            </span> -->
+            <button ion-button (click)="gotolinkusaddusermaster()" class="addbtn"> Add User </button>
+          </div>
+        </ion-col>
+
+
+
+        <ion-col col-2 style="padding-top:15px;">
+
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <!-- <a (click)="setPage(1)" style="border: 1px solid #dadada">First</a> -->
+            </li>
+
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)" class="sss"> Previous </a>
+            </li>
+
+
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)" style="padding: 5px">{{page}}/10</a>
+            </li>
+
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)" class="sss">Next</a>
+            </li>
+            
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <!-- <a (click)="setPage(pager.totalPages)">Last</a> -->
+            </li>
+          </ul>
+        </ion-col>
+
+
+
+
+        <ion-col  col-1>
+          <label style="margin-left:97%; margin-top:2px;">show</label>
+        </ion-col>
+
+
+        <ion-col  col-1 >
+          <select class="show1" placeholder="10" [(ngModel)]="options" (change)="changeLimit(options)" style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;" >
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+          </ion-col>
+
+      </ion-row>
+    <table class="table  table-bordered">
+        <tbody>
+          <tr class="success">
+            <th> Branch Name </th>
+            <th> User Type </th>
+            <th> User Name </th>
+            <th> Mobile </th>
+            <th> Email </th>
+            <!-- <th> Date </th> -->
+            <th> Status </th>
+            <th> Action </th>
+          </tr>
+        </tbody>
+
+ 
+       <!-- <tr *ngFor="let user of pagedItems"> -->
+          
+
+        <!-- <tr *ngFor="let user of pagedItems">  -->
+
+          <tr *ngFor="let user of (pagedItems)?.slice().reverse()">
+          <td> {{user.branchname}} </td>
+          <td> {{user.contacttype}} </td>
+          <td> {{user.displayName}} </td>
+          <td> {{user.mobilenumber}} </td>
+          <td> {{user.email}} </td>
+          <!-- <td> {{user.created_at | date: "dd/MM/yyyy hh:mm a"  | lowercase}} </td> -->
+          <td>{{user.userStatus}} </td>
+
+          <td>
+            <button ion-button icon-only style="color: #fff;background-color: #204d74;border-color: #122b40;" (click)="editUser(user)">
+              <ion-icon name="md-create" style="zoom:0.7;"></ion-icon>
+            </button>
+            <button ion-button icon-only style="color: #fff;  background-color: #d9534f;border-color: #d43f3a;" (click)="deleteUser(user)">
+              <ion-icon name="md-trash" style="zoom:0.7;"></ion-icon>
+            </button>
+          </td>
+        </tr>
+
+      </table>
+</div>
+   
+
+</ion-content>
+
+
+
+
+
+ <!-- <ion-content>
+
+  <layout></layout>
+
+  <div style="margin-left: 5%;background-color: aliceblue;margin-right: 2%;margin-top: 2%;">
+    <div style="padding: 5px;background-color: #f68121b9">
+      <b style="color:white; text-align:center; padding-left:5px; width:0%;"> User Master </b>
+    </div>
+       <div>
+
+
+
+      <ion-row no-margin class="sdsd">
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000">User name</b>
+          </ion-label>
+          <ion-input type="text" [(ngModel)]="branch" (ionChange)="filterUser1()" placeholder="username" (clear)="onClearSearchbar($event)" style="color:#000"></ion-input>
+          <div>
+          </div>
+        </ion-col>
+
+
+
+      <ion-col col-4>
+          <ion-label>
+            <b style="color:#000">Branch</b>
+          </ion-label>
+          <ion-select class="s1" placeholder="Select">
+            <ion-option (ionSelect)="filterUser('branchname',' Trichy ')">Trichy</ion-option>
+            <ion-option (ionSelect)="filterUser('branchname',' Chennai ')">Chennai</ion-option>
+          </ion-select>
+        </ion-col> 
+
+
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000">Mobile</b>
+          </ion-label>
+          <ion-input type="tel" [(ngModel)]="mobilenumber" placeholder="Mobile Number" (ionChange)="filterUser3()" (clear)="onClearSearchbar($event)" style="color:#000"></ion-input>
+          <div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+
+
+      <ion-row class="sdsd">
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000">Email</b>
+          </ion-label>
+          <ion-input type="email" style="color:#000"  [(ngModel)]="email" (ionChange)="filterUser2()" (clear)="onClearSearchbar($event)"
+            placeholder="Email"></ion-input>
+          <div>
+          </div>
+        </ion-col>
+
+
+
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000"> Status </b>
+          </ion-label>
+          <div>
+            <ion-select class="s1" placeholder="Select">
+              <ion-option (ionSelect)="filterUser('userStatus','Active')">Active</ion-option>
+              <ion-option (ionSelect)="filterUser('userStatus','Inactive')">Inactive</ion-option>
+            </ion-select>
+          </div>
+        </ion-col> 
+          </ion-row>
+
+
+
+      <ion-row style="margin-top: 20px">
+        <ion-col col-2>
+          <div style="margin-left: 10px">
+            <button ion-button (click)="gotolinkusaddusermaster()" style="height: 3rem;text-transform: initial;color: #000;background-color: #f68121"> Add User </button>
+          </div>
+        </ion-col>
+
+
+
+        <ion-col col-6 style="padding-top:15px;">
+
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        </li>
+
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)" class="sss"> Previous </a>
+            </li>
+
+
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)" style="padding: 5px">{{page}}/10</a>
+            </li>
+
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)" class="sss">Next</a>
+            </li>
+            
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              </li>
+          </ul>
+        </ion-col>
+
+
+
+
+        <ion-col  col-3>
+          <label style="margin-left:103%; margin-top:2px;">show</label>
+        </ion-col>
+
+
+        <ion-col  col-1 >
+          <ion-select class="show1" placeholder="10"  style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;" >
+            <ion-option (ionSelect)="changeLimit(5)">5</ion-option>
+            <ion-option (ionSelect)="changeLimit(10)">10</ion-option>
+            <ion-option (ionSelect)="changeLimit(15)">15</ion-option>
+          </ion-select>
+          </ion-col>
+
+      </ion-row>
+
+
+
+      <table id="customers">
+        <tbody style="background-color:#d43f3a;">
+          <tr>
+            <th> Branch Name </th>
+            <th> User Type </th>
+            <th> User Name </th>
+            <th> Mobile </th>
+            <th> Email </th>
+            <th> Status </th>
+            <th> Action </th>
+          </tr>
+        </tbody>
+
+ 
+   
+          <tr *ngFor="let user of (pagedItems)?.slice().reverse()">
+          <td> {{user.branchname}} </td>
+          <td> {{user.contacttype}} </td>
+          <td> {{user.displayName}} </td>
+          <td> {{user.mobilenumber}} </td>
+          <td> {{user.email}} </td>
+          <td>{{user.userStatus}} </td>
+
+          <td>
+            <button ion-button icon-only style="color: #fff;background-color: #204d74;border-color: #122b40;" (click)="editUser(user)">
+              <ion-icon name="md-create" style="zoom:0.7;"></ion-icon>
+            </button>
+            <button ion-button icon-only style="color: #fff;  background-color: #d9534f;border-color: #d43f3a;" (click)="deleteUser(user)">
+              <ion-icon name="md-trash" style="zoom:0.7;"></ion-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ion-content> -->

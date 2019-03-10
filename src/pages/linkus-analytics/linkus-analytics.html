@@ -1,0 +1,584 @@
+
+<ion-header>
+    <ion-navbar color="primary">
+      <img src="assets/imgs/linkUslogo.png" style="width:40px;height:40px;"> 
+    <span style="color: #fff">LINKUS BO</span>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="gotologout()">
+          <span> Welcome </span>
+          <!-- <p>Sundar</p> -->
+         <ion-icon name="md-power"  style="background-color:#03a9f4 !important; color: #f68121;"></ion-icon>
+      </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+ 
+
+<ion-content padding>
+
+    <layout></layout>
+  
+    <div style="margin-left: 5%;background-color: aliceblue;margin-right:2%; margin-top: 2%;">
+ <div style="padding: 5px;background-color: #f68121b9">
+   <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Analytics </b>
+ </div>
+
+
+
+ <!-- <ion-row class="outline-head">-->
+    <ion-row class="graph">
+      <ion-col >
+        Graph Type</ion-col>
+    </ion-row><br>
+    
+
+    <ion-grid class ="dropdown">
+
+        <ion-row>
+          <ion-col>
+               <select class="select-option" [(ngModel)] = "data">
+                  <option value="tillNow"> Till Now </option>
+                  <option value="year"> Year Wise</option>
+                  <option value="month"> Month Wise </option>
+                  <option value="today"> Today </option>
+               
+
+                  </select> 
+
+                  <!-- <select  class="select-option" ng-model="data">
+                      <option value="TillNow" selected="true">Till Now</option>
+                      <option value="Year">Year wise</option>
+                      <option value="Month">Month wise</option>
+                      <option value="Today">Today</option>
+                  </select> -->
+
+          </ion-col>
+         
+          <ion-col class = "search">
+              <button class ="search-button" type="button" class="search-button" (click)="search()"><span style="color:white;">SEARCH</span></button>
+          </ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        </ion-grid>
+
+ 
+  <ion-row *ngIf="data == 'tillNow'">
+      <ion-row class="aa">
+          
+        
+        <ion-col  col-md-3 col-sm-3>
+              <ion-card class="card-md">
+                <ion-card-header class="card-header-md">
+                  <ion-card-title class="card-title-md">Active User</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="card-content-md-till">
+                    {{noOfactUser}}
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+
+
+
+
+
+
+
+            <ion-col  col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                  <ion-card-header class="card-header-md">
+                    <ion-card-title class="card-title-md">Total User</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="card-content-md-till">
+                      {{noOfUser}}
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+
+
+
+              <ion-col  col-md-3 col-sm-3>
+                  <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Total Groups</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md-till">
+                    {{noOfGroupList}}
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+
+                <ion-col  col-md-3 col-sm-3>
+                    <ion-card class="card-md">
+                      <ion-card-header class="card-header-md">
+                        <ion-card-title class="card-title-md">Inactive Groups</ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content class="card-content-md-till">
+                        {{noOfInactiveUser}}
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col> 
+                </ion-row>
+    <ion-row class="aa">
+        <ion-col  col-md-3 col-sm-3>
+            <ion-card class="card-md">
+              <ion-card-header class="card-header-md">
+                <ion-card-title class="card-title-md">Total Messages</ion-card-title>
+              </ion-card-header>
+              <ion-card-content class="card-content-md-till">
+                  {{noOfTotalMessages}}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col  col-md-3 col-sm-3>
+              <ion-card class="card-md">
+                <ion-card-header class="card-header-md">
+                  <ion-card-title class="card-title-md">Total Group Messages</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="card-content-md-till">
+                    
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col  col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                  <ion-card-header class="card-header-md">
+                    <ion-card-title class="card-title-md">Total Open Groups</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="card-content-md-till">
+                  {{noOfOpenGroups}}
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col  col-md-3 col-sm-3>
+                  <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Total Open Group Messages</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md-till">
+                        {{yearwiseTotalMessage}}
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col> 
+              </ion-row>
+      </ion-row> 
+
+
+
+
+
+
+      <ion-row *ngIf="data == 'year'">
+
+<div *ngFor="let item of yearwUserListarray">
+<p>{{item.year}}</p>
+<p>{{item.Count}}</p>
+</div>
+
+        <ion-row class="aa">
+          <ion-col col-md-3 col-sm-3>
+            <ion-card class="card-md">
+             <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Active User</ion-card-title>
+              </ion-card-header>
+              <ion-card-content class="card-content-md">
+                  <ion-row class="year-row-title-col">
+                      <ion-col class="year-col" ><b>Year</b></ion-col>
+                      <ion-col class="year-col"><b>Count</b></ion-col>
+                </ion-row>
+                <ion-row class="year-row-title" *ngFor="let item of storeActvalues">
+                  <ion-col class="year-data" > {{item.Year}}</ion-col>
+                    <ion-col class="year-data">{{item.countData}}</ion-col>
+                </ion-row>
+              
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-md-3 col-sm-3>
+            <ion-card class="card-md">
+                <ion-card-header class="card-header-md">
+                  <ion-card-title class="card-title-md">Total User</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="card-content-md">
+                        <ion-row class="year-row-title-col">
+                            <ion-col class="year-col" ><b>Year</b></ion-col>
+                            <ion-col class="year-col"><b>Count</b></ion-col>
+                      </ion-row>
+                      <ion-row class="year-row-title" *ngFor="let item of storevalues ">
+                          <ion-col class="year-data" > {{item.Year}}</ion-col>
+                            <ion-col class="year-data">{{item.countData}}</ion-col>
+                      </ion-row>
+
+                </ion-card-content>
+                </ion-card>
+          </ion-col>
+          <ion-col col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Total Groups</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md">
+                            <ion-row class="year-row-title-col">
+                                <ion-col class="year-col" ><b>Year</b></ion-col>
+                                <ion-col class="year-col"><b>Count</b></ion-col>
+                          </ion-row>
+                          <ion-row class="year-row-title" *ngFor="let item of storeTotalGroups">
+                            <ion-col class="year-data" > {{item.Year}}</ion-col>
+                              <ion-col class="year-data">{{item.countData}}</ion-col>
+                          </ion-row>
+                    </ion-card-content>
+                    </ion-card>
+            </ion-col>
+            <ion-col  col-md-3 col-sm-3>
+              <ion-card class="card-md">
+                <ion-card-header class="card-header-md">
+                  <ion-card-title class="card-title-md">Inactive Groups</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="card-content-md">
+                        <ion-row class="year-row-title-col">
+                            <ion-col class="year-col" ><b>Year</b></ion-col>
+                            <ion-col class="year-col"><b>Count</b></ion-col>
+                      </ion-row>
+                      <ion-row class="year-row-title" *ngFor="let item of storeInactiveGroups">
+                        <ion-col class="year-data" > {{item.Year}}</ion-col>
+                          <ion-col class="year-data">{{item.countData}}</ion-col>
+                      </ion-row>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            </ion-row>
+            <ion-row class="aa">
+            <ion-col  col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                  <ion-card-header class="card-header-md">
+                    <ion-card-title class="card-title-md">Total Messages</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="card-content-md">
+                          <ion-row class="year-row-title-col">
+                              <ion-col class="year-col" ><b>Year</b></ion-col>
+                              <ion-col class="year-col"><b>Count</b></ion-col>
+                        </ion-row>
+                        <ion-row class="year-row-title" *ngFor="let item of storeTotalMessages">
+                          <ion-col class="year-data" > {{item.Year}}</ion-col>
+                            <ion-col class="year-data">{{item.countData}}</ion-col>
+                      </ion-row>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col  col-md-3 col-sm-3>
+                  <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Total Group Messages</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md">
+                            <ion-row class="year-row-title-col">
+                                <ion-col class="year-col" ><b>Year</b></ion-col>
+                                <ion-col class="year-col"><b>Count</b></ion-col>
+                          </ion-row>
+                          <ion-row class="year-row-title" ng-repeat="dataValues">
+                            <ion-col class="year-data" >2018</ion-col>
+                            <ion-col class="year-data">34</ion-col>
+                          </ion-row>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+                <ion-col col-md-3 col-sm-3>
+                    <ion-card class="card-md">
+                      <ion-card-header class="card-header-md">
+                        <ion-card-title class="card-title-md">Total Open Groups</ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content class="card-content-md">
+                              <ion-row class="year-row-title-col">
+                                  <ion-col class="year-col" ><b>Year</b></ion-col>
+                                  <ion-col class="year-col"><b>Count</b></ion-col>
+                            </ion-row>
+                            <ion-row class="year-row-title" *ngFor="let item of storeOpenGroups">
+                              <ion-col class="year-data" > {{item.Year}}</ion-col>
+                                <ion-col class="year-data">{{item.countData}}</ion-col>
+                            </ion-row>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                  <ion-col col-md-3 col-sm-3>
+                    <ion-card class="card-md">
+                      <ion-card-header class="card-header-md">
+                        <ion-card-title class="card-title-md">Total Open Group Messages</ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content class="card-content-md">
+                              <ion-row class="year-row-title-col">
+                                  <ion-col class="year-col" ><b>Year</b></ion-col>
+                                  <ion-col class="year-col"><b>Count</b></ion-col>
+                            </ion-row>
+                            <ion-row class="year-row-title" *ngFor="let item of storeOpenGroups">
+                              <ion-col class="year-data" > <!--{{item.Year}} --></ion-col>
+                                <ion-col class="year-data"><!--{{item.countData}}--></ion-col>
+                            </ion-row>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                    </ion-row>
+          </ion-row>
+          <ion-row *ngIf="data == 'month'">
+            <ion-row class="aa">
+              <ion-col col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                 <ion-card-header class="card-header-md">
+                  <ion-card-title class="card-title-md">Active User</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="card-content-md">
+                      <ion-row class="year-row-title-col">
+                              <ion-col class="year-col" ><b>Year</b></ion-col>
+                              <ion-col class="year-col"><b>Month</b></ion-col>
+                              <ion-col class="year-col"><b>Count</b></ion-col>
+                            
+                    </ion-row>
+                    <ion-row class="year-row-title" *ngFor="let item of monthstoreActvalues">
+                      <ion-col class="year-data" > {{item.Year}}</ion-col>
+                      <ion-col class="year-col">{{item.Month}}</ion-col>
+                        <ion-col class="year-data">{{item.countData}}</ion-col>
+                    </ion-row>
+                  
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Total User</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md">
+                        <ion-row class="year-row-title-col">
+                            <ion-col class="year-col" ><b>Year</b></ion-col>
+                            <ion-col class="year-col"><b>Month</b></ion-col>
+                            <ion-col class="year-col"><b>Count</b></ion-col>
+                          
+                        </ion-row>
+                        <ion-row class="year-row-title" *ngFor="let item of monthstorevalues">
+                          <ion-col class="year-data" > {{item.Year}}</ion-col>
+                          <ion-col class="year-col">{{item.Month}}</ion-col>
+                            <ion-col class="year-data">{{item.countData}}</ion-col>
+                        </ion-row>
+  
+                    </ion-card-content>
+                    </ion-card>
+              </ion-col>
+              <ion-col  col-md-3 col-sm-3>
+                    <ion-card class="card-md">
+                        <ion-card-header class="card-header-md">
+                          <ion-card-title class="card-title-md">Total Groups</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content class="card-content-md">
+                            <ion-row class="year-row-title-col">
+                                <ion-col class="year-col" ><b>Year</b></ion-col>
+                                <ion-col class="year-col"><b>Month</b></ion-col>
+                                <ion-col class="year-col"><b>Count</b></ion-col>
+                              
+                            </ion-row>
+                            <ion-row class="year-row-title" *ngFor="let item of monthTotalGroupsList">
+                              <ion-col class="year-data" > {{item.Year}}</ion-col>
+                              <ion-col class="year-col">{{item.Month}}</ion-col>
+                                <ion-col class="year-data">{{item.countData}}</ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                        </ion-card>
+                </ion-col>
+                <ion-col  col-md-3 col-sm-3>
+                  <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Inactive Groups</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="card-content-md">
+                        <ion-row class="year-row-title-col">
+                            <ion-col class="year-col" ><b>Year</b></ion-col>
+                            <ion-col class="year-col"><b>Month</b></ion-col>
+                            <ion-col class="year-col"><b>Count</b></ion-col>
+                          
+                        </ion-row>
+                        <ion-row class="year-row-title" *ngFor="let item of monthInactiveGroups">
+                          <ion-col class="year-data" > {{item.Year}}</ion-col>
+                          <ion-col class="year-col">{{item.Month}}</ion-col>
+                            <ion-col class="year-data">{{item.countData}}</ion-col>
+                        </ion-row>
+                    </ion-card-content>
+                  </ion-card>
+                </ion-col>
+                </ion-row>
+                <ion-row class="aa">
+                <ion-col  col-md-3 col-sm-3>
+                    <ion-card class="card-md">
+                      <ion-card-header class="card-header-md">
+                        <ion-card-title class="card-title-md">Total Messages</ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content class="card-content-md">
+                          <ion-row class="year-row-title-col">
+                              <ion-col class="year-col" ><b>Year</b></ion-col>
+                              <ion-col class="year-col"><b>Month</b></ion-col>
+                              <ion-col class="year-col"><b>Count</b></ion-col>
+                            
+                          </ion-row>
+                          <ion-row class="year-row-title" *ngFor="let item of monthTotalMessage">
+                            <ion-col class="year-data" > {{item.Year}}</ion-col>
+                            <ion-col class="year-col">{{item.Month}}</ion-col>
+                              <ion-col class="year-data">{{item.countData}}</ion-col>
+                          </ion-row>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-col>
+                  <ion-col  col-md-3 col-sm-3>
+                      <ion-card class="card-md">
+                        <ion-card-header class="card-header-md">
+                          <ion-card-title class="card-title-md">Total Group Messages</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content class="card-content-md">
+                            <ion-row class="year-row-title-col">
+                                <ion-col class="year-col" ><b>Year</b></ion-col>
+                                <ion-col class="year-col"><b>Month</b></ion-col>
+                                <ion-col class="year-col"><b>Count</b></ion-col>
+                              
+                            </ion-row>
+                            <ion-row class="year-row-title" ng-repeat="dataValues">
+                              <ion-col class="year-data" >2018</ion-col>
+                              <ion-col class="year-data">4</ion-col>
+                              <ion-col class="year-data">32</ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                      </ion-card>
+                    </ion-col>
+                    <ion-col  col-md-3 col-sm-3>
+                        <ion-card class="card-md">
+                          <ion-card-header class="card-header-md">
+                            <ion-card-title class="card-title-md">Total Open Groups</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content class="card-content-md">
+                              <ion-row class="year-row-title-col">
+                                  <ion-col class="year-col" ><b>Year</b></ion-col>
+                                  <ion-col class="year-col"><b>Month</b></ion-col>
+                                  <ion-col class="year-col"><b>Count</b></ion-col>
+                                
+                              </ion-row>
+                              <ion-row class="year-row-title" *ngFor="let item of monthOpenGroups">
+                                 <ion-col class="year-data" >{{item.Year}}</ion-col>
+                                 <ion-col class="year-data">{{item.Month}}</ion-col>
+                                 <ion-col class="year-data">{{item.countData}}</ion-col>
+                              </ion-row>
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
+                      <ion-col col-md-3 col-sm-3>
+                          <ion-card class="card-md">
+                            <ion-card-header class="card-header-md">
+                              <ion-card-title class="card-title-md">Total Open Group Messages</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content class="card-content-md">
+                                <ion-row class="year-row-title-col">
+                                    <ion-col class="year-col" ><b>Year</b></ion-col>
+                                    <ion-col class="year-col"><b>Month</b></ion-col>
+                                    <ion-col class="year-col"><b>Count</b></ion-col>
+                                  
+                                </ion-row>
+                                <ion-row class="year-row-title" ng-repeat="dataValues">
+                                  <ion-col class="year-data" >2018</ion-col>
+                                  <ion-col class="year-data">4</ion-col>
+                                  <ion-col class="year-data">32</ion-col>
+                                </ion-row>
+                              
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                        </ion-row>
+              </ion-row>
+
+              <ion-row *ngIf="data == 'today'">
+                <ion-row class="aa">
+                    <ion-col  col-md-3 col-sm-3>
+                        <ion-card class="card-md">
+                          <ion-card-header class="card-header-md">
+                            <ion-card-title class="card-title-md">Active User</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content class="card-content-md-till">
+                              {{tdyactiveUser}}
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
+                      <ion-col  col-md-3 col-sm-3>
+                          <ion-card class="card-md">
+                            <ion-card-header class="card-header-md">
+                              <ion-card-title class="card-title-md">Total User</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content class="card-content-md-till"  >
+                                 {{tdyUser}} 
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                        <ion-col  col-md-3 col-sm-3>
+                            <ion-card class="card-md">
+                              <ion-card-header class="card-header-md">
+                                <ion-card-title class="card-title-md">Total Groups</ion-card-title>
+                              </ion-card-header>
+                              <ion-card-content class="card-content-md-till">
+                                 {{tdyTotalGroupsList}} 
+                              </ion-card-content>
+                            </ion-card>
+                          </ion-col>
+                          <ion-col  col-md-3 col-sm-3>
+                              <ion-card class="card-md">
+                                <ion-card-header class="card-header-md">
+                                  <ion-card-title class="card-title-md">Inactive Groups</ion-card-title>
+                                </ion-card-header>
+                                <ion-card-content class="card-content-md-till">
+                                     {{tdyInactiveGroups}} 
+                                </ion-card-content>
+                              </ion-card>
+                            </ion-col> 
+                          </ion-row>
+              <ion-row class="aa">
+                  <ion-col  col-md-3 col-sm-3>
+                      <ion-card class="card-md">
+                        <ion-card-header class="card-header-md">
+                          <ion-card-title class="card-title-md">Total Messages</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content class="card-content-md-till">
+                           {{tdyTotalMessage}}
+                        </ion-card-content>
+                      </ion-card>
+                    </ion-col>
+                    <ion-col  col-md-3 col-sm-3>
+                        <ion-card class="card-md">
+                          <ion-card-header class="card-header-md">
+                            <ion-card-title class="card-title-md">Total Group Messages</ion-card-title>
+                          </ion-card-header>
+                          <ion-card-content class="card-content-md-till">
+                              
+                          </ion-card-content>
+                        </ion-card>
+                      </ion-col>
+                      <ion-col  col-md-3 col-sm-3>
+                          <ion-card class="card-md">
+                            <ion-card-header class="card-header-md">
+                              <ion-card-title class="card-title-md">Total Open Groups</ion-card-title>
+                            </ion-card-header>
+                            <ion-card-content class="card-content-md-till">
+                               {{tdyOpenGroups}} 
+                            </ion-card-content>
+                          </ion-card>
+                        </ion-col>
+                        <ion-col  col-md-3 col-sm-3>
+                            <ion-card class="card-md">
+                              <ion-card-header class="card-header-md">
+                                <ion-card-title class="card-title-md">Total Open Group Messages</ion-card-title>
+                              </ion-card-header>
+                              <ion-card-content class="card-content-md-till">
+                                  0
+                              </ion-card-content>
+                            </ion-card>
+                          </ion-col> 
+                        </ion-row>
+                </ion-row> 
+
+                  </div>
+                  
+<!-- </ion-row> -->
+</ion-content>
+

@@ -1,0 +1,102 @@
+<style>
+        .item {
+            padding-left: 5px;
+    
+        }
+    
+        b {
+            padding-left: 10px;
+            color: #333;
+            font-size: 14px;
+            font-family: -webkit-pictograph;
+        }
+    
+        ion-icon {
+            display: inline-block;
+            font-size: 20px;
+            color: #03a9f4;
+        }
+    
+        .label-md {
+            margin: 0px;
+        }
+    </style>
+    
+
+    
+    
+    <ion-menu class="scroll1" [content]="content" style="margin-top:4%;">
+    
+        <ion-content>
+                         
+            <div class="font1">
+                  <button ion-item menuClose (click)="gotolinkususermaster()">
+                    <p>
+                        <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-users fa-stack-1x "></i></span><p style="margin-top:17px;"></p>User Master</a>
+                    </button>
+    
+    
+    
+                <button ion-item menuClose (click)="gotolinkusgroupmaster()">
+                    <p>
+                        <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tag fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Group Master</a>
+                    </p>
+                </button>
+                
+    
+                <button ion-item menuClose (click)="gotolinkusopengroup()">
+                        <p>
+                <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-qq fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Open Group</a>
+                        </p>
+                </button>
+    
+    
+                <button ion-item menuClose >
+                    <p>
+          <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-building-o fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Message Report</a>
+    
+                    </p>
+                </button>
+    
+                <button ion-item menuClose>
+                    <p>
+                        <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user-secret fa-stack-1x "></i></span><p style="margin-top:18px;"></p>User Report</a>
+    
+                    </p>
+                </button>
+    
+            
+    
+                <button ion-item menuClose>
+                    <p>
+                        <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-qq fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Open Group</a>
+    
+                    </p>
+                </button>
+    
+                <button ion-item menuClose (click)="gotoanalyticsreport()">
+                    <p>
+                        <a  style="color: #FFFFFF;"><span class="fa-stack fa-lg pull-left"><i class="fa fa-language  fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Group Access</a>
+                    </p>
+                </button>
+
+                
+    
+                <button ion-item menuClose>
+                    <p>
+                <a  style="color: #FFFFFF;" ><span class="fa-stack fa-lg pull-left"><i class="fa fa-user-plus fa-stack-1x "></i></span><p style="margin-top:18px;"></p>Most Active</a>
+                        </p>
+                </button>
+
+
+
+           
+
+
+                    
+                    </div>
+    
+        </ion-content>
+    </ion-menu>
+    
+    <ion-nav [root]="rootPage" #content></ion-nav>

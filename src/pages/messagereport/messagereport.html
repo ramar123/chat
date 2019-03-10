@@ -1,0 +1,111 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <img src="assets/imgs/linkUslogo.png" style="width:40px;height:40px;"> 
+    <span style="color: #fff">LINKUS BO</span>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="gotologout()">
+          <span> Welcome </span>
+          <!-- <p>Sundar</p> -->
+         <ion-icon name="md-power"  style="background-color:#03a9f4 !important;  color: #f68121;"></ion-icon>
+      </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  
+  <ion-content>
+      <layout></layout>
+
+  
+     
+  
+      <div style="margin-left: 5%;background-color: aliceblue;margin-right: 2%;margin-top: 2%; height: 750px;">
+        <div style="padding: 5px;background-color: #f68121b9">
+          <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Message Report </b>
+        </div>
+  
+        
+        <div>
+     
+    <ion-row no-margin>
+  
+  
+           <ion-col col-4>
+                  <ion-label><b style="margin-left:130px">Graph Type </b> </ion-label>
+          <!-- <ion-select [(ngModel)]="year" (ionChange)="setYears(year)"  placeholder="select" class="s1">
+              <ion-option [value]="year" *ngFor="let year of years">{{year}} </ion-option> -->
+  
+        <select [(ngModel)]="data" (ngModelChange)="yearList(data)" placeholder="select" class="s1">
+            <option value="Year" selected="true">Year wise</option>
+            <option value="Month">Month wise</option> 
+        </select>
+         
+      </ion-col><br>
+  
+  
+   
+       
+          <ion-col col-4 *ngIf="data=='Year'">
+            <ion-label> <b style="margin-left:130px">Select Year </b> </ion-label>
+          <select  [(ngModel)]="type" placeholder="select" class="s1">
+              <!-- <ion-option *ngFor="let item of numberOfYears"> {{item.Year}}</ion-option> -->
+              <option *ngFor="let item of numberOfYears">{{item.Year}}</option>
+          </select>
+         </ion-col>
+         <ion-col col-4 *ngIf="data=='Month'">
+            <ion-label> <b style="margin-left:130px">Select Month </b> </ion-label>
+            <select  [(ngModel)]="type" placeholder="select" class="s1">
+                <!-- <ion-option *ngFor="let item of numberOfYears"> {{item.Year}}</ion-option> -->
+                <option value="Jan">January</option>
+                <option value="Feb">February</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+            </select>
+  
+         </ion-col>
+       
+  
+           
+      <ion-col col-4>
+      <button ion-button type="submit" (click)="searchGraph(data,type)" style="background-color:#5bc0de; margin-top:30px; ">
+        Search
+      </button>
+      </ion-col>
+        
+      </ion-row>
+    <ion-row class = "graph-flow">
+      <div id="container" style="margin-top: 30px;"></div>
+    </ion-row>
+  
+  
+  <!-- <ion-row>
+    <ion-col>
+      <div class="chart">
+        <canvas baseChart [datasets]="datasets_lines" [labels]="labels_line" [colors]="chartColors" [options]="options" [chartType]="lineChartType">
+        </canvas>
+    </div>
+    </ion-col>
+  
+  </ion-row> -->
+  
+  
+  
+  
+  
+                
+       </div>
+       </div>
+  
+  
+      </ion-content> 
+  
+  

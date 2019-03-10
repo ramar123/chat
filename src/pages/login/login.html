@@ -1,0 +1,81 @@
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content style="background-image: url('assets/imgs/download.jpg');background-size: 100% 100%">
+
+
+  
+  <div style="margin-bottom:20px;width: 500px;height: 400px ; background: rgba(238, 238, 238, 0.8);;margin: 0 auto;display:block; margin-top:10%;">
+      <h1 style="text-align:center; font-family:-webkit-body;"> LinkUs</h1> 
+
+
+ 
+    <img src="assets/imgs/linkUslogo.png" style="margin: 0 auto;display:block;width:100px;height:100px; margin-bottom:15px;">
+
+
+    <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+
+
+
+    <ion-item [class.has-danger]="!loginForm.controls.email.valid && !loginForm.controls.email.untouched">
+        <ion-label>
+        <ion-icon name="ios-contact-outline" class="silabhu"></ion-icon>
+        <!-- <ion-icon name="ios-close-circle-outline" class="loginicon"></ion-icon> -->
+      </ion-label>
+				<ion-input type="text" placeholder="Email" formControlName="email"  minlength="5" maxlength="20"  [(ngModel)]="credentials.email"></ion-input>
+      </ion-item>
+      
+
+
+
+    <ion-item [class.has-danger]="!loginForm.controls.password.valid && !loginForm.controls.password.untouched">
+        <ion-label>
+        <ion-icon name="ios-lock" class="silabhu"></ion-icon>
+        <!-- <ion-icon name="ios-close-circle-outline" class="loginicon"></ion-icon> -->
+      </ion-label>
+				<ion-input type="password" placeholder="password" formControlName="password"  minlength="5" maxlength="20" [(ngModel)]="credentials.password"></ion-input>
+      </ion-item>
+
+
+
+
+
+
+
+
+    <br>
+
+    <div style="padding: 10px">
+      <button ion-button class="log" full> Login </button>
+    </div>
+  
+    </form>
+    </div>
+
+
+
+
+    <!-- <ion-searchbar 
+[(ngModel)]="autocomplete.query" 
+[showCancelButton]="true" 
+(ionInput)="updateSearch()" 
+(ionCancel)="dismiss()"
+placeholder="Start typing and select ...">
+</ion-searchbar>
+<ion-list>
+<ion-item *ngFor="let item of autocompleteItems" 
+(click)="chooseItem(item)">
+<img src="data:image/png;base64,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" style="
+width: 25px;">
+{{ item.description }}
+</ion-item>
+</ion-list> -->
+
+
+</ion-content>

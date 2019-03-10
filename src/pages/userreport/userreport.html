@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <img src="assets/imgs/linkUslogo.png" style="width:40px;height:40px;"> 
+  <span style="color: #fff">LINKUS BO</span>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="gotologout()">
+        <span> Welcome </span>
+        <!-- <p>Sundar</p> -->
+       <ion-icon name="md-power"  style="background-color:#03a9f4 !important;  color: #f68121;"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+  
+  
+  
+  
+  
+<ion-content>
+
+  <layout></layout>
+
+  <div style="margin-left: 5%;background-color: aliceblue;margin-right: 2%;margin-top: 2%;">
+    <div style="padding: 5px;background-color: #f68121b9">
+      <b style="color:white; text-align:center; padding-left:5px; width:0%;"> User Report </b>
+    </div>
+
+    
+    <div>
+ 
+<ion-row no-margin>
+
+
+       <ion-col col-4>
+              <ion-label><b style="margin-left:130px">Graph Type </b> </ion-label>
+      <!-- <ion-select [(ngModel)]="year" (ionChange)="setYears(year)"  placeholder="select" class="s1">
+          <ion-option [value]="year" *ngFor="let year of years">{{year}} </ion-option> -->
+
+    <ion-select (ionChange)="Datachange($event)" [(ngModel)]="data" placeholder="select" class="s1">
+        <ion-option value="Year" selected="true">Year wise</ion-option>
+        <ion-option value="Month">Month wise</ion-option> 
+    </ion-select>
+     
+  </ion-col><br>
+
+
+
+   
+      <ion-col col-4>
+        <ion-label> <b style="margin-left:130px">Select Year </b> </ion-label>
+      <ion-select (ionChange)="yearChange($event)" [(ngModel)]="years" placeholder="select" class="s1">
+          <ion-option *ngFor="let year of months">{{year.name}}</ion-option>
+      </ion-select>
+     </ion-col>
+   
+
+
+
+  
+       
+  <ion-col col-4>
+  <button ion-button type="submit" (click)="yearTotalMessages()" style="background-color:#5bc0de; margin-top:50px; margin-left:100px; padding-right:50px;">
+  Search
+    </button>
+  </ion-col>
+    
+  </ion-row>
+
+
+
+
+  <ion-row style="margin-top:20px; padding-left:80px;">
+
+    <ion-col col-12> 
+      <div class="col-md-6">
+     <div style="display:block;">
+     <canvas baseChart width="1000" height="500"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+       [options]="lineChartOptions"
+       [colors]="lineChartColors"
+       [legend]="lineChartLegend"
+       [chartType]="lineChartType"
+       (chartHover)="chartHovered($event)"
+       (chartClick)="chartClicked($event)"></canvas>
+     </div>
+   </div>
+ </ion-col> 
+</ion-row>  
+
+
+</div>
+</div>
+
+
+</ion-content> 

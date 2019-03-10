@@ -1,0 +1,264 @@
+ 
+<ion-header>
+  <ion-navbar color="primary">
+    <img src="assets/imgs/linkUslogo.png" style="width:30px;height:32px;"> 
+  <span style="color: #fff">LINKUS BO</span>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="gotologout()">
+        <span> Welcome </span>
+        <!-- <p>Sundar</p> -->
+       <ion-icon name="md-power"  style="background-color:#03a9f4 !important;  color: #f68121;"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+   
+ 
+  <ion-content>
+    
+      <layout></layout>
+  
+       <div style="margin-left: 5%;background-color: aliceblue;margin-right: 2%;margin-top: 2%;">
+    <div style="padding: 5px;background-color: #f68121b9">
+      <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Group Master </b>
+    </div>
+
+     
+         <ion-row no-margin class="sdsd">
+
+
+          <ion-col col-4>
+            <ion-label>  <b style="color:#000">Group name</b></ion-label>
+            <ion-input type="text" class="form-control"  [(ngModel)]="groupname" (ionChange)="filterUser1()"  placeholder="groupname" (clear)="onClearSearchbar($event)" style="color:#000"></ion-input> 
+                <div>
+                </div>
+            </ion-col>
+
+
+       
+              <ion-col col-4>
+                <ion-label>
+                  <b> Status </b>
+                </ion-label>
+                <div>
+                    <select class="s1" id="status" class="form-control" [(ngModel)] = "status" (change)="filterUser('GroupStatus',status)">
+                        <option [ngValue]="Select">Select</option>
+                      <option>
+                          Active
+                      </option>
+                      <option>
+                          Inactive
+                        </option>
+                        </select>
+                  <!-- <ion-select class="s1" placeholder="select">
+                    <ion-option (ionSelect)="filterUser('GroupStatus','Active')">Active</ion-option>
+                    <ion-option (ionSelect)="filterUser('GroupStatus','Inactive')">Inactive</ion-option>
+                  </ion-select> -->
+                </div>
+              </ion-col>
+    
+        </ion-row>
+
+
+
+
+         
+
+
+     <ion-row style="margin-top:3%;">
+      <ion-col col-8 >
+       
+         <button ion-button (click)="gotolinkusaddgroupmaster(groups)" style="height: 3rem;text-transform: initial;color: #000;background-color: #f68121"> Add Group </button>
+      </ion-col>
+
+
+
+      <ion-col col-2 style="padding-top: 15px;">
+       
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <!-- <a (click)="setPage(1)" style="border: 1px solid #dadada">First</a> -->
+
+          </li>
+
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)" class="sss"> Previous </a>
+          </li>
+
+
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)" style="padding: 5px">{{page}}/10</a>
+          </li>
+
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)" class="sss">Next</a>
+          </li>
+          
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <!-- <a (click)="setPage(pager.totalPages)">Last</a> -->
+          </li>
+        </ul>
+          
+      </ion-col>
+
+
+
+
+      <ion-col  col-1>
+          <label style="margin-left:97%; margin-top:2px;">show</label>
+        </ion-col>
+
+
+        <ion-col  col-1 >
+          <select class="show1" placeholder="10" [(ngModel)]="options" (change)="changeLimit(options)" style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;" >
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+          </ion-col>
+
+
+
+      <!-- <ion-col  col-1>
+          <label style="margin-left:103%; margin-top:2px;">show</label>
+        </ion-col>
+
+      <ion-col  col-1>
+        <ion-select placeholder="10" class="show1" style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;">
+          <ion-option (ionSelect)="changeLimit(5)">5</ion-option>
+          <ion-option (ionSelect)="changeLimit(10)">10</ion-option>
+          <ion-option (ionSelect)="changeLimit(15)">15</ion-option>
+        </ion-select>
+        </ion-col> -->
+
+    </ion-row>
+       
+           
+    
+        <table id="customers" >
+          <tbody style="background-color:#d43f3a;">
+            <tr>
+              <th> Group Name </th>
+              <th> No of Memebers </th>
+              <th> status </th>
+              <th>Action</th>
+            </tr>
+          </tbody>
+    
+    
+          <tr *ngFor="let groups of pagedItems">
+            <td> {{groups.groupname}} </td>
+            <td> {{groups?.userids.length}}</td>
+           <td> {{groups.GroupStatus}} </td>
+   
+            <td>
+              <button ion-button icon-only style="color: #fff;background-color: #204d74;border-color: #122b40;" (click)="editGroups(groups)">
+                <ion-icon name="md-create" style="zoom:0.7;"></ion-icon>           
+              </button>
+              <button ion-button icon-only style="color: #fff;background-color: #d9534f;border-color: #d43f3a;" (click)="deleteGroup(groups)">
+                <ion-icon name="md-trash" style="zoom:0.7;"></ion-icon>  </button>
+            </td>
+          </tr>
+    
+        </table>
+      
+      </div>
+    
+    
+   </ion-content>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- <ion-header>
+
+    <ion-navbar>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+  
+      <ion-buttons end (click)="gotolinkusaddgroupmaster()">
+        <button ion-button icon-only>
+        <ion-icon name="add-circle" ></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-title> Group Master </ion-title>
+    </ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)" placeholder="Search"></ion-searchbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+  
+  
+    <div style="padding: 10px;background-color: aliceblue;">
+    
+       <ion-row>
+  
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000"> User Name </b>
+          </ion-label>
+          <ion-item>
+            <ion-input type="text" placeholder="User Name"></ion-input>
+          </ion-item>
+        </ion-col>
+  
+        <ion-col col-4>
+          <ion-label>
+            <b style="color:#000"> Branch </b>
+          </ion-label>
+          <ion-item>
+            <ion-select [(ngModel)]="branch" placeholder="Branch">
+              <ion-option name="1"> Chennai </ion-option>
+              <ion-option name="1"> Tamil nadu </ion-option>
+              <ion-option name="3"> Others </ion-option>
+  
+            </ion-select>
+          </ion-item>
+        </ion-col>
+  
+      </ion-row>
+  
+     
+         
+  
+      <table id="customers" *ngFor="let user of users">
+        <tbody style="background-color:#d43f3a;">
+          <tr>
+            <th> Group Name </th>
+            <th> No of Memebers </th>
+            <th> status </th>
+            <th>Action</th>
+          </tr>
+        </tbody>
+  
+  
+        <tr>
+          <td> {{user.groupname}} </td>
+         <td> {{user.members}} </td>
+  
+          <td>
+            <button ion-button icon-only style="color: #fff;background-color: #204d74;border-color: #122b40;" (click)="editUser(user)">
+              <ion-icon name="md-create" style="zoom:0.7;"></ion-icon>           
+            </button>
+            <button ion-button icon-only style="color: #fff;background-color: #d9534f;border-color: #d43f3a;" (click)="deleteUser(user.id)">
+              <ion-icon name="md-trash" style="zoom:0.7;"></ion-icon>             </button>
+          </td>
+        </tr>
+  
+      </table>
+    </div>
+  
+  
+  
+  </ion-content>  -->

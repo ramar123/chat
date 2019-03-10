@@ -1,0 +1,78 @@
+autocomplete {
+    .toolbar-title-md{text-align:left;color:#fff; font-size: 1.6rem;font-weight: normal;}
+    .searchbar-md .searchbar-input{padding: 4px 48px; font-size: 1.5rem;}
+    .label-md{font-size: 16px;margin: 13px 8px 18px 0;}
+
+    //ios
+    .text-ios-primary {
+        color: #fff;
+        font-size: 1rem;
+    }
+    .toolbar-title-ios {
+
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff;
+        pointer-events: auto;
+        padding-top: 5px;
+    }
+    .text-input::-moz-placeholder {
+        color: white;
+    }
+
+    .text-input:-ms-input-placeholder {
+        color: white;
+
+    }
+
+    .text-input::-webkit-input-placeholder {
+        text-indent: 0;
+        color: white;
+
+    }
+    .searchbar-ios .searchbar-search-icon {
+        left: 9px;
+        top: 15px;
+    }
+
+    ion-icon{    color: #fff;
+                 font-size: 2em;}
+    .item-ios {
+        padding-left: 16px;
+        border-radius: 0;
+        position: relative;
+        font-size: 1rem;}
+    .item-block{    min-height: 3.4rem;}
+    .searchbar-ios .searchbar-input{color: #fff;}
+
+
+    .toolbar .searchbar-ios input::placeholder {
+        color: #fff;
+        font-size:1.2em;
+
+    }
+    .searchbar-ios .searchbar-input{    font-size: 1rem;}
+
+    ///ios////
+    .toolbar-background-ios{    background: #13a89e;}
+    .toolbar-ios ion-title{    padding: 0 14px 1px;}
+    .searchbar-ios .searchbar-input{    height: 2.5rem;font-size: 1rem;}
+    .searchbar-ios .searchbar-search-icon{top: 12px;}
+    .searchbar-ios{    padding: 5px 8px;}
+    .list-ios{    margin: -1px 0 16px;}
+    .label-ios{font-size: 1rem;    margin: 13px 8px 13px 0;}
+    ion-list-header{    min-height: 0rem;}
+    .list-header-ios{    background: #dedede;    letter-spacing: 0rem;
+                         text-transform: none;}
+    .list-ios .item-block .item-inner{    border-bottom: transparent;}
+    .item-block{padding-left: 16px !important;}
+    .list-ios > .item-block:last-child{    border-bottom: transparent;}
+    .toolbar .searchbar-ios .searchbar-input{font-weight: 600;}
+
+
+    .toolbar-background-md {
+        border-color: #b2b2b2;
+        background: #448383;
+    }
+
+}

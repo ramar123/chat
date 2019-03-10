@@ -1,0 +1,142 @@
+
+<ion-header>
+
+    <ion-navbar color="primary">
+  
+      <ion-buttons end (click)="gotolinkusaddmasterdata()">
+        <button ion-button icon-only>
+          <ion-icon name="md-create"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title> Master Data </ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+  
+      <div style="display:flex;" >
+          <ion-searchbar (ionInput)="getItems($event)" placeholder="Search"></ion-searchbar>
+      </div>
+      
+      
+    <ion-row style="margin-top:20px;">
+      <ion-col col-4>
+          <p><b> Master Data </b></p>
+          <p><b> Status </b></p>
+                
+          <!-- <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><b> Created By Name </b></p>
+          <p><b> Create Date </b></p>
+          <p><b> Update Date </b></p> -->
+      </ion-col>
+  
+      <ion-col col-6>
+          <p><b> :&nbsp; Currency123 </b></p>
+          <p><b> :&nbsp; Acive </b></p>
+         
+      </ion-col>
+      <ion-col col-2>
+          <p><span id="iccc1" >
+              <ion-icon name="ios-create" (click)="gotolinkusaddmasterdata()"style="font-size: 20px"></ion-icon>
+            </span>
+            <span id="iccc2">
+              <ion-icon name="ios-trash" (click)="gotoDelete()" style="font-size: 20px;    margin-left: 10px"></ion-icon>
+            </span>
+          </p>
+      </ion-col>
+    </ion-row><br>
+
+
+
+
+
+    <ion-row>
+        <ion-col col-4>
+            <p><b> Master Data </b></p>
+            <p><b> Status </b></p>
+                  
+            <!-- <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><b> Created By Name </b></p>
+            <p><b> Create Date </b></p>
+            <p><b> Update Date </b></p> -->
+        </ion-col>
+    
+        <ion-col col-6>
+            <p><b> :&nbsp; Currency123 </b></p>
+            <p><b> :&nbsp; Inactive </b></p>
+           
+        </ion-col>
+        <ion-col col-2>
+            <p><span id="iccc1" >
+                <ion-icon name="ios-create"  (click)="gotolinkusaddmasterdata()" style="font-size: 20px"></ion-icon>
+              </span>
+              <span id="iccc2">
+                <ion-icon name="ios-trash" (click)="gotoDelete()" style="font-size: 20px;    margin-left: 10px"></ion-icon>
+              </span>
+            </p>
+        </ion-col>
+      </ion-row> <br>
+  
+      
+
+
+
+
+      <ion-row>
+          <ion-col col-4>
+              <p><b> Master Data </b></p>
+              <p><b> Status </b></p>
+                    
+              <!-- <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><b> Created By Name </b></p>
+              <p><b> Create Date </b></p>
+              <p><b> Update Date </b></p> -->
+          </ion-col>
+      
+          <ion-col col-6>
+              <p><b> :&nbsp; Currency123 </b></p>
+              <p><b> :&nbsp; Active </b></p>
+             
+          </ion-col>
+          <ion-col col-2>
+              <p><span id="iccc1" >
+                  <ion-icon name="ios-create" (click)="gotolinkusaddmasterdata()" style="font-size: 20px"></ion-icon>
+                </span>
+                <span id="iccc2">
+                  <ion-icon name="ios-trash" (click)="gotoDelete()" style="font-size: 20px;    margin-left: 10px"></ion-icon>
+                </span>
+              </p>
+          </ion-col>
+        </ion-row> <br>
+  
+        
+
+
+        <ion-row>
+            <ion-col col-4>
+                <p><b> Master Data </b></p>
+                <p><b> Status </b></p>
+                      
+                <!-- <p style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"><b> Created By Name </b></p>
+                <p><b> Create Date </b></p>
+                <p><b> Update Date </b></p> -->
+            </ion-col>
+        
+            <ion-col col-6>
+                <p><b> :&nbsp; Currency123 </b></p>
+                <p><b> :&nbsp; Active </b></p>
+               
+            </ion-col>
+            <ion-col col-2>
+                <p><span id="iccc1" >
+                    <ion-icon name="ios-create"  (click)="gotolinkusaddmasterdata()" style="font-size: 20px"></ion-icon>
+                  </span>
+                  <span id="iccc2">
+                    <ion-icon name="ios-trash" (click)="gotoDelete()" style="font-size: 20px;    margin-left: 10px"></ion-icon>
+                  </span>
+                </p>
+            </ion-col>
+          </ion-row>
+        
+  
+  </ion-content>
+  

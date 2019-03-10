@@ -1,0 +1,777 @@
+<ion-header>
+  <ion-navbar>
+    <ion-icon name="ios-close-circle-outline" (click)="closemodal()" style="float: right;
+    font-weight: 600;
+    font-size: 25px;
+    color: #fff;"></ion-icon>
+    <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Add User Master </b>
+  </ion-navbar>
+</ion-header> 
+
+
+
+
+<ion-content padding>
+  <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
+
+   
+   <ion-row>
+
+      <ion-col [class.has-danger]="!userForm.controls.employee.valid && !userForm.controls.employee.untouched" col-6 col-xl-3 col-md-6
+        col-lg-3>
+        <ion-label stacked>
+           Employee code <sup style="color:red;"> * </sup> 
+        </ion-label>
+        <ion-input type="text" class="form-control" placeholder="employee" formControlName="employee"></ion-input>
+        <div style="color: red; padding-top: 0.2rem" *ngIf="isemp">
+            Employee Code already exists
+          </div>
+      </ion-col>
+
+
+
+          <ion-col [class.has-danger]="!userForm.controls.displayName.valid && !userForm.controls.displayName.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+               Name <sup style="color:red;"> * </sup> 
+              </ion-label>
+            <ion-input type="text" placeholder="Name" class="form-control" formControlName="displayName"></ion-input>
+            </ion-col>
+
+
+     
+
+
+     <ion-col [class.has-danger]="!userForm.controls.email.valid && !userForm.controls.email.untouched" col-6 col-xl-3 col-md-6
+      col-lg-3>
+      <ion-label stacked>
+         Email <sup style="color:red;"> * </sup> 
+      </ion-label>
+      <ion-input type="email" class="form-control" placeholder="email" formControlName="email"></ion-input>
+      <div style="color: red; padding-top: 0.2rem" *ngIf="isemail">
+          Email already exists
+        </div>
+    </ion-col>
+
+
+
+
+    <ion-col [class.has-danger]="!userForm.controls.extension.valid && !userForm.controls.extension.untouched" col-6 col-xl-3 col-md-6
+    col-lg-3>
+    <ion-label stacked>
+         Extenion   
+          </ion-label>
+          <select class="form-control" placeholder="select" formControlName="extension">
+              <option [ngValue]="Select">Select</option>
+              <option value="1"> India(+315) </option>
+              <option value="2"> America(+224) </option>
+              <option value="3"> California(+563) </option>
+            </select>
+        </ion-col>
+
+
+
+        <ion-col [class.has-danger]="!userForm.controls.mobilenumber.valid && !userForm.controls.mobilenumber.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+              Mobile <sup style="color:red;"> * </sup> 
+              </ion-label>
+            <ion-input type="tel" class="form-control" placeholder="mobile" formControlName="mobilenumber" minlength="10" maxlength="10"></ion-input>
+            <div style="color: red; padding-top: 0.2rem" *ngIf="isMobile">
+              Mobile Number Already Exist
+            </div>
+        </ion-col>
+
+
+
+        <ion-col [class.has-danger]="!userForm.controls.password.valid && !userForm.controls.password.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+               Password <sup style="color:red;"> * </sup>  
+              </ion-label>
+            <ion-input type="password" class="form-control" placeholder="password" formControlName="password"></ion-input>
+              </ion-col>
+        
+
+
+        <ion-col [class.has-danger]="!userForm.controls.contacttype.valid && !userForm.controls.contacttype.untouched" col-6 col-xl-3 col-md-6
+        col-lg-3>
+        <ion-label stacked>
+             Contact Type   
+              </ion-label>
+              <select  class="form-control" placeholder="select" formControlName="contacttype">
+              <option [ngValue]="Select">Select</option>
+             <option> Default user </option>
+            <option > Invite user</option>
+            </select>
+            </ion-col>
+        
+
+
+
+       <ion-col [class.has-danger]="!userForm.controls.branchname.valid && !userForm.controls.branchname.untouched" col-6 col-xl-3 col-md-6
+      col-lg-3>
+            <ion-label stacked>
+          Branch    
+          </ion-label>
+         <select  class="form-control" placeholder="select" formControlName="branchname">
+            <option [ngValue]="Select">Select</option>
+            <option> Chennai </option>
+             <option> Trichy </option>
+            <option> Madurai </option>
+         </select>
+          </ion-col>
+            
+    
+
+          <ion-col [class.has-danger]="!userForm.controls.department.valid && !userForm.controls.department.untouched" col-6 col-xl-3 col-md-6
+          col-lg-3>
+                <ion-label stacked>
+               Department   
+              </ion-label>
+              <select  class="form-control" placeholder="select" formControlName="department">
+                  <option [ngValue]="Select">Select</option>
+                  <option> Sales & Marketing </option>
+                <option> Information & Technology</option>
+                <option> Non-IT </option>
+              </select>
+              </ion-col>
+                
+
+
+          <ion-col [class.has-danger]="!userForm.controls.designation.valid && !userForm.controls.designation.untouched" col-6 col-xl-3 col-md-6
+              col-lg-3>
+             <ion-label stacked>
+              Designation  
+            </ion-label>
+            <select class="form-control"  placeholder="select" formControlName="designation">
+                <option [ngValue]="Select">Select</option>
+            <option> HR Manager </option>
+            <option > Admin</option>
+           <option > Salse Manager </option>
+            </select>
+            </ion-col>
+                    
+
+
+         <ion-col [class.has-danger]="!userForm.controls.DOB.valid && !userForm.controls.DOB.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+          <ion-label stacked>DOB 
+          </ion-label>
+          <ion-input class="form-control" type="date" placeholder="DOB" formControlName="DOB"></ion-input>
+
+        <!-- <ion-datetime display-format="DD/MM/YYYY" picker-format="MMMM YYYY" placeholder="DD/MM/YYYY" formControlName="DOB"></ion-datetime> -->
+        </ion-col>
+              
+                   
+
+        <ion-col [class.has-danger]="!userForm.controls.DOJ.valid && !userForm.controls.DOJ.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked>DOJ 
+            </ion-label>
+          <!-- <ion-datetime display-format="DD/MM/YYYY" picker-format="MMMM YYYY" placeholder="DD/MM/YYYY" formControlName="DOJ"></ion-datetime> -->
+
+          <ion-input type="date" class="form-control" placeholder="DOJ" formControlName="DOJ"></ion-input>
+          </ion-col>
+                
+
+
+       <ion-col [class.has-danger]="!userForm.controls.gender.valid && !userForm.controls.gender.untouched" col-6 col-xl-3 col-md-6
+            col-lg-3>
+           <ion-label stacked>
+          Gender  
+          </ion-label>
+            <select class="form-control" placeholder="select" formControlName="gender">
+                <option [ngValue]="Select">Select</option>
+              <option> male </option>
+            <option> female</option>
+            </select>
+          </ion-col>
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.landline.valid && !userForm.controls.landline.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+                 Landline  
+            </ion-label>
+              <ion-input type="number" class="form-control" placeholder="landline" formControlName="landline" minlength="4" maxlength="12"></ion-input>
+            </ion-col>
+
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.gender.valid && !userForm.controls.gender.untouched" col-6 col-xl-3 col-md-6
+          col-lg-3>
+         <ion-label stacked>
+          Default Language  
+        </ion-label>
+         <select  placeholder="select" class="form-control" formControlName="language">
+           <option [ngValue]="Select">Select</option>
+              <option> English </option>
+              <option> French</option>
+              <option> Georgin </option>
+              <option> Bengali </option>
+              <option> Arabic </option>
+              <option> Basque </option>
+              <option> Bulgarian </option>
+              <option> Catalan </option>
+              <option> Cambodian </option>
+              <option> Chinese </option>
+              <option> Croation </option>
+              <option> Czech </option>
+              <option> Danish </option>
+              <option> Dutch </option>
+              <option> Estonian </option>
+              <option> Fiji </option>
+              <option> Finnish </option>
+              <option> German </option>
+                  <option>Greek </option>
+                    <option> Gujarati </option>
+                      <option> Hebrew </option>
+                        <option> Hindi </option>
+                          <option>Hungarian </option>
+              <option> Icelandic </option>
+              <option> Indonesian </option>
+              <option> Irish </option>
+              <option> Italian </option>
+              <option> Japanese </option>
+              <option> Javanese </option>
+              <option> Korean </option>
+              <option> Latin </option>
+              <option> Lithuanian </option>
+             <option> Macedonian </option>
+              <option> Malay </option>
+              <option> Malayalam </option>
+              <option> Maltese </option>
+              <option> Maori </option>
+              <option> Marathi </option>
+              <option> Mongolian </option>
+              <option> Nepali </option>
+              <option> Norwegian </option>
+              <option> Persian </option>
+              <option> Polish </option>
+              <option> Portuguese </option>
+              <option> Punjabi </option>
+              <option> Quechua </option>
+              <option> Romanian </option>
+              <option> Russian </option>
+              <option> Samoan </option>
+              <option> Serbian </option>
+              <option> Slovak </option>
+              <option> Slovenian </option>
+              <option> Spanish </option>
+              <option> Swahili </option>
+              <option> Swedish </option>
+             <option> Tamil </option>
+              <option> Tatar </option>
+              <option> Telugu </option>
+              <option> Thai </option>
+             <option> Tibetan </option>
+              <option> Tonga </option>
+              <option> Turkish </option>
+              <option> Ukranian </option>
+              <option> Urdu </option>
+              <option> Uzbek </option>
+              <option> Vietnamese </option>
+              <option> Welsh </option>
+              <option> Xhosa </option>
+               </select>
+               </ion-col>
+               </ion-row>
+
+
+        <ion-row>
+            
+          <ion-col [class.has-danger]="!userForm.controls.mobilelogin.valid && !userForm.controls.mobilelogin.untouched" col-6 col-xl-3 col-md-6
+            col-lg-3>
+            <ion-label stacked>
+                Mobile Login 
+              </ion-label>
+
+
+                
+          <ion-list radio-group formControlName="mobilelogin"> 
+                 <ion-col>    
+                   <ion-radio value="1"></ion-radio> Yes
+                 </ion-col>
+                 <ion-col>    
+                   <ion-radio value="0"></ion-radio> No
+                 </ion-col>
+                  </ion-list>
+                  </ion-col>
+
+
+
+
+         <ion-col [class.has-danger]="!userForm.controls.weblogin.valid && !userForm.controls.weblogin.untouched" col-6 col-xl-3 col-md-6
+         col-lg-3>
+         <ion-label stacked>
+          Web Login  
+         </ion-label>
+             
+       <ion-list radio-group formControlName="weblogin">
+        <ion-col>    
+        <ion-radio value="1"></ion-radio> Yes
+        </ion-col>
+        <ion-col>    
+          <ion-radio value="0"></ion-radio> No
+          </ion-col>
+                  
+       </ion-list>
+                    
+      </ion-col>
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.deviceres.valid && !userForm.controls.deviceres.untouched" col-6 col-xl-3 col-md-6
+         col-lg-3>
+         <ion-label stacked>
+             Device Restriction   
+           </ion-label>
+             
+       <ion-list radio-group formControlName="deviceres">
+              <ion-col>    
+                <ion-radio value="1"></ion-radio> Yes
+              </ion-col>
+              <ion-col>    
+                <ion-radio value="0"></ion-radio> No
+              </ion-col>
+                  
+       </ion-list>
+       </ion-col>
+                    
+      </ion-row>
+
+
+
+      <ion-row>
+        <ion-label stacked>  <b> Location </b></ion-label>
+          <ion-searchbar 
+          [(ngModel)]="autocomplete.query" 
+          [ngModelOptions]="{standalone: true}"
+          [showCancelButton]="true" 
+          (ionInput)="updateSearch()" 
+          (ionCancel)="dismiss()"
+          placeholder="Enter location">
+          </ion-searchbar>
+
+         <ion-list>
+          <ion-item *ngFor="let item of autocompleteItems" 
+          (click)="chooseItem(item)">
+          <img src="data:image/png;base64,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" style="
+          width: 25px;">
+          {{ item.description }}
+          </ion-item>
+          </ion-list> 
+          <!-- <ion-col [class.has-danger]="!userForm.controls.location.valid && !userForm.controls.location.untouched" col-6 col-xl-6 col-md-6 col-lg-6>
+              <ion-label stacked> 
+                  <b> Location <sup style="color:red;"> * </sup>  </b>
+              </ion-label>
+                <textarea rows="4" cols="50" name="comment" placeholder="location" formControlName="location"  > </textarea>
+         
+            </ion-col>  -->
+       </ion-row> 
+      
+ 
+    <hr>
+    <div style="margin-top:-5%;">
+    <button ion-button  type="submit" class="reset1"   (click)="gotoreset()">
+        RESET
+      </button>  
+          <button ion-button type="submit" class="update1">
+        SUBMIT
+        </button>
+      </div>
+
+ </form>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-header>
+  <ion-navbar>
+    <ion-icon name="ios-close-circle-outline" (click)="closemodal()" style="float: right;
+    font-weight: 600;
+    font-size: 25px;
+    color: #fff;"></ion-icon>
+    <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Add User Master </b>
+  </ion-navbar>
+</ion-header> 
+
+
+
+
+<ion-content padding>
+  <form [formGroup]="userForm" (ngSubmit)="submit()" novalidate>
+
+   
+   <ion-row>
+
+      <ion-col [class.has-danger]="!userForm.controls.employee.valid && !userForm.controls.employee.untouched" col-6 col-xl-3 col-md-6
+        col-lg-3>
+        <ion-label stacked>
+            <b>  Employee code <sup style="color:red;"> * </sup>  </b>
+        </ion-label>
+        <ion-input type="number" placeholder="employee" formControlName="employee"></ion-input>
+      </ion-col>
+
+
+
+          <ion-col [class.has-danger]="!userForm.controls.displayName.valid && !userForm.controls.displayName.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+              <b> Name <sup style="color:red;"> * </sup>  </b>
+              </ion-label>
+            <ion-input type="text" placeholder="Name" formControlName="displayName"></ion-input>
+            </ion-col>
+
+
+     
+
+           
+
+
+     <ion-col [class.has-danger]="!userForm.controls.email.valid && !userForm.controls.email.untouched" col-6 col-xl-3 col-md-6
+      col-lg-3>
+      <ion-label stacked>
+          <b>  Email <sup style="color:red;"> * </sup>  </b>
+      </ion-label>
+      <ion-input type="email" placeholder="email" formControlName="email"></ion-input>
+    </ion-col>
+
+
+
+
+    <ion-col [class.has-danger]="!userForm.controls.extension.valid && !userForm.controls.extension.untouched" col-6 col-xl-3 col-md-6
+    col-lg-3>
+    <ion-label stacked>
+        <b>  Extenion   </b>
+          </ion-label>
+          <ion-select placeholder="select" formControlName="extension">
+              <ion-option value="1"> India(+315) </ion-option>
+              <ion-option value="2"> America(+224) </ion-option>
+              <ion-option value="3"> California(+563) </ion-option>
+            </ion-select>
+        </ion-col>
+
+
+
+        <ion-col [class.has-danger]="!userForm.controls.mobilenumber.valid && !userForm.controls.mobilenumber.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+              <b> Mobile <sup style="color:red;"> * </sup>  </b>
+              </ion-label>
+            <ion-input type="tel" placeholder="mobile" formControlName="mobilenumber" minlength="10" maxlength="10"></ion-input>
+          
+        </ion-col>
+
+
+
+        <ion-col [class.has-danger]="!userForm.controls.password.valid && !userForm.controls.password.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+              <b> Password <sup style="color:red;"> * </sup>  </b>
+              </ion-label>
+            <ion-input type="password" placeholder="password" formControlName="password"></ion-input>
+              </ion-col>
+        
+
+
+        <ion-col [class.has-danger]="!userForm.controls.contacttype.valid && !userForm.controls.contacttype.untouched" col-6 col-xl-3 col-md-6
+        col-lg-3>
+        <ion-label stacked>
+            <b>  Contact Type   </b>
+              </ion-label>
+              <ion-select  placeholder="select" formControlName="contacttype">
+             <ion-option> Default user </ion-option>
+            <ion-option > Invite user</ion-option>
+            </ion-select>
+            </ion-col>
+        
+
+
+
+       <ion-col [class.has-danger]="!userForm.controls.branchname.valid && !userForm.controls.branchname.untouched" col-6 col-xl-3 col-md-6
+      col-lg-3>
+            <ion-label stacked>
+         <b> Branch    </b>
+          </ion-label>
+         <ion-select  placeholder="select" formControlName="branchname">
+            <ion-option> Chennai </ion-option>
+             <ion-option> Trichy </ion-option>
+            <ion-option> Madurai </ion-option>
+           </ion-select>
+          </ion-col>
+            
+    
+
+          <ion-col [class.has-danger]="!userForm.controls.department.valid && !userForm.controls.department.untouched" col-6 col-xl-3 col-md-6
+          col-lg-3>
+                <ion-label stacked>
+             <b>  Department   </b>
+              </ion-label>
+              <ion-select  placeholder="select" formControlName="department">
+                  <ion-option> Sales & Marketing </ion-option>
+                <ion-option> Information & Technology</ion-option>
+                <ion-option> Non-IT </ion-option>
+              </ion-select>
+              </ion-col>
+                
+
+
+          <ion-col [class.has-danger]="!userForm.controls.designation.valid && !userForm.controls.designation.untouched" col-6 col-xl-3 col-md-6
+              col-lg-3>
+             <ion-label stacked>
+              <b> Designation  </b>
+            </ion-label>
+            <ion-select  placeholder="select" formControlName="designation">
+            <ion-option> HR Manager </ion-option>
+            <ion-option > Admin</ion-option>
+           <ion-option > Salse Manager </ion-option>
+            </ion-select>
+            </ion-col>
+                    
+
+
+         <ion-col [class.has-danger]="!userForm.controls.DOB.valid && !userForm.controls.DOB.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+          <ion-label stacked><b>DOB </b>
+          </ion-label>
+          <ion-input type="text" placeholder="DOB" formControlName="DOB"></ion-input>
+       </ion-col>
+              
+                   
+
+        <ion-col [class.has-danger]="!userForm.controls.DOJ.valid && !userForm.controls.DOJ.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked><b>DOJ </b>
+            </ion-label>
+         <ion-input type="text" placeholder="DOJ" formControlName="DOJ"></ion-input>
+          </ion-col>
+                
+
+
+       <ion-col [class.has-danger]="!userForm.controls.gender.valid && !userForm.controls.gender.untouched" col-6 col-xl-3 col-md-6
+            col-lg-3>
+           <ion-label stacked>
+            <b> Gender  </b>
+          </ion-label>
+            <ion-select  placeholder="select" formControlName="gender">
+              <ion-option> male </ion-option>
+            <ion-option> female</ion-option>
+            </ion-select>
+          </ion-col>
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.landline.valid && !userForm.controls.landline.untouched" col-6 col-xl-3 col-md-6 col-lg-3>
+            <ion-label stacked> 
+                <b> Landline  </b>
+            </ion-label>
+              <ion-input type="number" placeholder="landline" formControlName="landline" minlength="4" maxlength="12"></ion-input>
+         
+          </ion-col>
+
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.gender.valid && !userForm.controls.gender.untouched" col-6 col-xl-3 col-md-6
+          col-lg-3>
+         <ion-label stacked>
+          <b> Default Language  </b>
+        </ion-label>
+         <ion-select  placeholder="select" formControlName="language">
+              <ion-option> English </ion-option>
+              <ion-option> French</ion-option>
+              <ion-option> Georgin </ion-option>
+              <ion-option> Bengali </ion-option>
+              <ion-option> Arabic </ion-option>
+              <ion-option> Basque </ion-option>
+              <ion-option> Bulgarian </ion-option>
+              <ion-option> Catalan </ion-option>
+              <ion-option> Cambodian </ion-option>
+              <ion-option> Chinese </ion-option>
+              <ion-option> Croation </ion-option>
+              <ion-option> Czech </ion-option>
+              <ion-option> Danish </ion-option>
+              <ion-option> Dutch </ion-option>
+              <ion-option> Estonian </ion-option>
+              <ion-option> Fiji </ion-option>
+              <ion-option> Finnish </ion-option>
+              <ion-option> German </ion-option>
+              <ion-option> Greek </ion-option>
+              <ion-option> Gujarati </ion-option>
+              <ion-option> Hebrew </ion-option>
+              <ion-option> Hindi </ion-option>
+              <ion-option> Hungarian </ion-option>
+              <ion-option> Icelandic </ion-option>
+              <ion-option> Indonesian </ion-option>
+              <ion-option> Irish </ion-option>
+              <ion-option> Italian </ion-option>
+              <ion-option> Japanese </ion-option>
+              <ion-option> Javanese </ion-option>
+              <ion-option> Korean </ion-option>
+              <ion-option> Latin </ion-option>
+              <ion-option> Lithuanian </ion-option>
+             <ion-option> Macedonian </ion-option>
+              <ion-option> Malay </ion-option>
+              <ion-option> Malayalam </ion-option>
+              <ion-option> Maltese </ion-option>
+              <ion-option> Maori </ion-option>
+              <ion-option> Marathi </ion-option>
+              <ion-option> Mongolian </ion-option>
+              <ion-option> Nepali </ion-option>
+              <ion-option> Norwegian </ion-option>
+              <ion-option> Persian </ion-option>
+              <ion-option> Polish </ion-option>
+              <ion-option> Portuguese </ion-option>
+              <ion-option> Punjabi </ion-option>
+              <ion-option> Quechua </ion-option>
+              <ion-option> Romanian </ion-option>
+              <ion-option> Russian </ion-option>
+              <ion-option> Samoan </ion-option>
+              <ion-option> Serbian </ion-option>
+              <ion-option> Slovak </ion-option>
+              <ion-option> Slovenian </ion-option>
+              <ion-option> Spanish </ion-option>
+              <ion-option> Swahili </ion-option>
+              <ion-option> Swedish </ion-option>
+             <ion-option> Tamil </ion-option>
+              <ion-option> Tatar </ion-option>
+              <ion-option> Telugu </ion-option>
+              <ion-option> Thai </ion-option>
+             <ion-option> Tibetan </ion-option>
+              <ion-option> Tonga </ion-option>
+              <ion-option> Turkish </ion-option>
+              <ion-option> Ukranian </ion-option>
+              <ion-option> Urdu </ion-option>
+              <ion-option> Uzbek </ion-option>
+              <ion-option> Vietnamese </ion-option>
+              <ion-option> Welsh </ion-option>
+              <ion-option> Xhosa </ion-option>
+               </ion-select>
+               </ion-col>
+               </ion-row>
+
+
+        <ion-row>
+            
+          <ion-col [class.has-danger]="!userForm.controls.mobilelogin.valid && !userForm.controls.mobilelogin.untouched" col-6 col-xl-3 col-md-6
+            col-lg-3>
+            <ion-label stacked>
+                <b> Mobile Login </b>
+              </ion-label>
+
+
+                
+          <ion-list radio-group formControlName="mobilelogin"> 
+                 <ion-col>    
+                   <ion-radio value="1"></ion-radio> Yes
+                 </ion-col>
+                 <ion-col>    
+                   <ion-radio value="0"></ion-radio> No
+                 </ion-col>
+                  </ion-list>
+                  </ion-col>
+
+
+
+
+         <ion-col [class.has-danger]="!userForm.controls.weblogin.valid && !userForm.controls.weblogin.untouched" col-6 col-xl-3 col-md-6
+         col-lg-3>
+         <ion-label stacked>
+          <b> Web Login  </b>
+         </ion-label>
+             
+       <ion-list radio-group formControlName="weblogin">
+        <ion-col>    
+        <ion-radio value="1"></ion-radio> Yes
+        </ion-col>
+        <ion-col>    
+          <ion-radio value="0"></ion-radio> No
+          </ion-col>
+                  
+       </ion-list>
+                    
+      </ion-col>
+
+
+
+      <ion-col [class.has-danger]="!userForm.controls.deviceres.valid && !userForm.controls.deviceres.untouched" col-6 col-xl-3 col-md-6
+         col-lg-3>
+         <ion-label stacked>
+             <b> Device Restriction   </b>
+           </ion-label>
+             
+       <ion-list radio-group formControlName="deviceres">
+              <ion-col>    
+                <ion-radio value="1"></ion-radio> Yes
+              </ion-col>
+              <ion-col>    
+                <ion-radio value="0"></ion-radio> No
+              </ion-col>
+                  
+       </ion-list>
+       </ion-col>
+                    
+      </ion-row>
+
+
+
+
+
+      <ion-row>
+        <ion-label stacked>  <b> Location </b></ion-label>
+          <ion-searchbar 
+          [(ngModel)]="autocomplete.query" 
+          [ngModelOptions]="{standalone: true}"
+          [showCancelButton]="true" 
+          (ionInput)="updateSearch()" 
+          (ionCancel)="dismiss()"
+          placeholder="Enter location">
+          </ion-searchbar>
+          <ion-list>
+          <ion-item *ngFor="let item of autocompleteItems" 
+          (click)="chooseItem(item)">
+          <img src="data:image/png;base64,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" style="
+          width: 25px;">
+          {{ item.description }}
+          </ion-item>
+          </ion-list>
+             </ion-row> 
+      
+  
+    <hr>
+    <div style="margin-top:-5%;">
+    <button ion-button  type="submit" class="reset1"   (click)="gotoreset()">
+        RESET
+      </button>  
+          <button ion-button type="submit" class="update1">
+        SUBMIT
+        </button>
+      </div>
+ </form>
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+ -->

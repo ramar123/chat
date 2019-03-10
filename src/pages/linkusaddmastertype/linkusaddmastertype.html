@@ -1,0 +1,54 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+      <ion-title> Add Master Type </ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked><b>MASTER TYPE </b> </ion-label>
+          <ion-input type="tel" placeholder="First Name"></ion-input>
+        </ion-item>
+      </ion-col>
+  
+     
+  <ion-col>
+    <ion-item>
+      <ion-label stacked> <b> STATUS </b> </ion-label>
+      <ion-input type="email" placeholder="Email"></ion-input>
+    </ion-item>
+  </ion-col>
+
+
+  <ion-col>
+    <ion-item>
+      <ion-label stacked> <b> ACTION </b> </ion-label>
+      <ion-select [(ngModel)]="role" placeholder="Role Id">
+        <ion-option value="1"> 1 </ion-option>
+        <ion-option value="2"> 2 </ion-option>
+        <ion-option value="3"> 3 </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-col>
+  </ion-row>
+  
+ 
+  
+  
+
+  
+    <div style="padding-left: 10px;padding-right: 10px;">
+      <p style="margin-bottom: 5px"><b> Status</b> </p>
+      <input type="radio" name="gender" value="male" checked><b> Active </b>
+      <span style="padding-left: 20px"><input type="radio" name="gender" value="female"> <b> DeActive </b> </span>
+    </div>
+  
+    <button ion-button round (click)="updated()" class="submit" style="margin: 0 auto;display:block;margin-top: 20px;margin-bottom: 20px;">
+      Update </button>
+  </ion-content>

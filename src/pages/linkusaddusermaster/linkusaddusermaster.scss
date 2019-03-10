@@ -1,0 +1,361 @@
+page-linkusaddusermaster {
+   
+  .datetime-md {
+    display: block;
+    padding-top: 2px;
+    padding-left: 4px;
+    height: 35px;
+    color: #222;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 16px;
+    width: -webkit-fill-available !important;
+    border: none !important;
+    /* background-color: #fff; */
+    border-bottom: 1px solid #000;
+    border: 1px solid #ddd !important;
+    margin-right: 0px !important;
+  }
+      
+      
+    .row {
+            margin-left: 0px;
+            margin-right: 0px;
+          }
+  
+  
+          .toolbar-background-md {
+            background-color: #f68121c7;;
+            
+        }
+  .ion-icon{
+    width:20%;
+    height:20%;
+  }
+  .toolbar-md {
+    padding: 4px;
+    min-height: 42px;
+  }
+  
+  
+  
+  .reset1{
+   
+  
+    background-color:#d9534f;
+    float:right;
+  }
+  
+  
+  .bt1{
+    background-color: transparent;
+  }
+  
+  .update1{
+   
+  
+    float:right; 
+    background-color:#5cb85c;
+  
+  }
+  
+        .customers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+          
+          
+        }
+        
+          b {
+            color: #000000;
+            font-family: initial;
+          }
+  
+          
+          .item {
+            padding-left: 10px;
+            padding-right: 10px;
+            top: 10px;
+            border: none!important;
+            
+            
+          }
+          .ion-select {
+            width: 100%;
+          }
+        
+          .item.item-block .item-inner {
+            padding-right: 0px;
+            border-bottom: 1px solid #000;
+          }
+        
+          .item-label-stacked .select,
+          .item-label-floating .select {
+            padding-left: 0;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            font-family: initial;
+          }
+        
+          .item-label-stacked .text-input,
+          .item-label-floating .text-input {
+            margin-left: 0;
+            font-family: initial;
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+        
+          .select .select-icon .select-icon-inner {
+            left: 0px;
+            top: 50%;
+            position: absolute;
+            border-top: 5px solid;
+            color: #000;
+            font-family: initial;
+          }
+        
+          .input-cover {
+            margin: 0px;
+            padding: 0px;
+          }
+  
+         
+          ion-select {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            overflow: hidden;
+            max-width: 100%;
+            border: 1px solid #dadada;
+            height: 35px;
+  
+  
+            
+        }
+        
+        .select-md {
+          
+          padding: 7px;
+      }
+  
+      .input-container {
+        text-align: center; 
+        width: 100%;
+    }
+    
+    .google-place-input {
+        width: 50%;
+        min-width: 280px;
+        height: 2rem; 
+        font-size: 1.5rem; 
+        padding: 0.5rem;
+    }
+  
+  //   .searchbar-md .searchbar-input {
+  //     -webkit-box-shadow: none;
+  //     border: 0.5px solid;
+  //     color: #000;
+  //     width: 45% !important;
+  //     height: 44px;
+     
+  // }
+
+  .searchbar-input-container{
+    width: 250px;
+  }
+
+  ion-item{
+    top: 10px;
+    border: none!important;
+  }
+    
+    
+  }
+  
+
+
+
+
+
+
+
+
+
+  // page-linkusaddusermaster {
+  
+//    input[type=password] , input[type=datetime-local], input[type=text], input[type=date], input[type=month], input[type=time], input[type=week], input[type=number], input[type=email], input[type=url], input[type=tel], input[type=color], textarea {
+//     display: block;
+//     padding-top: 2px;
+//     padding-left: 4px;
+//     height: 35px;
+//     color: #222;
+//     vertical-align: middle;
+//     font-size: 14px;
+//     line-height: 16px;
+//      width: -webkit-fill-available !important;
+//     border: none !important;
+//     border-bottom: 1px solid #000;
+//     border: 1px solid #ddd !important;
+//     margin-right: 0px !important;
+// }
+
+// .datetime-md {
+//   display: block;
+//   padding-top: 2px;
+//   padding-left: 4px;
+//   height: 35px;
+//   color: #222;
+//   vertical-align: middle;
+//   font-size: 14px;
+//   line-height: 16px;
+//   width: -webkit-fill-available !important;
+//   border: none !important;
+//   border-bottom: 1px solid #000;
+//   border: 1px solid #ddd !important;
+//   margin-right: 0px !important;
+// }
+    
+    
+//   .row {
+//       margin-left: 0px;
+//       margin-right: 0px;
+//   }
+
+
+//    .toolbar-background-md {
+//    background-color: #f68121c7;;
+          
+//       }
+// .ion-icon{
+//   width:20%;
+//   height:20%;
+// }
+// .toolbar-md {
+//   padding: 4px;
+//   min-height: 42px;
+// }
+
+
+
+// .reset1{
+ 
+
+//   background-color:#d9534f;
+//   float:right;
+// }
+
+
+// .bt1{
+//   background-color: transparent;
+// }
+
+// .update1{
+ 
+
+//   float:right; 
+//   background-color:#5cb85c;
+
+// }
+
+//   .customers {
+//         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+//         border-collapse: collapse;
+//         width: 100%;
+        
+        
+//       }
+      
+//         b {
+//           color: #000000;
+//           font-family: initial;
+//         }
+
+        
+//         .item {
+//           padding-left: 10px;
+//           padding-right: 10px;
+//         }
+//         .ion-select {
+//           width: 100%;
+//         }
+      
+//         .item.item-block .item-inner {
+//           padding-right: 0px;
+//           border-bottom: 1px solid #000;
+//         }
+      
+//         .item-label-stacked .select,
+//         .item-label-floating .select {
+//           padding-left: 0;
+//           padding-top: 8px;
+//           padding-bottom: 8px;
+//           font-family: initial;
+//         }
+      
+//         .item-label-stacked .text-input,
+//         .item-label-floating .text-input {
+//           margin-left: 0;
+//           font-family: initial;
+//           margin-top: 5px;
+//           margin-bottom: 5px;
+//         }
+      
+//         .select .select-icon .select-icon-inner {
+//           left: 0px;
+//           top: 50%;
+//           position: absolute;
+//           border-top: 5px solid;
+//           color: #000;
+//           font-family: initial;
+//         }
+      
+//         .input-cover {
+//           margin: 0px;
+//           padding: 0px;
+//         }
+
+       
+//         ion-select {
+//           display: -webkit-box;
+//           display: -webkit-flex;
+//           display: -ms-flexbox;
+//           display: flex;
+//           overflow: hidden;
+//           max-width: 100%;
+//           border: 1px solid #dadada;
+//           height: 35px;
+
+
+          
+//       }
+      
+//       .select-md {
+        
+//         padding: 7px;
+//     }
+
+//     .input-container {
+//       text-align: center; 
+//       width: 100%;
+//   }
+  
+//   .google-place-input {
+//       width: 50%;
+//       min-width: 280px;
+//       height: 2rem; 
+//       font-size: 1.5rem; 
+//       padding: 0.5rem;
+//   }
+
+//   .searchbar-md .searchbar-input {
+//     -webkit-box-shadow: none;
+//     border: 0.5px solid;
+//     color: #000;
+//     width: 35% !important;
+//     height: 44px;
+   
+// }
+ 
+// }

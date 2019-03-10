@@ -1,0 +1,122 @@
+page-sign-up {
+
+
+    
+    .item.item-block .item-inner {
+        padding-right: 0px;
+        
+        border: 1px solid #dadada;
+        border-radius: 20px;
+        
+        margin-top: 10px;
+    }
+
+    .tem.item-block .item-inner input-has-focus item-input-has-focus {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+
+    }
+
+    .ion-item:disabled {
+        background-color:#ffffff !important;
+      }
+
+    .label {
+        margin: 5px;
+        margin-left: 10px;
+    }
+
+    .item {
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: transparent;
+            min-height: 2.8rem; 
+        
+    }
+
+    ion-select {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        /* display: flex; */
+        /* overflow: hidden; */
+        max-width: 100%;
+        color: #fff;
+        padding-right: 15px;
+        max-height: 2.5rem;
+    }
+
+    .select .select-icon .select-icon-inner {
+        left: 10px;
+        top: 50%;
+        margin-top: -3px;
+        position: absolute;
+
+        border-top: 5px solid;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: #fff6f6;
+       
+        /* pointer-events: none; */
+    }
+
+    .select {
+        padding: 0px;
+        padding-right: 20px;
+        
+    }
+
+    .select .select-placeholder {
+        color: #fff;
+    }
+
+    input::placeholder {
+        color: #fff !important;
+
+      }
+    .text-input {
+        margin: 0px 0px;
+        padding: 0;
+        margin-left: 10px;
+        
+    }
+
+    .silabhu {
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+    }
+    .simbhu {
+        padding-right: 10px;
+        padding-left: 10px;
+        border-radius: 20px;
+        color: #fff;
+        background-color: #f26130;
+    }
+
+    .sss {
+
+        // height: 57%;
+
+    }
+
+    #image {
+        position: relative;
+
+        padding-top: 60px;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 70px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    p,span {
+        color: #fff;
+    }
+
+    .item item-block item-md item-input {
+
+    }
+
+}

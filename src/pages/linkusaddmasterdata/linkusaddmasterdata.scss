@@ -1,0 +1,59 @@
+page-linkusaddmasterdata {
+    
+    
+        .row {
+          margin-left: 0px;
+          margin-right: 0px;
+        }
+      
+        b {
+          color: #000000;
+          font-family: initial;
+        }
+        .item {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .ion-select {
+          width: 100%;
+        }
+      
+        .item.item-block .item-inner {
+          padding-right: 0px;
+          border-bottom: 1px solid #000;
+        }
+      
+        .item-label-stacked .select,
+        .item-label-floating .select {
+          padding-left: 0;
+          padding-top: 8px;
+          padding-bottom: 8px;
+          font-family: initial;
+        }
+      
+        .item-label-stacked .text-input,
+        .item-label-floating .text-input {
+          margin-left: 0;
+          font-family: initial;
+          margin-top: 5px;
+          margin-bottom: 5px;
+        }
+      
+        .select .select-icon .select-icon-inner {
+          left: 0px;
+          top: 50%;
+          position: absolute;
+          border-top: 5px solid;
+          color: #000;
+          font-family: initial;
+        }
+      
+        .input-cover {
+          margin: 0px;
+          padding: 0px;
+        }
+      
+      
+
+
+}

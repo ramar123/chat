@@ -1,0 +1,64 @@
+<!-- 
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>SignUp</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+
+<ion-content style="background-color: #a86e5d">
+
+  <div class="sss">
+    <div id="image">
+      <img src="assets/imgs/school1.png" style="margin:  0 auto;display: block">
+    </div>
+  </div>
+
+  <div>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-contact-outline" class="silabhu"></ion-icon>
+      </ion-label>
+      <ion-input type="text" placeholder="Name" style="color: #fff"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-call-outline" class="silabhu"></ion-icon>
+      </ion-label>
+      <ion-input type="text" placeholder="Mobile Number" style="color: #fff"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-lock-outline" class="silabhu"></ion-icon>
+      </ion-label>
+      <ion-input type="Password" placeholder="Password" style="color: #fff"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        <ion-icon name="ios-lock-outline" class="silabhu"></ion-icon> <span style="padding-left: 10px;"> Role </span>
+      </ion-label>
+      <ion-select [(ngModel)]="data" placeholder="select">
+        <ion-option value="school"> School </ion-option>
+        <ion-option value="dmo"> Deo </ion-option>
+        <ion-option value="adeo"> Adeo </ion-option>
+      </ion-select>
+    </ion-item>
+
+    <div style="padding: 10px">
+      <ion-checkbox> </ion-checkbox> <span>Terms Ane Conditions</span>
+    </div>
+
+    <div style="padding: 10px">
+      <button ion-button class="simbhu" full> Signin </button>
+    </div>
+
+
+
+  </div>
+</ion-content>

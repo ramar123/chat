@@ -1,0 +1,91 @@
+<ion-header>
+    <ion-navbar>
+      <ion-icon name="ios-close-circle-outline" (click)="closemodal()" style="    float: right;
+      font-weight: 600;
+      font-size: 25px;
+      color: #fff;"></ion-icon>
+      <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Add Open Group Master </b>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  
+  
+  
+  <ion-content>
+    <form [formGroup]="GroupForm" (ngSubmit)="submit()" novalidate>
+  
+  
+      <ion-row no-margin>
+  
+  
+        <ion-col col-5>
+            <ion-label> <b>Group Name</b></ion-label>
+          <div [class.has-danger]="!GroupForm.controls.groupname.valid && !GroupForm.controls.groupname.untouched">
+            <input type="text" class="form-control" placeholder="groupname" formControlName="groupname" placeholder="group name">
+          </div>
+        </ion-col>
+        <br>
+  
+  
+        
+  <ion-col col-5>
+      <div [class.has-danger]="!GroupForm.controls.members.valid && !GroupForm.controls.members.untouched">
+          <ion-label>
+           <b> Group Members </b>
+        </ion-label>
+        <ion-searchbar formControlName="members" (ionInput)="search()" (ionBlur)="removeFocus()" placeholder="Search" [(ngModel)]="searchTerm"></ion-searchbar>
+                <ion-list *ngIf="searching">
+              <ion-item *ngFor="let user of searchList" (click)="add(user)">
+                {{user.displayName}} - {{user.employee}} - {{user.department}}
+              </ion-item>
+            </ion-list> 
+          </div>
+        </ion-col>
+  
+  
+             <ion-col col-2>
+          <button ion-button type="button" (click)="addMember()" style="background-color:#5cb85c;float:right;margin-top: 44px;">
+            ADD MEMBERS
+          </button>
+        </ion-col>
+  
+      </ion-row>
+  
+  
+  
+  
+      <ion-row no-margin>
+  
+    <ion-col>
+          <div ion-button round class="add1" type="submit" *ngFor="let userid of userIds;">
+  
+              {{userid}}
+  
+              <!-- <div ion-button round class="add1" type="submit" *ngFor="let user of users;"> -->
+                     
+              <!-- {{user.displayName}} -->
+  
+            <ion-icon class="close" name="close-circle" (click)="removePost(userid)" style="float:right;"></ion-icon>
+          </div>
+          </ion-col>    
+  
+        </ion-row>
+  
+        
+  
+  
+      <br>
+      <br>
+  
+      <button ion-button type="submit" class="reset1" (click)="gotoreset()">
+        RESET
+      </button>
+      <br>
+      <button ion-button type="submit" class="update1" >
+        SUBMIT
+      </button>
+  
+    </form>
+  
+  </ion-content>

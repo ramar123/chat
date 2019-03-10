@@ -1,0 +1,91 @@
+page-autocomplete {
+    .toolbar-title-md h1{
+        text-align: left;
+        color: #fff;
+        font-size: 1.7rem;
+        font-weight: normal;
+        padding-top: 10px;
+    }
+    .toolbar-background-md {
+        background-color: #448383;
+    }
+    .bar-button-default-md{
+        color:white;
+        font-size: 20px;
+        position: absolute;
+        top: -30px;
+        right: 10px;
+    }
+    .searchbar-md{
+        margin-top: 10px;
+    }
+    .searchbar-md .searchbar-search-icon {
+        top: 5px;
+        position:absolute;
+    }
+    .list-md{
+        top: 4%;
+
+        position: relative;
+    }
+    .item-md{
+
+    }
+
+    .label-md {
+
+        font-size: 15px;
+        padding-left: 20px;
+    }
+    .list-md .item-block .item-inner{
+        border-bottom: solid 1px #ddd;
+        width: 100%;
+    }
+    .searchbar-md .searchbar-input {
+        padding: 1px 55px;
+        font-size: 1.5rem;
+        line-height: 2.5rem;
+    }
+    .list-header-md {
+        margin-bottom: 0px;
+        padding-left: 16px;
+        min-height: 0rem;
+        border-top: 1px solid #dedede;
+        font-size: 1rem;
+        color: #757575;
+    }
+    .item-md {
+        font-size: 1rem;
+    }
+    .item-block {
+        min-height: 0rem;
+    }
+    .list-header-md {
+        background: #dedede;
+    }
+
+    .item > ion-icon, .item-inner > ion-icon {
+        font-size: 1.5rem;
+        min-height: 1rem;
+    }
+    .auto-btn {
+        font-size: 30px !important;
+        color: #FFFFFF !important;
+    }
+
+    ///ios////
+    .toolbar-background-ios{    background: #13a89e;}
+    .toolbar-ios ion-title{    padding: 0 14px 1px;}
+    .searchbar-ios .searchbar-input{    height: 2.5rem;font-size: 1rem;}
+    .searchbar-ios .searchbar-search-icon{top: 12px;}
+    .searchbar-ios{    padding: 5px 8px;}
+    .list-ios{    margin: -1px 0 16px;}
+    .label-ios{font-size: 1rem;    margin: 13px 8px 13px 0;}
+    ion-list-header{    min-height: 0rem;}
+    .list-header-ios{  padding-left: 16px !important;  background: #dedede;    letter-spacing: 0rem;
+                       text-transform: none;}
+    .list-ios .item-block .item-inner{    border-bottom: transparent;}
+
+    .list-ios > .item-block:last-child{    border-bottom: transparent;}
+
+}

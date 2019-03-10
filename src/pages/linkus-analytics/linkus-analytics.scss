@@ -1,0 +1,295 @@
+page-linkus-analytics {
+
+
+    /* background-md {
+         border-color: #b2b2b2;
+         background: #03a9f4;
+        // background: blue;
+     }*/
+ 
+
+     
+     .toolbar-background-md {
+         
+        // background: #03a9f4;
+        background: #f68121c7;
+     }
+     
+         
+         .toolbar-title-md {
+             padding: 0 12px;
+             font-size: 2rem;
+             font-weight: 500;
+             color: #fff;
+         }
+         
+       
+      
+       /*  
+       
+         color: white;
+         width: 900px;
+         
+         padding-top:30px;
+         padding-left: 20px;
+         padding-right: 20px; */
+     
+     
+     
+     .outline-head{
+     
+         height: 300px;
+         width:1000px;
+         border:2px solid rgb(235, 233, 233);
+         padding-left:30px;
+         margin-left: 20px;
+         margin-top: 60px;
+     }
+     /*col-2{
+     height: 100px;
+     padding: 0px !important;
+     margin: 0px !important;
+     width:auto;
+     }*/
+     // .select-option {
+     //     margin-top:20px;
+     //     border:1px solid #000;
+     //     width:250px;
+     // }
+     
+     .graph{
+         margin-left: 1px;
+         font-weight: 800;
+         margin-top:20px;
+     }
+     .dropdown {
+         margin-left: 20px;
+     }
+     
+     .col{
+         //font-size: 14px;
+             //padding:0px;
+             display: inline-block;
+             width: 130%;
+             margin-bottom: 5px;
+             //font-weight: 200;
+         
+     }
+     
+     .item-cover {
+         left: 0;
+         top: 0;
+         position: absolute;
+         font-size: 20px;
+         width: 100%;
+         height: 78%;
+         background: transparent;
+         cursor: pointer;
+     }
+     
+     button {
+         border: 1px solid;
+         font-family: inherit;
+         font-style: inherit;
+         font-variant: inherit;
+         line-height: 0;
+         text-transform: none;
+         cursor: pointer;
+         -webkit-appearance: button;
+         margin-top: 2px;
+        
+     }
+
+
+     .search-button{
+         height: 30px;
+         margin-top: 1px;
+         width: 85px;
+         background-color: #5bc0de;
+         font-family: Calibri;
+      
+     }
+
+     .select-md {
+         padding: 0px !important;
+     }
+     ion-select {
+         display: -webkit-box;
+         display: -webkit-flex;
+         display: -ms-flexbox;
+      
+         overflow: hidden;
+         max-width: 100%;
+     }
+     
+     .select-md .select-icon .select-icon-inner {
+         left: 0%;
+         top: 70%;
+     position: absolute;
+     width: 0;
+     height: 0;
+     border-top: 5px solid;
+     border-right: 5px solid transparent;
+     border-left: 5px solid transparent;
+     color: #999;
+     pointer-events: none;
+     }
+     
+     .card-md{
+         margin:0px 0px 0px 0px;
+         border-radius: 2px;
+         width: 260px;
+         height: auto;
+         font-size: 10px;
+         background: #fff;
+     }
+     
+     
+     .card-header-md {
+            
+             color: #000;
+         //    padding-top: 0px;
+             padding-right: 10px;
+            //padding-bottom: px !important;
+            padding-left: 10px;
+             background: #f68121c7;
+             height: 35px;
+             text-align: center;
+         }
+     
+     
+     .card-title-md {
+         display: block;
+         font-size: 16px;
+        // line-height: 1.2;
+         color:#fff;
+         margin: 0px 0px 2px 0px;
+        padding: 0px 0px 0px 10px ;
+         align-content: center;
+         align-items: center;
+         text-align: center;
+         font-weight:300;
+         
+         
+     
+     
+     }
+     .card-content-md {
+         padding: 10px 0px 10px 0px;
+         font-size: 1.4rem;
+         line-height: 3;
+         text-align: center;
+         font-weight: 400;
+        
+     }
+     
+     
+     ion-content {
+         left: 0px;
+         top: 0px;
+         position: relative;
+         display: block;
+         width: 100%;
+         height: 100%;
+         contain: size style;
+     }
+     .year-row-title{
+       
+         margin: 0px ! important;
+         padding: 0px 0px;
+         height: 40px;
+         border-top-style: ridge;
+         border-top-width: thin;
+         border-top-color: #ddd;
+     }
+
+     .year-row-title-col{
+         background-color: #fbdbbf;
+         margin: 0px ! important;
+         padding: 0px 0px;
+         height: 40px;
+         border-bottom-style: ridge;
+         border-bottom-width: thin;
+         border-bottom-color: #ddd;
+     }
+
+     .aa{    display: flex;
+         flex-wrap: wrap;
+         width:1200px;
+         margin: 20px 0px 20px 47px;
+     }
+
+
+     [col-md-3] {
+         padding: 0px 0px 0px 0px;
+         width: 260px;
+         margin-left: 0px;
+     }
+
+     .year-data {
+         font-size: 13px;
+         font-weight: 400;
+
+     }
+
+     b{
+         color:#000;
+     }
+
+     .card-content-md-till {
+         font-size: 20px;
+     }
+     
+     
+
+
+     // .menu1 {
+     //     height: 102%;
+     //    background: #03a9f4;
+     //    -webkit-transition: width 1s;
+     //    transition: width 1s;
+     //    overflow: hidden;
+     //  //   margin-left:-10px;
+     //  //   margin-top: -16px;
+     //      width: 34px;
+     //      z-index: 1000!important;
+     //       position: absolute;
+        
+           
+     //  }
+      
+      
+     //  .menu1:hover {
+     //    width: 250px;
+     //    height:200%;
+     //  }
+      
+      
+     //  .master{
+     //  display:none;
+     //  color:black;
+     //  // margin-left:50px;
+     //  font-size: 16px;
+     //  }
+      
+      
+     //  .menu1:hover .master{
+     //    display:inline;
+     //    position: fixed;
+
+
+     .menu1 {
+         height: 102%;
+         background: #03a9f4;
+         -webkit-transition: width 1s;
+         transition: width 1s;
+         overflow: hidden;
+         width: 34px;
+         z-index: 1000 !important;
+         position: absolute;
+         margin: -16px 0px 0p -43px;
+         margin-top: -16px;
+         margin-left: -16px;
+     }
+     
+    }

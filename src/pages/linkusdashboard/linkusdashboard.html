@@ -1,0 +1,87 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+  
+      <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+  
+      <ion-title> Linkus DashBoard </ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content>
+
+    
+    <!-- <ion-row>
+      <ion-col col-6 (click)="gotomastertype()">
+        <ion-card>
+          <b> Master <br>Type </b>
+         
+        </ion-card>
+      </ion-col>
+  
+      <ion-col col-6 (click)="gotomasterdata()">
+        <ion-card>
+          <b> Master<br> data </b>
+        
+        </ion-card>
+      </ion-col>
+    </ion-row> -->
+  
+    <ion-row>
+      <ion-col col-6 (click)="gotolinkusgroupmaster()">
+        <ion-card>
+          <b> Group <br>Master </b>
+         
+        </ion-card>
+      </ion-col>
+  
+      <ion-col col-6 (click)="gotolinkususermaster()">
+        <ion-card>
+          <b> User <br>Master   </b>
+  
+         
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  
+  
+    <ion-row>
+      <ion-col col-6 (click)="gotomessagereport()">
+        <ion-card>
+          <b> Message <br>Report </b>
+         
+        </ion-card>
+      </ion-col>
+  
+      <ion-col col-6 (click)="gotoDistrict()">
+        <ion-card>
+          <b> User <br>Report </b>
+        
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+
+
+    <ion-row>
+
+        <ion-col col-6 (click)="gotoSchool()">
+          <ion-card>
+            <b> Open<br> Group </b>
+          
+          </ion-card>
+        </ion-col>
+    
+        <ion-col col-6 (click)="gotoDistrict()">
+          <ion-card>
+            <b> Group<br> Access </b>
+         
+          </ion-card>
+        </ion-col>
+      </ion-row>
+  
+  </ion-content>

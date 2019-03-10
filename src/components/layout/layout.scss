@@ -1,0 +1,51 @@
+layout {
+    
+
+
+        .menu1 {
+           height: 190%;
+          background: #03a9f4;
+          -webkit-transition: width 1s;
+          transition: width 1s;
+          overflow: hidden;
+        //   margin-left:-10px;
+        //   margin-top: -16px;
+            width: 34px;
+            z-index: 1000!important;
+             position: absolute;
+             
+        }
+        
+        
+        .menu1:hover {
+          width: 250px;
+          height:200%;
+        }
+        
+        
+        .master{
+        display:none;
+        color:black;
+        // margin-left:50px;
+        font-size: 16px;
+        }
+        
+        
+        .menu1:hover .master{
+          display:inline;
+          position: fixed;
+        }
+        
+        
+        // ion-icon{
+        // font-size: 20px!important;
+        // margin-left: 20px!important;
+        // }
+        
+        
+        
+         
+        
+        
+
+}

@@ -1,0 +1,22 @@
+
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row style="float: right;">
+      <img src="../../assets/closeIcon.png" style="height:30px" (click)="dismiss()" >
+    </ion-row>
+    <ion-row>
+      <div #map id="map" style="position: absolute!important"></div>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+<ion-footer>
+  <ion-navbar color="hcolor">
+    <ion-title>Current location</ion-title>
+    <ion-icon name="send" class="ionicon" (click)="sendLocation()" float-right></ion-icon>
+  </ion-navbar>
+</ion-footer>
