@@ -789,6 +789,9 @@ export class LinkusAnalyticsPage {
     });
   }
 
+
+
+
   monthwActiveUser() {
     this.AnalysticsService.getActiveUser().then((res: any) => {
 
@@ -858,6 +861,24 @@ export class LinkusAnalyticsPage {
       }
     });
   }
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   monthwOpenGroups() {
 
@@ -1035,6 +1056,9 @@ export class LinkusAnalyticsPage {
 
       })
   }
+
+
+  
 
   todayActiveUser() {
     this.AnalysticsService.getActiveUser().then((res: any) => {

@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { AnalysticsProvider } from '../../providers/analytics/analytics';
 import { UserProvider } from '../../providers/user/user';
 import * as moment from 'moment';
+import { empty, from } from 'rxjs';
+import { convertUrlToSegments } from 'ionic-angular/umd/navigation/url-serializer';
 
 
 @IonicPage()
@@ -13,6 +15,7 @@ import * as moment from 'moment';
 
 
 export class UsertrendingPage {
+  tdyinactiveUser: number;
 
 
   noOfUser: any;
@@ -70,7 +73,14 @@ export class UsertrendingPage {
 
   userSendmsgs: any = [];
   userReceivemsgs: any = [];
-  isSearch:boolean = false;
+  userGroupMessage: any = [];
+  getYearGroupMessage: any = [];
+  isSearch: boolean = false;
+
+  keyvalue = [];
+  messageBoard = [];
+  groupName = [];
+  groupmessagesArray = [];
 
   constructor(public AnalysticsService: AnalysticsProvider,
     public navCtrl: NavController,
@@ -80,7 +90,7 @@ export class UsertrendingPage {
 
     this.getSentMsgs();
     this.getReceiveMsgs();
-
+    this.getYearSentMsgs();
   }
 
   search() {
@@ -97,6 +107,8 @@ export class UsertrendingPage {
       this.getActiveUser();
       this.getOpenGroups();
       this.getTotalMessages();
+      this.getGroupMessages();
+      
 
     }
     else if (this.data == "year") {
@@ -107,6 +119,8 @@ export class UsertrendingPage {
       this.yearwActiveUser();
       this.yearwOpenGroups();
       this.yearwTotalMessages();
+      this.getYearGroupMessages();
+
     }
     else if (this.data == "month") {
 
@@ -120,13 +134,11 @@ export class UsertrendingPage {
     else if (this.data == "today") {
       this.todayUserList();
       this.todayActiveUser();
-      this.todayGroups();
-      this.todayInactiveGroups();
-      this.todayOpenGroups();
+      this.todayInActiveUser();
       this.todayTotalMessages();
     }
 
-    this.isSearch=true;
+    this.isSearch = true;
 
   }
 
@@ -165,9 +177,6 @@ export class UsertrendingPage {
 
 
 
-  gettopUsers() {
-
-  }
 
 
   getActiveUser() {
@@ -190,7 +199,7 @@ export class UsertrendingPage {
 
   getOpenGroups() {
     this.AnalysticsService.getOpengroup().then((res: any) => {
-      console.log("opgrp :" + JSON.stringify(res))
+      console.log("opgrp :" + res.length)
       this.noOfOpenGroups = res.length;
 
     })
@@ -201,6 +210,185 @@ export class UsertrendingPage {
     this.AnalysticsService.getTotalmessages().then((res: any) => {
       ///  console.log("buddy :" + JSON.stringify(res))
       this.noOfTotalMessages = JSON.stringify(res);
+
+    })
+
+  }
+
+
+
+
+  getGroupMessages() {
+    this.AnalysticsService.getallGroupmessages().then((res: any) => {
+      console.log("buddygroupmessages :" + JSON.stringify(res))
+      var k = 0;
+      this.keyvalue = [];
+      this.messageBoard = [];
+      this.groupmessagesArray = [];
+      this.groupName = [];
+     
+
+      var mainGroupArray=[];
+      var dataArray = [];
+      res.forEach(element => {
+
+        element.forEach(element1 => {
+          var count = 0, i = 0;
+        
+          element1.forEach(element2 => {
+
+        if(element1.val().owner == element.key)
+        {
+            if(element2.key=='msgboard') 
+            {
+              console.log("entered   2:")
+                  var exam={
+                  key : element.key,
+                  groupName:element1.key,
+                  data:element2
+                }
+                 mainGroupArray.push(exam)
+            }     
+        }
+                    
+          })
+
+        });
+       console.log("mainGroupArray :"+JSON.stringify(mainGroupArray)  +"====="+ mainGroupArray.length)
+    
+      });
+  
+      for(var j=0; j<mainGroupArray.length; j++) {
+
+               
+          var countData =0;
+          dataArray = [];
+  
+          if(mainGroupArray[j].data != "" && mainGroupArray[j].data.val().length !=0)
+           {
+            dataArray.push(mainGroupArray[j].data);
+
+          for(var i=0;i<dataArray.length;i++)
+          {
+            dataArray.forEach(element5=> {
+
+              element5.forEach(element6=> {
+                
+                countData++;
+              });
+           });
+         
+         } 
+          
+        }
+        console.log("datacount :" +countData)  
+
+        if(countData != 0){
+            this.groupName.push({
+            Name : mainGroupArray[j].groupName,
+            count : countData
+          }) 
+
+        }
+        this.userGroupMessage = this.groupName.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
+        console.log("abcdef" +JSON.stringify(this.userGroupMessage))  
+          
+        }
+        console.log("finally got it :" +JSON.stringify(this.groupName))
+
+    })
+
+  }
+
+
+  //year group messagees
+
+  getYearGroupMessages() {
+    this.AnalysticsService.getallGroupmessages().then((res: any) => {
+      console.log("buddygroupmessages :" + JSON.stringify(res))
+      var k = 0;
+      this.keyvalue = [];
+      this.groupName = [];
+     
+
+      var mainGroupArray=[];
+      var dataArray = [];
+      res.forEach(element => {
+      
+         console.log("user "+ element.key+" :"+JSON.stringify(element))
+
+        element.forEach(element1 => {
+          console.log("user===>" +" :"+JSON.stringify(element1))
+          var count = 0, i = 0;
+        
+          element1.forEach(element2 => {
+
+            console.log("vallllllllllll" +element1.val().owner)
+        if(element1.val().owner == element.key)
+        {
+          console.log("entered" )
+          
+            if(element2.key=='msgboard') 
+            {
+              console.log("entered   2:")
+                  var exam={
+                  key : element.key,
+                  groupName:element1.key,
+                  data:element2
+                }
+                 mainGroupArray.push(exam)
+            }     
+        }
+                    
+          })
+
+        });
+
+        console.log("mainGroupArray :"+JSON.stringify(mainGroupArray)  +"====="+ mainGroupArray.length)
+    
+      });
+  
+      for(var j=0; j<mainGroupArray.length; j++) {
+
+               
+          var countData =0;
+          dataArray = [];
+
+          console.log("cleararray :" +dataArray)
+          if(mainGroupArray[j].data != "" && mainGroupArray[j].data.val().length !=0)
+           {
+            console.log("success")
+            dataArray.push(mainGroupArray[j].data);
+
+          for(var i=0;i<dataArray.length;i++)
+          {
+            dataArray.forEach(element5=> {
+
+              element5.forEach(element6=> {
+                console.log("yearverify" +element6.val().timestamp)
+
+                
+                countData++;
+              });
+           });
+         
+         } 
+          
+        }
+        console.log("datayearcount :" +countData)  
+
+        // if(countData != 0){
+        //     this.groupName.push({
+        //     Name : mainGroupArray[j].groupName,
+        //     count : countData
+        //   }) 
+
+        // }
+        // this.getYearGroupMessage = this.groupName.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
+        // console.log("yearabcdef" +JSON.stringify(this.userGroupMessage))  
+          
+        }
+        //console.log("yearfinally got it :" +JSON.stringify(this.groupName))
 
     })
 
@@ -1081,67 +1269,13 @@ export class UsertrendingPage {
   }
 
 
-  todayGroups() {
-    this.AnalysticsService.getallGroups().then((res: any) => {
 
+  todayInActiveUser() {
+    this.AnalysticsService.gettodayInActiveUser().then((res: any) => {
       this.todayArrayList = [];
 
       var dvalue = this.convertDate(new Date());
 
-      for (var i = 0; i < res.length; i++) {
-        if (res[i].date != undefined) {
-          let date = res[i].date.substring(0, 10);//.substring(0,4);
-
-          this.todayArrayList.push(date);
-
-        }
-      }
-
-      var Count = 0;
-      for (var i = 0; i < this.todayArrayList.length; i++) {
-
-        if (this.todayArrayList[i] == dvalue) {
-          Count++;
-
-        }
-
-      }
-      this.tdyTotalGroupsList = Count;
-    })
-
-
-  }
-  todayInactiveGroups() {
-    this.AnalysticsService.getinactiveGroups().then((res: any) => {
-
-      this.todayArrayList = [];
-
-      var dvalue = this.convertDate(new Date());
-      for (var i = 0; i < res.length; i++) {
-        if (res[i].date != undefined) {
-          let date = res[i].date.substring(0, 10);//.substring(0,4);
-
-          this.todayArrayList.push(date);
-
-        }
-      }
-
-      var Count = 0;
-      for (var i = 0; i < this.todayArrayList.length; i++) {
-
-        if (this.todayArrayList[i] == dvalue) {
-          Count++;
-
-        }
-      }
-      this.tdyInactiveGroups = Count;
-    })
-  }
-  todayOpenGroups() {
-    this.AnalysticsService.getOpengroup().then((res: any) => {
-      this.todayArrayList = [];
-
-      var dvalue = this.convertDate(new Date());
       for (var i = 0; i < res.length; i++) {
         if (res[i].DOJ != undefined) {
           let date = res[i].DOJ.substring(0, 10);//.substring(0,4);
@@ -1154,26 +1288,30 @@ export class UsertrendingPage {
       var Count = 0;
       for (var i = 0; i < this.todayArrayList.length; i++) {
 
-
-
         if (this.todayArrayList[i] == dvalue) {
           Count++;
 
         }
       }
-      this.tdyOpenGroups = Count;
+      this.tdyinactiveUser = Count;
+
     })
   }
 
+
+
+
+
+
+
+
   todayTotalMessages() {
     this.AnalysticsService.getYearTotalmessages().then((res: any) => {
-
       var currdate = new Date();
       var dvalue = currdate.toString().substring(4, 15); //Feb 22 2019
       for (var i = 0; i < res.length; i++) {
         if (res[i].Filedate != undefined) {
           let date = res[i].Filedate.substring(4, 15);//.substring(0,4);
-
           this.todayArrayList.push(date);
 
         }
@@ -1191,10 +1329,6 @@ export class UsertrendingPage {
       this.tdyTotalMessage = Count;
     })
   }
-
-
-
-
   getIndexIfObjWithOwnAttr = function (array, attr, value) {
 
     var initial_array = [];
@@ -1216,6 +1350,10 @@ export class UsertrendingPage {
   }
 
 
+
+
+
+
   convertDate(date) {
     var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'agu', 'sep', 'oct', 'nov', 'dec'];
     var day = date.getDate();
@@ -1228,6 +1366,9 @@ export class UsertrendingPage {
   closemodal() {
     this.viewCtrl.dismiss();
   }
+
+
+
 
   getSentMsgs() {
     this.AnalysticsService.getMessages().then((message: any) => {
@@ -1258,23 +1399,27 @@ export class UsertrendingPage {
       for (let j = 0; j < this.userSendmsgs.length; j++) {
         this.userProvider.getUserByID(this.userSendmsgs[j].id).then((data) => {
           this.userSendmsgs[j].userDetails = data;
-          this.userSendmsgs[j].rank=j+1;
+          this.userSendmsgs[j].rank = j + 1;
         })
       }
       console.log(this.userSendmsgs)
-
-
     })
   }
 
+
+
+
   getReceiveMsgs() {
     this.AnalysticsService.getMessages().then((message: any) => {
+      console.log("messages" + JSON.stringify(message))
       for (let i = 0; i < message.length; i++) {
         message[i].sendcount = 0;
         message[i].recievecount = 0;
         for (let key in message[i]) {
+
           if (key !== 'id') {
             for (let key1 in message[i][key]) {
+              console.log("abcc" + message[i][key][key1].sentby + "kkkkkkkkkkkkk" + message[i].id)
               if (message[i][key][key1].sentby === message[i].id) {
                 message[i].sendcount = message[i].sendcount + 1;
               }
@@ -1296,12 +1441,65 @@ export class UsertrendingPage {
       for (let j = 0; j < this.userReceivemsgs.length; j++) {
         this.userProvider.getUserByID(this.userReceivemsgs[j].id).then((data) => {
           this.userReceivemsgs[j].userDetails = data;
-          this.userReceivemsgs[j].rank=j+1;
+          console.log("userDetails" + JSON.stringify(this.userReceivemsgs[j].userDetails))
+          this.userReceivemsgs[j].rank = j + 1;
         })
       }
-      console.log(this.userReceivemsgs);
+      console.log("userReceivemsgs" + JSON.stringify(this.userReceivemsgs));
     })
   }
+
+
+
+
+  getYearSentMsgs() {
+    this.AnalysticsService.getMessages().then((message: any) => {
+      for (let i = 0; i < message.length; i++) {
+        message[i].sendcount = 0;
+        message[i].recievecount = 0;
+        // message[i].userDetails.displayName = '';
+        for (let key in message[i]) {
+
+          console.log("callll a :" + key + "========" + JSON.stringify(message[i][key]))
+          if (key !== 'id') {
+            for (let key1 in message[i][key]) {
+              if (message[i][key][key1].sentby === message[i].id) {
+                message[i].sendcount = message[i].sendcount + 1;
+              }
+              if (message[i][key][key1].sentby !== message[i].id) {
+                message[i].recievecount = message[i].recievecount + 1;
+              }
+            }
+          }
+
+        }
+      }
+
+
+
+      let sendOrder = message;
+      // this.userSendmsgs =sendOrder.sort((a, b) => parseFloat(a.sendcount) - parseFloat(b.sendcount));
+      this.userSendmsgs = sendOrder.sort((a, b) => parseFloat(b.sendcount) - parseFloat(a.sendcount));
+      this.userSendmsgs = this.userSendmsgs.splice(0, 10);
+      for (let j = 0; j < this.userSendmsgs.length; j++) {
+        this.userProvider.getUserByID(this.userSendmsgs[j].id).then((data) => {
+          this.userSendmsgs[j].userDetails = data;
+          this.userSendmsgs[j].rank = j + 1;
+        })
+      }
+      console.log(this.userSendmsgs)
+
+
+    })
+  }
+
+
+
+
+
+
+  // Top 10 groups
+
 
 
 

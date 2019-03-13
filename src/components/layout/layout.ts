@@ -71,4 +71,9 @@ export class LayoutComponent {
     this.navCtrl.setRoot('LinkusgroupaccessPage');
   }
 
+  gotoreadanalysis(){
+    this.navCtrl.setRoot('ReadanalysisPage');
+
+  }
+
 }

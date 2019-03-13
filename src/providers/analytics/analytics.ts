@@ -12,8 +12,10 @@ export class AnalysticsProvider {
 
   firedata = firebase.database().ref('/users');
   firegroup = firebase.database().ref('/groups1');
+  firegroupmessages = firebase.database().ref('/groups');
   fireopengroup = firebase.database().ref('/opengroups1');
   firebudddychats = firebase.database().ref('/buddychats');
+
 
 
   
@@ -24,6 +26,9 @@ todayuser = [];
     private afs: AngularFirestore) {
 
   }
+  
+  
+  
   
   getallusers() {
   var promise = new Promise((resolve, reject) => {
@@ -45,6 +50,9 @@ todayuser = [];
     })
     return promise; 
   }
+
+
+
   getallGroups() {
     var promise = new Promise((resolve, reject) => {
       this.firegroup.once('value', (snapshot) => {
@@ -65,6 +73,8 @@ todayuser = [];
     })
     return promise;
   }
+
+
   getinactiveGroups() {
     var promise = new Promise((resolve, reject) => {
       this.firegroup.once('value', (snapshot) => {
@@ -88,6 +98,8 @@ todayuser = [];
   }
 
 
+
+
   getActiveUser() {
     var promise = new Promise((resolve, reject) => {
       this.firedata.orderByChild('uid').once('value', (snapshot) => {
@@ -109,6 +121,39 @@ todayuser = [];
     })
     return promise;
   }
+
+
+
+
+  gettodayInActiveUser() {
+    var promise = new Promise((resolve, reject) => {
+      this.firedata.orderByChild('uid').once('value', (snapshot) => {
+        let userdata = snapshot.val();
+        let temparr = [];
+    
+        for (var key in userdata) {
+          if(userdata[key].userStatus=="InActive")
+          {
+            temparr.push(userdata[key]);
+         
+          }
+        }
+        console.log("temparr" +JSON.stringify(temparr));
+        resolve(temparr);
+      }).catch((err) => {
+        reject(err);
+      })
+    })
+    return promise;
+  }
+
+
+
+
+
+
+
+
 
   getOpengroup()
   {
@@ -160,6 +205,23 @@ todayuser = [];
     })
     return promise; 
   }
+
+  getallGroupmessages() {
+    var promise = new Promise((resolve, reject) => {
+      this.firegroupmessages.once('value', (snapshot) => {
+        // var userdata = snapshot.val();
+       
+        // snapshot.forEach(element => {
+        //   console.log("get ket:"+element.key)
+        // });
+
+        resolve(snapshot);
+      }).catch((err) => {
+        reject(err);
+      })
+    })
+    return promise;
+  }
  
 
   getYearTotalmessages() {
@@ -199,7 +261,7 @@ todayuser = [];
       this.firebudddychats.orderByChild('created_at').on('value', resp => {
       let users: any = [];
       users = snapshotToArray(resp);
-      console.log(users);
+      console.log(" logusers" +JSON.stringify(users));
       return resolve(users);
     });
 
@@ -207,5 +269,6 @@ todayuser = [];
   return promise
   }
 
+  
 }
 

@@ -1,0 +1,119 @@
+
+<ion-header>
+    <ion-navbar color="primary">
+      <img src="assets/imgs/linkUslogo.png" style="width:40px;height:40px;"> 
+    <span style="color: #fff">LINKUS BO</span>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="gotologout()">
+          <span> Welcome </span>
+          <!-- <p>Sundar</p> -->
+         <ion-icon name="md-power"  style="background-color:#03a9f4 !important; color: #f68121;"></ion-icon>
+      </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  
+  
+  <ion-content padding>
+  
+    <layout></layout>
+  
+    <div style="margin-left: 5%;background-color: aliceblue;margin-right:2%; margin-top: 2%;">
+  <div style="padding: 5px;background-color: #f68121b9">
+   <b style="color:white; text-align:center; padding-left:5px; width:0%;"> Read Analysis </b>
+  </div>
+  
+  
+  
+  <!-- <ion-row class="outline-head">-->
+    <ion-row class="graph">
+      <ion-col >
+        Graph Type</ion-col>
+    </ion-row><br>
+    
+  
+    <ion-grid class ="dropdown">
+
+        <ion-row>
+          <ion-col>
+               <select class="select-option" [(ngModel)] = "data">
+                  <option value="9.00 to 18.00"> 9.00 to 18.00 </option>
+                  <option value="18.00 to 9.00"> 18.00 to 9.00</option>
+                      </select>
+                      </ion-col>
+         
+          <ion-col class ="search">
+              <button class ="search-button" type="button" class="search-button" (click)="search()"><span style="color:white;">SEARCH</span></button>
+          </ion-col>
+          <ion-col></ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+        </ion-grid>
+
+
+  
+  
+  <ion-row *ngIf="data == '18.00 to 9.00'">
+       
+                <ion-row class="aa">
+              <ion-col  col-md-3 col-sm-3>
+                <ion-card class="card-md">
+                  <ion-card-header class="card-header-md">
+                    <ion-card-title class="card-title-md">Individual Message</ion-card-title>
+                    
+                  </ion-card-header>
+  
+                    <table *ngIf="isSearch">                    
+                      <tr>
+                      <th>User Count</th>
+                      <th>Time</th>
+                    </tr>
+              
+
+                    <tr *ngFor="let rangar of timeRanges">
+                        <td>{{rangar.userCount}}</td>
+                        <td>{{rangar.name}}</td>
+                      </tr>
+  
+                    
+                          </table>
+                        </ion-card>
+              </ion-col>
+                  </ion-row>
+              </ion-row>
+              
+
+
+
+  
+       <ion-row *ngIf="data == '9.00 to 18.00'">
+       
+                  <ion-row class="aa">
+                <ion-col  col-md-3 col-sm-3>
+                  <ion-card class="card-md">
+                    <ion-card-header class="card-header-md">
+                      <ion-card-title class="card-title-md">Individual Message</ion-card-title>
+                        </ion-card-header>
+    
+                      <table *ngIf="isSearch">                    
+                        <tr>
+                        <th>User Count</th>
+                        <th>Time</th>
+                      </tr>
+                
+  
+                      <tr *ngFor="let rangar of timeRanges">
+                          <td>{{rangar.userCount}}</td>
+                          <td>{{rangar.name}}</td>
+                        </tr>
+                         </table>
+                          </ion-card>
+                </ion-col>
+                    </ion-row>
+                </ion-row>
+                 </div>
+           </ion-content>
+
+            

@@ -138,23 +138,22 @@ export class LinkusaddusermasterPage {
         this.userForm = this.fb.group({
 
 
-
             'employee': ['', Validators.compose([Validators.required])],
             'displayName': ['', Validators.compose([Validators.required])],
             'email': ['', Validators.compose([Validators.required, Validators.pattern(emailRegex), Validators.maxLength(50)])],
-            'extension': ['', Validators.compose([Validators.required])],
+            'extension': [''],
             'mobilenumber': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
             'password': ['', Validators.compose([Validators.required])],
-            'contacttype': ['', Validators.compose([Validators.required])],
-            'branchname': ['', Validators.compose([Validators.required])],
-            'department': ['', Validators.compose([Validators.required])],
-            'designation': ['', Validators.compose([Validators.required])],
-            'DOB': ['', Validators.compose([Validators.required])],
-            'DOJ': ['', Validators.compose([Validators.required])],
-            'gender': ['', Validators.compose([Validators.required])],
-            'landline': ['', Validators.compose([Validators.required])],
-            'language': ['', Validators.compose([Validators.required])],
-            'location': ['', Validators.compose([Validators.required])],
+            'contacttype': [''],
+            'branchname': [''],
+            'department': [''],
+            'designation': [''],
+            'DOB': [''],
+            'DOJ': [''],
+            'gender': [''],
+            'landline': [''],
+            'language': [''],
+            'location': [''],
             'mobilelogin': ['1', Validators.compose([Validators.required])],
             'weblogin': ['1', Validators.compose([Validators.required])],
             'deviceres': ['0', Validators.compose([Validators.required])],
@@ -223,7 +222,9 @@ export class LinkusaddusermasterPage {
         if (!this.userForm.valid) {
             console.log("Not valid!");
             this.validateAllFormFields(this.userForm);
-            alert('Please fill all required fields');
+            // alert('Please fill all required fields');
+
+
             //   if (this.toast) this.toast.dismiss();
             //   this.toast = this.toastCtrl.create({
             //       message: 'Please fill all required fields.',
@@ -284,14 +285,7 @@ export class LinkusaddusermasterPage {
                
             }
 
-
-
-        }
-
-
-
-
-
+       }
 
 
     }

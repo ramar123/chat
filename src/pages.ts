@@ -10,6 +10,7 @@ export const LinkusaddgroupmasterPage = 'LinkusaddgroupmasterPage';
 export const OpengroupaddPage = 'OpengroupaddPage';
 export const UserreportPage = 'UserreportPage';
 export const MessagereportPage = 'MessagereportPage';
+export const UsertrendingPage = 'UsertrendingPage';
 
 
 

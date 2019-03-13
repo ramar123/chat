@@ -23,9 +23,17 @@
            Employee code <sup style="color:red;"> * </sup> 
         </ion-label>
         <ion-input type="text" class="form-control" placeholder="employee" formControlName="employee"></ion-input>
+       
         <div style="color: red; padding-top: 0.2rem" *ngIf="isemp">
             Employee Code already exists
           </div>
+
+          <!-- <div *ngIf="!userForm.controls.employee.valid" style="color: #d81515;font-weight: 600;padding-top: 10px; padding-left: 19px;position: relative;">
+           Employee code is required
+          </div> -->
+          <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('employee').hasError('required') && userForm.get('employee').touched">Employee code is required</div>
+
+
       </ion-col>
 
 
@@ -35,7 +43,17 @@
                Name <sup style="color:red;"> * </sup> 
               </ion-label>
             <ion-input type="text" placeholder="Name" class="form-control" formControlName="displayName"></ion-input>
-            </ion-col>
+           
+            <!-- <div *ngIf="!userForm.controls.employee.valid" style="color: #d81515;font-weight: 600;padding-top: 10px; padding-left: 19px;position: relative;">
+                Please enter employee code
+            </div> -->
+
+            <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('displayName').hasError('required') && userForm.get('displayName').touched">Name is required</div>
+
+       
+         </ion-col>
+
+          
 
 
      
@@ -47,9 +65,17 @@
          Email <sup style="color:red;"> * </sup> 
       </ion-label>
       <ion-input type="email" class="form-control" placeholder="email" formControlName="email"></ion-input>
+      
       <div style="color: red; padding-top: 0.2rem" *ngIf="isemail">
           Email already exists
         </div>
+          
+        <!-- <div *ngIf="!userForm.controls.email.valid" style="color: #d81515;font-weight: 600;padding-top: 10px; padding-left: 19px;position: relative;">
+            Please enter email
+        </div> -->
+
+        <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('email').hasError('required') && userForm.get('email').touched">Email is required</div>
+   
     </ion-col>
 
 
@@ -78,6 +104,15 @@
             <div style="color: red; padding-top: 0.2rem" *ngIf="isMobile">
               Mobile Number Already Exist
             </div>
+
+            <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('mobilenumber').hasError('required') && userForm.get('mobilenumber').touched">Mobile number is required</div>
+
+        
+            <!-- <div *ngIf="!userForm.controls.mobilenumber.valid" style="color: #d81515;font-weight: 600;padding-top: 10px; padding-left: 19px;position: relative;">
+                Please enter Mobile Number
+            </div> -->
+
+
         </ion-col>
 
 
@@ -87,8 +122,18 @@
                Password <sup style="color:red;"> * </sup>  
               </ion-label>
             <ion-input type="password" class="form-control" placeholder="password" formControlName="password"></ion-input>
-              </ion-col>
-        
+            <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('password').hasError('required') && userForm.get('password').touched">Password is required</div>
+
+          </ion-col>
+
+              <!-- <div *ngIf="!userForm.controls.password.valid" style="color: #d81515;font-weight: 600;padding-top: 10px; padding-left: 19px;position: relative;">
+                  Please enter password
+              </div>
+         -->
+
+
+
+         
 
 
         <ion-col [class.has-danger]="!userForm.controls.contacttype.valid && !userForm.controls.contacttype.untouched" col-6 col-xl-3 col-md-6
@@ -117,6 +162,7 @@
              <option> Trichy </option>
             <option> Madurai </option>
          </select>
+         <!-- <div style="color: red; padding-top: 0.2rem" *ngIf="userForm.get('branchname').hasError('required') && userForm.get('branchname').touched">Branch is required</div> -->
           </ion-col>
             
     
@@ -220,11 +266,11 @@
               <option> Fiji </option>
               <option> Finnish </option>
               <option> German </option>
-                  <option>Greek </option>
-                    <option> Gujarati </option>
-                      <option> Hebrew </option>
-                        <option> Hindi </option>
-                          <option>Hungarian </option>
+              <option>Greek </option>
+              <option> Gujarati </option>
+              <option> Hebrew </option>
+              <option> Hindi </option>
+              <option>Hungarian </option>
               <option> Icelandic </option>
               <option> Indonesian </option>
               <option> Irish </option>

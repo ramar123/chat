@@ -41,6 +41,8 @@ page-usertrending {
              margin-left: 20px;
              margin-top: 60px;
          }
+
+
          /*col-2{
          height: 100px;
          padding: 0px !important;
@@ -58,6 +60,8 @@ page-usertrending {
              font-weight: 800;
              margin-top:20px;
          }
+
+
          .dropdown {
              margin-left: 20px;
          }
@@ -303,6 +307,13 @@ page-usertrending {
             padding: 8px;
           }
           
+
+          label, input, select, textarea {
+            font-family: inherit;
+            line-height: normal;
+            width: -webkit-fill-available;
+            height: 37px;
+        }
          
         
 }

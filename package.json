@@ -48,6 +48,7 @@
     "ionic-plugin-keyboard": "~2.2.1",
     "ionic2-auto-complete": "^1.6.2-alpha",
     "ionicons": "3.0.0",
+    "moment": "^2.24.0",
     "ng2-charts": "^1.6.0",
     "ngx-google-places-autocomplete": "^2.0.3",
     "rxjs": "^6.0.0",

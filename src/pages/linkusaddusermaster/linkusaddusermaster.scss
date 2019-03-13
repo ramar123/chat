@@ -162,9 +162,23 @@ page-linkusaddusermaster {
      
   // }
 
-  .searchbar-input-container{
-    width: 250px;
-  }
+
+
+  // .searchbar-input-container{
+  //   width: 350px;
+  //   height:100px;
+  // }
+
+  
+
+  .searchbar-md .searchbar-input {
+    -webkit-box-shadow: none;
+    border: 1px solid;
+    color: #000;
+    width: 309px;
+    height: 47px;
+    -webkit-appearance: none;
+}
 
   ion-item{
     top: 10px;
