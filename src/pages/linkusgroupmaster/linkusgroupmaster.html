@@ -30,21 +30,18 @@
 
           <ion-col col-4>
             <ion-label>  <b style="color:#000">Group name</b></ion-label>
-            <ion-input type="text" class="form-control"  [(ngModel)]="groupname" (ionChange)="filterUser1()"  placeholder="groupname" (clear)="onClearSearchbar($event)" style="color:#000"></ion-input> 
-                <div>
-                </div>
-            </ion-col>
+            <ion-input type="text" class="form-control"  [(ngModel)]="groupname" (ionChange)="filterUser1()"  placeholder="roupname" (clear)="onClearSearchbar($event)" style="color:#000"></ion-input> 
+           </ion-col>
 
 
-       
-              <ion-col col-4>
-                <ion-label>
-                  <b> Status </b>
-                </ion-label>
+               <ion-col col-4>
+                <label>
+                  <b  style="color: black !important;"> Status </b>
+                </label>
                 <div>
-                    <select class="s1" id="status" class="form-control" [(ngModel)] = "status" (change)="filterUser('GroupStatus',status)">
-                        <option [ngValue]="Select">Select</option>
-                      <option>
+                 <select class="s1" id="status" class="form-control" [(ngModel)] = "status" (change)="filterUser('GroupStatus',status)">
+                  <option [ngValue]="Select">Select</option>
+                 <option>
                           Active
                       </option>
                       <option>
@@ -69,7 +66,7 @@
      <ion-row style="margin-top:3%;">
       <ion-col col-8 >
        
-         <button ion-button (click)="gotolinkusaddgroupmaster(groups)" style="height: 3rem;text-transform: initial;color: #000;background-color: #f68121"> Add Group </button>
+         <button ion-button (click)="gotolinkusaddgroupmaster(groups)" class="addbtn"> Add Group </button>
       </ion-col>
 
 
@@ -106,12 +103,12 @@
 
 
       <ion-col  col-1>
-          <label style="margin-left:97%; margin-top:2px;">show</label>
+          <label style="margin-left:97%; margin-top:13px;">show</label>
         </ion-col>
 
 
         <ion-col  col-1 >
-          <select class="show1" placeholder="10" [(ngModel)]="options" (change)="changeLimit(options)" style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;" >
+          <select class="show1" placeholder="25" [(ngModel)]="options" (change)="changeLimit(options)" style="max-width: 100%; padding: 0px;border: 1px solid #a0a0a0;" >
             <option>25</option>
             <option>50</option>
             <option>100</option>
@@ -141,7 +138,7 @@
             <tr>
               <th> Group Name </th>
               <th> No of Memebers </th>
-              <th> status </th>
+              <th> Status </th>
               <th>Action</th>
             </tr>
           </tbody>
@@ -149,7 +146,7 @@
     
           <tr *ngFor="let groups of pagedItems">
             <td> {{groups.groupname}} </td>
-            <td> {{groups?.userids.length}}</td>
+            <td> {{groups?.length}}</td>
            <td> {{groups.GroupStatus}} </td>
    
             <td>

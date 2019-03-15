@@ -12,6 +12,7 @@
   })
  
   export class LinkusgroupmasterPage {
+   options: string;
    name: any;
 
     groupsList:any=[];
@@ -32,6 +33,8 @@
     private pagerService: PagerService,
      public navParams: NavParams) {
      this.filterUser('GroupStatus','Active');
+     this.options="25";
+
                
    }
 
@@ -52,8 +55,13 @@
 
      
 filterUser(key,value){
-  this.groups.FilterList(key,value).then((data)=>{
+  this.groups.FilterList(key,value).then((data:any)=>{
     console.log(data)
+    data.forEach(childSnapshot => {
+      if(childSnapshot.userids){
+        childSnapshot.length=childSnapshot.userids.length
+      }
+  });
     this.groupsList=data;
     this.setPage(1);
     console.log(this.groupsList);

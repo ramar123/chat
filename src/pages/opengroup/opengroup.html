@@ -40,7 +40,7 @@
            
               <ion-col col-4>
                   <ion-label>
-                    <b> Status </b>
+                    <b style="color: black !important;"> Status </b>
                   </ion-label>
                   <div>
                       <select class="s1" id="status" class="form-control" [(ngModel)] = "status" (change)="filterUser('GroupStatus',status)">
@@ -107,8 +107,8 @@
 
 
       <ion-col  col-1>
-          <label style="margin-left:97%; margin-top:2px;">show</label>
-        </ion-col>
+        <label style="margin-left:97%; margin-top:13px;">show</label>
+      </ion-col>
 
 
         <ion-col  col-1 >
@@ -143,7 +143,7 @@
             <tr>
               <th> Group Name </th>
               <th> No of Memebers </th>
-              <th> status </th>
+              <th> Status </th>
               <th>Action</th>
             </tr>
           </tbody>

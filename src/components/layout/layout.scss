@@ -44,7 +44,15 @@ layout {
         
         
         
-         
+  
+        .info{
+          display: none;
+      }
+      
+      
+      .items:hover .info {
+           display: block;  
+      }
         
         
 

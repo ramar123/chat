@@ -17,7 +17,7 @@ import { convertUrlToSegments } from 'ionic-angular/umd/navigation/url-serialize
 export class UsertrendingPage {
   tdyinactiveUser: number;
 
-
+  examplearry = [];
   noOfUser: any;
   noOfGroupList: any;
   noOfInactiveUser: any;
@@ -62,6 +62,12 @@ export class UsertrendingPage {
   storeInactiveGroups = [];
   storeOpenGroups = [];
 
+  filteredyearArray = [];
+  filteredActyearArray = [];
+  filteredInactyearArray = [];
+
+
+
   monthArrayList = [];
   monthArrayList2 = [];
   monthstorevalues = [];
@@ -70,11 +76,17 @@ export class UsertrendingPage {
   monthstoreTotalGroups = [];
   monthstoreOpenGroups = [];
 
+  filteredMonthUsers = [];
+  filteredMonthActiveUsers = [];
+  filteredMonthInactUsers = [];
+
 
   userSendmsgs: any = [];
   userReceivemsgs: any = [];
   userGroupMessage: any = [];
-  getYearGroupMessage: any = [];
+  yearGroupMessage: any = [];
+  monthGroupMessage: any = [];
+  todayGroupMessage: any = [];
   isSearch: boolean = false;
 
   keyvalue = [];
@@ -88,16 +100,14 @@ export class UsertrendingPage {
     private userProvider: UserProvider,
     public navParams: NavParams) {
 
-    this.getSentMsgs();
-    this.getReceiveMsgs();
-    this.getYearSentMsgs();
+  
+    // this.getYearSentMsgs();
   }
 
   search() {
     // const das = moment().format("YYYY-MM-DD");
 
     const date = new Date()
-
 
     if (this.data == "tillNow") {
 
@@ -108,7 +118,9 @@ export class UsertrendingPage {
       this.getOpenGroups();
       this.getTotalMessages();
       this.getGroupMessages();
-      
+      this.getSentMsgs();
+      this.getReceiveMsgs();
+
 
     }
     else if (this.data == "year") {
@@ -120,6 +132,8 @@ export class UsertrendingPage {
       this.yearwOpenGroups();
       this.yearwTotalMessages();
       this.getYearGroupMessages();
+      this.getSentMsgs();
+      this.getReceiveMsgs();
 
     }
     else if (this.data == "month") {
@@ -130,12 +144,19 @@ export class UsertrendingPage {
       this.monthwActiveUser();
       this.monthwOpenGroups();
       this.monthwTotalMessages();
+      this.getMonthGroupMessages();
+      this.getSentMsgs();
+      this.getReceiveMsgs();
     }
     else if (this.data == "today") {
+
       this.todayUserList();
       this.todayActiveUser();
       this.todayInActiveUser();
       this.todayTotalMessages();
+      this.todayGroupMessages();
+      this.getSentMsgs();
+      this.getReceiveMsgs();
     }
 
     this.isSearch = true;
@@ -189,7 +210,7 @@ export class UsertrendingPage {
 
 
   getInactiveUser() {
-    this.AnalysticsService.getinactiveGroups().then((res: any) => {
+    this.AnalysticsService.getRemovedUser().then((res: any) => {
       console.log("inactivegroups :" + JSON.stringify(res))
       this.noOfInactiveUser = res.length;
 
@@ -215,7 +236,7 @@ export class UsertrendingPage {
 
   }
 
-
+    // Top 10 Group Messages
 
 
   getGroupMessages() {
@@ -226,174 +247,471 @@ export class UsertrendingPage {
       this.messageBoard = [];
       this.groupmessagesArray = [];
       this.groupName = [];
-     
 
-      var mainGroupArray=[];
+
+      var mainGroupArray = [];
       var dataArray = [];
       res.forEach(element => {
 
         element.forEach(element1 => {
           var count = 0, i = 0;
-        
+
           element1.forEach(element2 => {
 
-        if(element1.val().owner == element.key)
-        {
-            if(element2.key=='msgboard') 
-            {
-              console.log("entered   2:")
-                  var exam={
-                  key : element.key,
-                  groupName:element1.key,
-                  data:element2
+            if (element1.val().owner == element.key) {
+              if (element2.key == 'msgboard') {
+                console.log("entered   2:")
+                var exam = {
+                  key: element.key,
+                  groupName: element1.key,
+                  data: element2
                 }
-                 mainGroupArray.push(exam)
-            }     
-        }
-                    
+                mainGroupArray.push(exam)
+              }
+            }
+
           })
 
         });
-       console.log("mainGroupArray :"+JSON.stringify(mainGroupArray)  +"====="+ mainGroupArray.length)
-    
+        console.log("mainGroupArray :" + JSON.stringify(mainGroupArray) + "=====" + mainGroupArray.length)
+
       });
-  
-      for(var j=0; j<mainGroupArray.length; j++) {
 
-               
-          var countData =0;
-          dataArray = [];
-  
-          if(mainGroupArray[j].data != "" && mainGroupArray[j].data.val().length !=0)
-           {
-            dataArray.push(mainGroupArray[j].data);
+      for (var j = 0; j < mainGroupArray.length; j++) {
 
-          for(var i=0;i<dataArray.length;i++)
-          {
-            dataArray.forEach(element5=> {
 
-              element5.forEach(element6=> {
-                
+        var countData = 0;
+        dataArray = [];
+
+        if (mainGroupArray[j].data != "" && mainGroupArray[j].data.val().length != 0) {
+          dataArray.push(mainGroupArray[j].data);
+
+          for (var i = 0; i < dataArray.length; i++) {
+            dataArray.forEach(element5 => {
+
+              element5.forEach(element6 => {
+
                 countData++;
               });
-           });
-         
-         } 
-          
-        }
-        console.log("datacount :" +countData)  
+            });
 
-        if(countData != 0){
-            this.groupName.push({
-            Name : mainGroupArray[j].groupName,
-            count : countData
-          }) 
+          }
+
+        }
+        console.log("datacount :" + countData)
+
+        if (countData != 0) {
+          this.groupName.push({
+            Name: mainGroupArray[j].groupName,
+            count: countData
+          })
 
         }
         this.userGroupMessage = this.groupName.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
-        console.log("abcdef" +JSON.stringify(this.userGroupMessage))  
-          
-        }
-        console.log("finally got it :" +JSON.stringify(this.groupName))
+        console.log("abcdef" + JSON.stringify(this.userGroupMessage))
+
+      }
+      console.log("finally got it :" + JSON.stringify(this.groupName))
 
     })
 
   }
 
-
-  //year group messagees
 
   getYearGroupMessages() {
     this.AnalysticsService.getallGroupmessages().then((res: any) => {
       console.log("buddygroupmessages :" + JSON.stringify(res))
-      var k = 0;
+      var k = 0, todate, toyear;
       this.keyvalue = [];
       this.groupName = [];
-     
 
-      var mainGroupArray=[];
-      var dataArray = [];
+
+
+
+      var mainGroupArray = [];
+      var yearArray = [];
       res.forEach(element => {
-      
-         console.log("user "+ element.key+" :"+JSON.stringify(element))
 
         element.forEach(element1 => {
-          console.log("user===>" +" :"+JSON.stringify(element1))
-          var count = 0, i = 0;
-        
+
           element1.forEach(element2 => {
 
-            console.log("vallllllllllll" +element1.val().owner)
-        if(element1.val().owner == element.key)
-        {
-          console.log("entered" )
-          
-            if(element2.key=='msgboard') 
-            {
-              console.log("entered   2:")
-                  var exam={
-                  key : element.key,
-                  groupName:element1.key,
-                  data:element2
-                }
-                 mainGroupArray.push(exam)
-            }     
-        }
+            if (element1.val().owner == element.key) {
+
+              console.log("owner")
+
+              if (element2.key == 'msgboard') {
+                console.log("messageboard")
+                if(element2 != ""){
+
+
+                  element2.forEach(arrayelement => {
+                    console.log("enteered 3 :" +arrayelement.val().Filedate)
+                   var msgdate = arrayelement.val().Filedate;
+                     if (msgdate != undefined) {
                     
+                        var mydate = new Date(msgdate);
+                        var myyear = mydate.getFullYear();
+                        yearArray.push(myyear)
+                     }
+                     console.log("enteered 3 :" +arrayelement.val().Filedate +"year   :" +myyear  +";;;;;;;;;" ) 
+                  })
+
+                 
+                
+
+                  element2.forEach(element3 => {
+
+                   
+                    todate = element3.val().Filedate;
+                     if (todate != undefined) {
+                    
+                        var mydate = new Date(todate);
+                        toyear = mydate.getFullYear();
+                        var count = 0;
+
+                        for(var i=0; i<yearArray.length; i++){
+                          if(toyear ==yearArray[i]) {
+                            count++;
+                          }
+                        }
+
+                        if(mainGroupArray.length ==0 && count !=0) {
+                          mainGroupArray.push({
+                            groupName: element1.key,
+                            year : toyear,
+                            count: count
+                          })
+                         
+                          console.log("mainGroupArray.length 1:"+mainGroupArray.length)
+
+                        }
+        
+                        else{
+                          console.log("mainGroupArray.length 2:"+mainGroupArray.length)
+
+                          var Checkflag = false;
+                          mainGroupArray.forEach(element4 => {
+        
+                            if ( element1.key != undefined ) {
+        
+                              console.log("======== :"+element4.year+"="+toyear+" :: "+element4.groupName +"="+element1.key)
+                              if (element4.year == toyear && element4.groupName == element1.key) {
+                                Checkflag = true;
+        
+                              }
+                            }
+                          })
+                          if (!Checkflag &&  element1.key != undefined) {
+
+                            mainGroupArray.push({
+                              groupName: element1.key,
+                              year : toyear,
+                              count: count
+                            })
+                          }
+
+                          console.log("mainGroupArray.length 3:"+mainGroupArray.length)
+
+                        }
+
+
+                       
+                     }       
+                    
+                  });
+
+                  console.log("mmmmmmmmmm" +JSON.stringify(yearArray))
+
+                }
+               
+              }
+            }
+
           })
 
         });
 
-        console.log("mainGroupArray :"+JSON.stringify(mainGroupArray)  +"====="+ mainGroupArray.length)
-    
+      
+
       });
+
   
-      for(var j=0; j<mainGroupArray.length; j++) {
+     
+      this.yearGroupMessage = mainGroupArray.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
+      console.log("yearabcdef" + JSON.stringify(this.yearGroupMessage))
 
-               
-          var countData =0;
-          dataArray = [];
-
-          console.log("cleararray :" +dataArray)
-          if(mainGroupArray[j].data != "" && mainGroupArray[j].data.val().length !=0)
-           {
-            console.log("success")
-            dataArray.push(mainGroupArray[j].data);
-
-          for(var i=0;i<dataArray.length;i++)
-          {
-            dataArray.forEach(element5=> {
-
-              element5.forEach(element6=> {
-                console.log("yearverify" +element6.val().timestamp)
-
-                
-                countData++;
-              });
-           });
-         
-         } 
-          
-        }
-        console.log("datayearcount :" +countData)  
-
-        // if(countData != 0){
-        //     this.groupName.push({
-        //     Name : mainGroupArray[j].groupName,
-        //     count : countData
-        //   }) 
-
-        // }
-        // this.getYearGroupMessage = this.groupName.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
-        // console.log("yearabcdef" +JSON.stringify(this.userGroupMessage))  
-          
-        }
-        //console.log("yearfinally got it :" +JSON.stringify(this.groupName))
-
+      console.log("mainGroupArray :" + JSON.stringify(mainGroupArray) + "=====" + mainGroupArray.length)
     })
 
   }
 
+
+  getMonthGroupMessages() {
+   this.AnalysticsService.getallGroupmessages().then((res: any) => {
+      console.log("buddygroupmessages :" + JSON.stringify(res))
+      var k = 0, todate, toyear,tomonth;
+      this.keyvalue = [];
+      this.groupName = [];
+
+
+
+
+      var mainGroupArray = [];
+      var yearArray = [];
+      var monthArray = [];
+      res.forEach(element => {
+
+        element.forEach(element1 => {
+
+          element1.forEach(element2 => {
+
+            if (element1.val().owner == element.key) {
+
+              if (element2.key == 'msgboard') {
+
+                if(element2 != ""){
+
+
+                  element2.forEach(arrayelement => {
+                    console.log("enteered 3 :" +arrayelement.val().Filedate)
+                   var msgdate = arrayelement.val().Filedate;
+                     if (msgdate != undefined) {
+                    
+                        var mydate = new Date(msgdate);
+                        var myyear = mydate.getFullYear();
+                        var mymonth = ("0" + (mydate.getMonth() + 1)).slice(-2);
+                        yearArray.push({
+                          year : myyear,
+                          month :mymonth
+                        })
+                        
+                     }
+                     console.log("enteeeeeeeeeered :" +JSON.stringify(yearArray))  
+                  })
+
+                 
+                
+
+                  element2.forEach(element3 => {
+
+                   
+                    todate = element3.val().Filedate;
+                     if (todate != undefined) {
+                    
+                        var mydate = new Date(todate);
+                        toyear = mydate.getFullYear();
+                        tomonth = ("0" + (mydate.getMonth() + 1)).slice(-2);
+                        var count = 0;
+
+                        for(var i=0; i<yearArray.length; i++){
+                          if(toyear ==yearArray[i].year && tomonth == yearArray[i].month) {
+                            count++;
+                          }
+                        }
+
+                        if(mainGroupArray.length ==0 && count !=0) {
+                          mainGroupArray.push({
+                            year : toyear,
+                            month : tomonth,
+                            groupName: element1.key,
+                            count: count
+                          })
+                         
+                          console.log("mainGroupArray.length 1:"+mainGroupArray.length)
+
+                        }
+        
+                        else{
+                          console.log("mainGroupArray.length 2:"+mainGroupArray.length)
+
+                          var Checkflag = false;
+                          mainGroupArray.forEach(element4 => {
+        
+                            if ( element1.key != undefined ) {
+        
+                              console.log("======== :"+element4.year+"="+toyear+" :: "+element4.groupName +"="+element1.key)
+                              if (element4.year == toyear && element4.month == tomonth && element4.groupName == element1.key) {
+                                Checkflag = true;
+        
+                              }
+                            }
+                          })
+                          if (!Checkflag &&  element1.key != undefined) {
+
+                            mainGroupArray.push({
+                              year : toyear,
+                              month : tomonth,
+                              groupName: element1.key,
+                              count: count
+                            })
+                          }
+
+                        }
+
+
+                       
+                     }       
+                    
+                  });
+                  
+                  console.log("mmmmmmmmmm" +JSON.stringify(yearArray))
+
+                }
+               
+              }
+            }
+
+          })
+
+        });
+
+      
+
+      });
+
+  
+     
+      this.monthGroupMessage = mainGroupArray.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
+      console.log("monthabcdef" + JSON.stringify(this.monthGroupMessage))
+
+      console.log("yearmainGroupArray :" + JSON.stringify(mainGroupArray) + "=====" + mainGroupArray.length)
+    })
+
+  }
+
+
+  todayGroupMessages() {
+    this.AnalysticsService.getallGroupmessages().then((res: any) => {
+      console.log("buddygroupmessages :" + JSON.stringify(res))
+      var k = 0, todate, toyear,tomonth;
+      this.keyvalue = [];
+      this.groupName = [];
+
+      //current date...
+      var dvalue = this.convertDate(new Date());
+
+
+      var mainGroupArray = [];
+      var yearArray = [];
+      var monthArray = [];
+      res.forEach(element => {
+
+        element.forEach(element1 => {
+
+          element1.forEach(element2 => {
+
+            if (element1.val().owner == element.key) {
+
+              if (element2.key == 'msgboard') {
+
+                if(element2 != ""){
+
+
+                  element2.forEach(arrayelement => {
+                    console.log("enteered 3 :" +arrayelement.val().Filedate)
+                   var msgdate = arrayelement.val().Filedate;
+                     if (msgdate != undefined) {
+                    
+                      var mydate = new Date(msgdate);
+
+                      var mnth = ("0" + (mydate.getMonth() + 1)).slice(-2);
+                      var day = ("0" + mydate.getDate()).slice(-2);
+                      var finaldate = mydate.getFullYear() + "-" + mnth + "-" + day;
+    
+                      // year = fulldate.getFullYear;
+    
+                      console.log("FileDateee" + msgdate + "sssssssss" + mydate)
+                        yearArray.push(finaldate);
+                        
+                     }
+                     console.log("enteeeeeeeeeered :" +JSON.stringify(yearArray))  
+                  })
+
+                 
+                
+
+                  element2.forEach(element3 => {
+
+                   
+                    todate = element3.val().Filedate;
+                     if (todate != undefined) {
+                    
+                        var mydate = new Date(todate);
+                        var mnth = ("0" + (mydate.getMonth() + 1)).slice(-2);
+                      var day = ("0" + mydate.getDate()).slice(-2);
+                      var finaldate = mydate.getFullYear() + "-" + mnth + "-" + day;
+                      var count =0;
+
+                        for(var i=0; i<yearArray.length; i++){
+                          if(finaldate ==yearArray[i]) {
+                            count++;
+                          }
+                        }
+
+                        if( mainGroupArray.length == 0 &&count !=0) {
+                          mainGroupArray.push({
+                            groupName: element1.key,
+                            count: count
+                          })
+                         
+                          console.log("mainGroupArray.length 1:"+mainGroupArray.length)
+
+                        }
+                        else 
+                        {
+        
+                        mainGroupArray.forEach(element4 => {
+
+                      
+              
+                            var index = this.getIndexIfObjWithOwnAttr(mainGroupArray, 'groupName', element1.key);
+              
+              
+                            if (index == -1) {
+                                mainGroupArray.push({
+                                  groupName: element1.key,
+                                  count: count
+                                })
+                              
+                            }
+              
+                          
+              
+                        });
+              
+                      }
+
+
+                       
+                     }       
+                    
+                  });
+                  
+                  console.log("mmmmmmmmmm" +JSON.stringify(yearArray))
+
+                }
+               
+              }
+            }
+
+          })
+
+        });
+
+      
+
+      });
+
+  
+     
+      this.todayGroupMessage = mainGroupArray.sort((a, b) => parseFloat(b.count) - parseFloat(a.count));
+      console.log("todayabcdef" + JSON.stringify(this.monthGroupMessage))
+
+      console.log("todayGroupArray :" + JSON.stringify(mainGroupArray) + "=====" + mainGroupArray.length)
+    })
+
+  }
 
 
   //Year
@@ -402,15 +720,23 @@ export class UsertrendingPage {
 
     this.AnalysticsService.getallusers().then((res: any) => {
 
+      var currentdate = new Date();
+      var currentyear = currentdate.getFullYear();
+
       var Count = 1;
       this.yearwUserListarray = [];
       this.storevalues = [];
+      this.filteredyearArray = [];
 
       for (var i = 0; i < res.length; i++) {
-        if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 4);//.substring(0,4);
-          this.yearwUserListarray.push(date);
+        if (res[i].DOJ != undefined && res[i].DOJ != "") {
+          var date = res[i].DOJ;
+          var splitdate = date.split('/');
+          var year = splitdate[2];
+
+          this.yearwUserListarray.push(year);
         }
+        
       }
 
       for (var j = 0; j <= this.yearwUserListarray.length; j++) {
@@ -419,7 +745,9 @@ export class UsertrendingPage {
         for (var i = 0; i < res.length; i++) {
 
           if (res[i].DOJ != undefined) {
-            var getYear = res[i].DOJ.substring(0, 4);
+            var date = res[i].DOJ;
+            var splitdate = date.split('/');
+            var getYear = splitdate[2];
 
             if (getYear == this.yearwUserListarray[j]) {
 
@@ -461,11 +789,28 @@ export class UsertrendingPage {
 
       }
 
+      for (var a=0 ; a<3; a++) {
+        currentyear =  currentyear;
+        
+        
+         for(var k=0; k<this.storevalues.length; k++) {
+
+           if(this.storevalues[k].Year == currentyear){
+            this.filteredyearArray.push({
+
+              Year: this.storevalues[k].Year,
+              countData: this.storevalues[k].countData
+            })
+           }
+         }
+        currentyear--;
+    }
+    console.log("filtereduserlist" + JSON.stringify(this.filteredyearArray))
+
 
     });
 
   }
-
 
   yearwTotalMessages() {
     this.AnalysticsService.getYearTotalmessages().then((res: any) => {
@@ -532,6 +877,10 @@ export class UsertrendingPage {
     });
 
   }
+
+
+
+
   yearwTotalGroups() {
     this.AnalysticsService.getallGroups().then((res: any) => {
 
@@ -596,20 +945,28 @@ export class UsertrendingPage {
 
     });
 
-
   }
 
+
+
+
   yearwInactiveUser() {
-    this.AnalysticsService.getinactiveGroups().then((res: any) => {
+    this.AnalysticsService.getRemovedUser().then((res: any) => {
+
+      var currentdate = new Date();
+      var currentyear = currentdate.getFullYear();
 
       var Count = 1;
       this.yearwUserListarray = [];
       this.storeInactiveGroups = [];
 
+
       for (var i = 0; i < res.length; i++) {
-        if (res[i].date != undefined) {
-          let date = res[i].date.substring(0, 4);//.substring(0,4);
-          this.yearwUserListarray.push(date);
+        if (res[i].DOJ != undefined && res[i].DOJ != "") {
+          var date = res[i].DOJ;
+          var splitdate = date.split('/');
+          var year = splitdate[2];
+          this.yearwUserListarray.push(year);
         }
       }
 
@@ -617,19 +974,19 @@ export class UsertrendingPage {
 
         var countData = 0;
         for (var i = 0; i < res.length; i++) {
-          if (res[i].date != undefined) {
-            var getYear = res[i].date.substring(0, 4);
+          if (res[i].DOJ != undefined) {
+            var date = res[i].DOJ;
+            var splitdate = date.split('/');
+            var getYear = splitdate[2];
 
             if (getYear == this.yearwUserListarray[j]) {
 
               countData++;
 
 
+
             }
-
           }
-
-
         }
 
         if (this.storeInactiveGroups.length == 0) {
@@ -645,38 +1002,66 @@ export class UsertrendingPage {
 
               var index = this.getIndexIfObjWithOwnAttr(this.storeInactiveGroups, 'Year', this.yearwUserListarray[j]);
 
-              if (index == -1) {
-                this.storeInactiveGroups.push({
-                  Year: this.yearwUserListarray[j],
-                  countData: countData
-                })
-              }
 
+              if (index == -1) {
+                if (this.yearwUserListarray[j] != null && this.yearwUserListarray[j].length != 0) {
+                  this.storeInactiveGroups.push({
+                    Year: this.yearwUserListarray[j],
+                    countData: countData
+                  })
+                }
+              }
             }
 
           });
 
         }
-
       }
+
+      for (var a=0 ; a<3; a++) {
+        currentyear =  currentyear;
+        
+        
+         for(var k=0; k<this.storeInactiveGroups.length; k++) {
+
+           if(this.storeInactiveGroups[k].Year == currentyear){
+            this.filteredActyearArray.push({
+
+              Year: this.storeInactiveGroups[k].Year,
+              countData: this.storeInactiveGroups[k].countData
+            })
+           }
+         }
+        currentyear--;
+    }
+    console.log("filtereduserlist" + JSON.stringify(this.filteredActyearArray))
 
     });
 
+
   }
+
+
 
 
   yearwActiveUser() {
 
     this.AnalysticsService.getActiveUser().then((res: any) => {
 
+      var currentdate = new Date();
+      var currentyear = currentdate.getFullYear();
+
       var Count = 1;
       this.yearwUserListarray = [];
       this.storeActvalues = [];
 
+
       for (var i = 0; i < res.length; i++) {
-        if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 4);//.substring(0,4);
-          this.yearwUserListarray.push(date);
+        if (res[i].DOJ != undefined && res[i].DOJ != "") {
+          var date = res[i].DOJ;
+          var splitdate = date.split('/');
+          var year = splitdate[2];
+          this.yearwUserListarray.push(year);
         }
       }
 
@@ -685,7 +1070,9 @@ export class UsertrendingPage {
         var countData = 0;
         for (var i = 0; i < res.length; i++) {
           if (res[i].DOJ != undefined) {
-            var getYear = res[i].DOJ.substring(0, 4);
+            var date = res[i].DOJ;
+            var splitdate = date.split('/');
+            var getYear = splitdate[2];
 
             if (getYear == this.yearwUserListarray[j]) {
 
@@ -725,9 +1112,30 @@ export class UsertrendingPage {
 
         }
       }
+
+      for (var a=0 ; a<3; a++) {
+        currentyear =  currentyear;
+        
+        
+         for(var k=0; k<this.storeActvalues.length; k++) {
+
+           if(this.storeActvalues[k].Year == currentyear){
+            this.filteredInactyearArray.push({
+
+              Year: this.storeActvalues[k].Year,
+              countData: this.storeActvalues[k].countData
+            })
+           }
+         }
+        currentyear--;
+    }
+    console.log("filtereduserlist" + JSON.stringify(this.filteredInactyearArray))
+
     });
 
   }
+
+  
 
   yearwOpenGroups() {
     this.AnalysticsService.getOpengroup().then((res: any) => {
@@ -790,20 +1198,26 @@ export class UsertrendingPage {
 
   monthwUserList() {
     this.AnalysticsService.getallusers().then((res: any) => {
-      var Count = 1;
+
+      var currentdate = new Date();
+      var currentyear = currentdate.getFullYear();
+    
       this.monthArrayList = [];
       this.monthArrayList2 = [];
       this.monthstorevalues = [];
 
       for (var i = 0; i < res.length; i++) {
-        if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 4);//.substring(0,4);
-          let month = res[i].DOJ.substring(5, 7);
+        if (res[i].DOJ != undefined && res[i].DOJ != "") {
+          var date = res[i].DOJ;
+          var splitdate = date.split('/');
+          var year = splitdate[2];
+          var month =('0' +splitdate[1]).slice(-2);
 
 
-          this.monthArrayList.push(date);
+          this.monthArrayList.push(year);
           this.monthArrayList2.push(month);
         }
+      
       }
 
       for (var j = 0; j <= this.monthArrayList.length; j++) {
@@ -811,8 +1225,10 @@ export class UsertrendingPage {
         var countData = 0;
         for (var i = 0; i < res.length; i++) {
           if (res[i].DOJ != undefined) {
-            var getYear = res[i].DOJ.substring(0, 4);
-            var getMonth = res[i].DOJ.substring(5, 7);
+              var date = res[i].DOJ;
+              var splitdate = date.split('/');
+              var getYear = splitdate[2];
+              var getMonth = splitdate[1];
 
             if (getYear == this.monthArrayList[j] && getMonth == this.monthArrayList2[j]) {
               countData++;
@@ -822,6 +1238,7 @@ export class UsertrendingPage {
         }
 
         if (this.monthstorevalues.length == 0) {
+       
           this.monthstorevalues.push({
             Year: this.monthArrayList[j],
             Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
@@ -848,13 +1265,28 @@ export class UsertrendingPage {
 
             this.monthstorevalues.push({
               Year: this.monthArrayList[j],
-              // Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
+               Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
               countData: countData
             })
 
           }
         }
       }
+        
+        
+         for(var k=0; k<this.monthstorevalues.length; k++) {
+
+           if(this.monthstorevalues[k].Year == currentyear){
+            this.filteredMonthUsers.push({
+
+              Year: this.monthstorevalues[k].Year,
+              Month: this.monthstorevalues[k].Month,
+              countData: this.monthstorevalues[k].countData
+            })
+           }
+         }
+         console.log("currentyearmonth :" +JSON.stringify(this.filteredMonthUsers))
+
     });
   }
 
@@ -928,87 +1360,115 @@ export class UsertrendingPage {
 
   }
   monthwInactiveUser() {
-    this.AnalysticsService.getinactiveGroups().then((res: any) => {
-
-      var Count = 1;
-      this.monthArrayList = [];
-      this.monthArrayList2 = [];
-      this.monthInactiveGroups = [];
-
-      for (var i = 0; i < res.length; i++) {
-        if (res[i].date != undefined) {
-          let date = res[i].date.substring(0, 4);//.substring(0,4);
-          let month = res[i].date.substring(5, 7);
-
-          this.monthArrayList.push(date);
-          this.monthArrayList2.push(month);
-        }
-      }
-
-      for (var j = 0; j <= this.monthArrayList.length; j++) {
-
-        var countData = 0;
+         this.AnalysticsService.getRemovedUser().then((res: any) => {
+  
+        var currentdate = new Date();
+        var currentyear = currentdate.getFullYear();
+  
+        this.monthArrayList = [];
+        this.monthArrayList2 = [];
+        this.monthInactiveGroups = [];
+  
         for (var i = 0; i < res.length; i++) {
-          if (res[i].date != undefined) {
-            var getYear = res[i].date.substring(0, 4);
-            var getMonth = res[i].date.substring(5, 7);
-
-            if (getYear == this.monthArrayList[j] && getMonth == this.monthArrayList2[j]) {
-
-              countData++;
-
-            }
+          if (res[i].DOJ != undefined && res[i].DOJ != "") {
+            var date = res[i].DOJ;
+            var splitdate = date.split('/');
+            var year = splitdate[2];
+            var month =('0' +splitdate[1]).slice(-2);
+  
+            this.monthArrayList.push(year);
+            this.monthArrayList2.push(month);
           }
         }
-
-        if (this.monthInactiveGroups.length == 0) {
-          this.monthInactiveGroups.push({
-            Year: this.monthArrayList[j],
-            Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
-            countData: countData
-          })
-        }
-        else {
-
-          var Checkflag = false;
-          this.monthInactiveGroups.forEach(element => {
-
-            var monthConvert = moment(this.monthArrayList2[j], 'MM').format('MMMM')
-
-            if (monthConvert != "Invalid date" && this.monthArrayList[j] != undefined) {
-
-              if (element.Year == this.monthArrayList[j] && element.Month == monthConvert) {
-                Checkflag = true;
-
+  
+        for (var j = 0; j <= this.monthArrayList.length; j++) {
+  
+          var countData = 0;
+          for (var i = 0; i < res.length; i++) {
+            if (res[i].DOJ != undefined) {
+              var date = res[i].DOJ;
+              var splitdate = date.split('/');
+              var getYear = splitdate[2];
+              var getMonth =splitdate[1];
+  
+  
+              if (getYear == this.monthArrayList[j] && getMonth == this.monthArrayList2[j]) {
+  
+                countData++;
+  
               }
             }
-          })
-
-          if (!Checkflag && this.monthArrayList[j] != undefined && this.monthArrayList2[j] != "Invalid") {
+          }
+  
+          if (this.monthInactiveGroups.length == 0) {
             this.monthInactiveGroups.push({
               Year: this.monthArrayList[j],
               Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
               countData: countData
             })
           }
+          else {
+  
+            var Checkflag = false;
+            this.monthInactiveGroups.forEach(element => {
+  
+              var monthConvert = moment(this.monthArrayList2[j], 'MM').format('MMMM')
+  
+              if (monthConvert != "Invalid date" && this.monthArrayList[j] != undefined) {
+  
+                if (element.Year == this.monthArrayList[j] && element.Month == monthConvert) {
+                  Checkflag = true;
+  
+                }
+              }
+            })
+  
+            if (!Checkflag && this.monthArrayList[j] != undefined && this.monthArrayList2[j] != "Invalid") {
+              this.monthInactiveGroups.push({
+                Year: this.monthArrayList[j],
+                Month: moment(this.monthArrayList2[j], 'MM').format('MMMM'),
+                countData: countData
+              })
+            }
+          }
         }
-      }
-    });
+  
+        console.log("asdfghjk" +JSON.stringify(this.monthInactiveGroups))
+        for(var k=0; k<this.monthInactiveGroups.length; k++) {
+  
+          if(this.monthInactiveGroups[k].Year == currentyear){
+           this.filteredInactyearArray.push({
+  
+             Year: this.monthInactiveGroups[k].Year,
+             Month: this.monthInactiveGroups[k].Month,
+             countData: this.monthInactiveGroups[k].countData
+           })
+          }
+        }
+        console.log("currentythinnn :" +JSON.stringify(this.filteredInactyearArray))
+  
+      });
+    
   }
 
   monthwActiveUser() {
     this.AnalysticsService.getActiveUser().then((res: any) => {
 
-      var Count = 1;
+      var currentdate = new Date();
+      var currentyear = currentdate.getFullYear();
+
       this.monthArrayList = [];
       this.monthArrayList2 = [];
       this.monthstoreActvalues = [];
 
       for (var i = 0; i < res.length; i++) {
-        if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 4);//.substring(0,4);
-          let month = res[i].DOJ.substring(5, 7);
-          this.monthArrayList.push(date);
+        if (res[i].DOJ != undefined && res[i].DOJ != "") {
+          var date = res[i].DOJ;
+          var splitdate = date.split('/');
+          var year = splitdate[2];
+          var month =('0' +splitdate[1]).slice(-2);
+
+          this.monthArrayList.push(year);
           this.monthArrayList2.push(month);
         }
       }
@@ -1018,8 +1478,10 @@ export class UsertrendingPage {
         var countData = 0;
         for (var i = 0; i < res.length; i++) {
           if (res[i].DOJ != undefined) {
-            var getYear = res[i].DOJ.substring(0, 4);
-            var getMonth = res[i].DOJ.substring(5, 7);
+            var date = res[i].DOJ;
+            var splitdate = date.split('/');
+            var getYear = splitdate[2];
+            var getMonth =splitdate[1];
 
 
             if (getYear == this.monthArrayList[j] && getMonth == this.monthArrayList2[j]) {
@@ -1062,6 +1524,20 @@ export class UsertrendingPage {
           }
         }
       }
+
+      for(var k=0; k<this.monthstoreActvalues.length; k++) {
+
+        if(this.monthstoreActvalues[k].Year == currentyear){
+         this.filteredActyearArray.push({
+
+           Year: this.monthstoreActvalues[k].Year,
+           Month: this.monthstoreActvalues[k].Month,
+           countData: this.monthstoreActvalues[k].countData
+         })
+        }
+      }
+      console.log("currentythinnn :" +JSON.stringify(this.filteredActyearArray))
+
     });
   }
 
@@ -1217,11 +1693,13 @@ export class UsertrendingPage {
       this.todayArrayList = [];
 
       var dvalue = this.convertDate(new Date());
+      
+      console.log("dvalue" +dvalue)
 
       for (var i = 0; i < res.length; i++) {
         if (res[i].DOJ != undefined) {
-
-          let date = res[i].DOJ.substring(0, 10);//.substring(0,4);
+          
+          let date = res[i].DOJ;
           this.todayArrayList.push(date);
 
         }
@@ -1248,7 +1726,7 @@ export class UsertrendingPage {
 
       for (var i = 0; i < res.length; i++) {
         if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 10);//.substring(0,4);
+          let date = res[i].DOJ;
 
           this.todayArrayList.push(date);
 
@@ -1278,7 +1756,7 @@ export class UsertrendingPage {
 
       for (var i = 0; i < res.length; i++) {
         if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 10);//.substring(0,4);
+          let date = res[i].DOJ;
 
           this.todayArrayList.push(date);
 
@@ -1356,10 +1834,11 @@ export class UsertrendingPage {
 
   convertDate(date) {
     var months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'agu', 'sep', 'oct', 'nov', 'dec'];
-    var day = date.getDate();
+    var day = ('0' + date.getDate()).slice(-2);
     var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    return year + "-" + "0" + month + "-" + day;
+    var mon = date.getMonth()+1;
+    var month = ('0' + mon) .slice(-2);
+    return day + "/" + month + "/" + year;
   }
 
 
@@ -1368,9 +1847,14 @@ export class UsertrendingPage {
   }
 
 
-
+//till now
 
   getSentMsgs() {
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
     this.AnalysticsService.getMessages().then((message: any) => {
       for (let i = 0; i < message.length; i++) {
         message[i].sendcount = 0;
@@ -1379,6 +1863,12 @@ export class UsertrendingPage {
         for (let key in message[i]) {
           if (key !== 'id') {
             for (let key1 in message[i][key]) {
+              let date = new Date(message[i][key][key1].Filedate)
+             
+              message[i].year = date.getFullYear();
+              message[i].date = date.getDay()
+            
+              message[i].month =  monthNames[date.getMonth()];
               if (message[i][key][key1].sentby === message[i].id) {
                 message[i].sendcount = message[i].sendcount + 1;
               }
@@ -1402,7 +1892,7 @@ export class UsertrendingPage {
           this.userSendmsgs[j].rank = j + 1;
         })
       }
-      console.log(this.userSendmsgs)
+      
     })
   }
 
@@ -1410,6 +1900,11 @@ export class UsertrendingPage {
 
 
   getReceiveMsgs() {
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+
     this.AnalysticsService.getMessages().then((message: any) => {
       console.log("messages" + JSON.stringify(message))
       for (let i = 0; i < message.length; i++) {
@@ -1419,7 +1914,12 @@ export class UsertrendingPage {
 
           if (key !== 'id') {
             for (let key1 in message[i][key]) {
-              console.log("abcc" + message[i][key][key1].sentby + "kkkkkkkkkkkkk" + message[i].id)
+              let date = new Date(message[i][key][key1].Filedate)
+             
+              message[i].year = date.getFullYear();
+              message[i].date = date.getDay()
+            
+              message[i].month =  monthNames[date.getMonth()];
               if (message[i][key][key1].sentby === message[i].id) {
                 message[i].sendcount = message[i].sendcount + 1;
               }
@@ -1452,49 +1952,15 @@ export class UsertrendingPage {
 
 
 
-  getYearSentMsgs() {
-    this.AnalysticsService.getMessages().then((message: any) => {
-      for (let i = 0; i < message.length; i++) {
-        message[i].sendcount = 0;
-        message[i].recievecount = 0;
-        // message[i].userDetails.displayName = '';
-        for (let key in message[i]) {
-
-          console.log("callll a :" + key + "========" + JSON.stringify(message[i][key]))
-          if (key !== 'id') {
-            for (let key1 in message[i][key]) {
-              if (message[i][key][key1].sentby === message[i].id) {
-                message[i].sendcount = message[i].sendcount + 1;
-              }
-              if (message[i][key][key1].sentby !== message[i].id) {
-                message[i].recievecount = message[i].recievecount + 1;
-              }
-            }
-          }
-
-        }
-      }
 
 
 
-      let sendOrder = message;
-      // this.userSendmsgs =sendOrder.sort((a, b) => parseFloat(a.sendcount) - parseFloat(b.sendcount));
-      this.userSendmsgs = sendOrder.sort((a, b) => parseFloat(b.sendcount) - parseFloat(a.sendcount));
-      this.userSendmsgs = this.userSendmsgs.splice(0, 10);
-      for (let j = 0; j < this.userSendmsgs.length; j++) {
-        this.userProvider.getUserByID(this.userSendmsgs[j].id).then((data) => {
-          this.userSendmsgs[j].userDetails = data;
-          this.userSendmsgs[j].rank = j + 1;
-        })
-      }
-      console.log(this.userSendmsgs)
+  gotologout() {
 
-
-    })
+    alert('Are you sure want to Logout?')
+    this.navCtrl.push('LoginPage');
   }
-
-
-
+  
 
 
 

@@ -82,9 +82,9 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-firebase" spec="2.0.5" />
     <plugin name="cordova-plugin-ionic-webview" spec="1.2.1" />
-    <engine name="android" spec="7.1.4" />
     <plugin name="cordova-plugin-nativegeocoder" spec="3.1.3" />
     <plugin name="cordova-plugin-geolocation" spec="4.0.1">
         <variable name="KEY" value="AIzaSyD_Lmybdnx6s2TjMvPK57fD44xGjjJPA8A" />
     </plugin>
+    <engine name="android" spec="7.1.4" />
 </widget>

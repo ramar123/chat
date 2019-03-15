@@ -86,7 +86,7 @@
     <ion-label stacked>
          Extenion   
           </ion-label>
-          <select class="form-control" placeholder="select" formControlName="extension">
+          <select class="form-control" placeholder="select" formControlName="extension" [(ngModel)]="extension1">
               <option [ngValue]="Select">Select</option>
               <option value="1"> India(+315) </option>
               <option value="2"> America(+224) </option>
@@ -141,7 +141,7 @@
         <ion-label stacked>
              Contact Type   
               </ion-label>
-              <select  class="form-control" placeholder="select" formControlName="contacttype">
+              <select  class="form-control" placeholder="select" formControlName="contacttype" [(ngModel)]="contacttype1" >
               <option [ngValue]="Select">Select</option>
              <option> Default user </option>
             <option > Invite user</option>
@@ -156,7 +156,7 @@
             <ion-label stacked>
           Branch    
           </ion-label>
-         <select  class="form-control" placeholder="select" formControlName="branchname">
+         <select  class="form-control" placeholder="select" formControlName="branchname" [(ngModel)]="branchname1" >
             <option [ngValue]="Select">Select</option>
             <option> Chennai </option>
              <option> Trichy </option>
@@ -172,7 +172,7 @@
                 <ion-label stacked>
                Department   
               </ion-label>
-              <select  class="form-control" placeholder="select" formControlName="department">
+              <select  class="form-control" placeholder="select" formControlName="department" [(ngModel)]="department1" >
                   <option [ngValue]="Select">Select</option>
                   <option> Sales & Marketing </option>
                 <option> Information & Technology</option>
@@ -187,7 +187,7 @@
              <ion-label stacked>
               Designation  
             </ion-label>
-            <select class="form-control"  placeholder="select" formControlName="designation">
+            <select class="form-control"  placeholder="select" formControlName="designation" [(ngModel)]="designation1">
                 <option [ngValue]="Select">Select</option>
             <option> HR Manager </option>
             <option > Admin</option>
@@ -222,7 +222,7 @@
            <ion-label stacked>
           Gender  
           </ion-label>
-            <select class="form-control" placeholder="select" formControlName="gender">
+            <select class="form-control" placeholder="select" formControlName="gender" [(ngModel)]="gender1">
                 <option [ngValue]="Select">Select</option>
               <option> male </option>
             <option> female</option>
@@ -246,7 +246,7 @@
          <ion-label stacked>
           Default Language  
         </ion-label>
-         <select  placeholder="select" class="form-control" formControlName="language">
+         <select  placeholder="select" class="form-control" formControlName="language" [(ngModel)]="language1">
            <option [ngValue]="Select">Select</option>
               <option> English </option>
               <option> French</option>

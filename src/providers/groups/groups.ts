@@ -22,8 +22,6 @@ export class GroupsProvider {
 
   addgroups(newgroup) {
     let promise = new Promise((resolve, reject) => {
-
-      
     this.firedata.push().set(newgroup).then((data)=>{
       console.log(data)
      return resolve({ success: true });
@@ -36,6 +34,111 @@ export class GroupsProvider {
 
   return promise
   }
+
+
+
+  // provider
+
+  // addgroup(newGroup) {
+  //   var promise = new Promise((resolve, reject) => {
+  //     this.firegroup.child(firebase.auth().currentUser.uid).child(newGroup.groupName).set({
+  //       groupimage: newGroup.groupPic,
+  //       msgboard: '',
+  //       owner: firebase.auth().currentUser.uid,
+  //       openGroup: newGroup.openGroup,
+  //       timestamp: firebase.database.ServerValue.TIMESTAMP
+  //     }).then(() => {
+
+  //      resolve(true);
+  //     }).catch((err) => {
+  //       reject(err);
+  //     })
+  //   });
+  //   return promise;
+  // }
+
+
+
+  
+// page
+
+// creategroup() {
+
+//   if (this.opengroup == true) {
+//     this.opengrp = true;
+//   }
+//   else {
+//     this.opengrp = false;
+//   }
+//   var newgroup = {
+//     openGroup: this.opengrp,
+//     groupName: this.groupname,
+//     groupPic: 'https://firebasestorage.googleapis.com/v0/b/myapp-4eadd.appspot.com/o/chatterplace.png?alt=media&token=e51fa887-bfc6-48ff-87c6-e2c61976534e'
+//   }
+//   this.groupservice.addgroup(newgroup).then((res) => {
+
+//     let statusalert = this.alertCtrl.create({
+//       buttons: [
+//         {
+//           text: "Ok",
+//           handler: () => {
+//             this.groupservice.addmember(this.contactsSelected, newgroup)
+
+//             this.groupservice.getintogroup(this.groupname);
+//             this.app.getRootNav().push('GroupchatPage',
+//               { groupName: this.groupname });
+//           }
+//         }]
+//     });
+//     statusalert.setTitle('Group created succesfully');
+//     statusalert.present()
+
+
+//   }).catch((err) => {
+//     alert(JSON.stringify(err));
+//   })
+
+
+// }
+
+
+
+
+
+// add member 
+
+
+// addmember(newmember, newgroup) {
+//   return new Promise((resolve, reject) => {
+//   this.memberadd = [];
+//   for (var i = 0; i < newmember.length; i++) {
+
+
+//     this.firegroup.child(firebase.auth().currentUser.uid).child(newgroup.groupName).child('members').push(newmember[i]).then(() => {
+//       this.getgroupimage(newgroup).then(() => {
+
+//         newmember.forEach(value => {
+//           this.firegroup.child(value.uid).child(newgroup.groupName).set({
+//             groupimage: newgroup.groupPic,
+//             openGroup: newgroup.openGroup,
+//             owner: firebase.auth().currentUser.uid,
+//             msgboard: ''
+
+            
+//           }).catch((err) => {
+//             console.log(err);
+//           })
+//         });
+//         resolve(true);
+//       })
+//       this.getintogroup(newgroup.groupNamee);
+//     })
+//   }
+// })
+// }
+
+
+
 
   
   groupList(){

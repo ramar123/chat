@@ -16,6 +16,12 @@ import { googlemaps } from 'googlemaps';
 
 
 export class LinkusaddusermasterPage {
+    language1: any;
+    gender1: any;
+    designation1: any;
+    department1: any;
+    branchname1: any;
+    contacttype1: '';
 
 
     autocompleteItems: any;
@@ -55,9 +61,8 @@ export class LinkusaddusermasterPage {
     weblogin: FormControl;
     deviceres: FormControl;
     created_at: FormControl;
-
-    getData: any
-
+    extension1:''
+    getData: any ;
     public addrKeys: string[];
     public addr: object;
     private userList: any = [];
@@ -163,6 +168,17 @@ export class LinkusaddusermasterPage {
         });
 
         if (this.getData) {
+            console.log(this.getData);
+            this.extension1=this.getData.extension;
+            this.contacttype1=this.getData.contacttype;
+            this.branchname1=this.getData.branchname;
+            this.department1=this.getData.department;
+            this.designation1=this.getData.designation;
+            this.gender1=this.getData.gender;
+            this.language1=this.getData.language;
+
+
+
             this.userForm.controls['employee'].setValue(this.getData.employee);
             this.userForm.controls['displayName'].setValue(this.getData.displayName);
             this.userForm.controls['email'].setValue(this.getData.email);
@@ -291,42 +307,46 @@ export class LinkusaddusermasterPage {
     }
 
     addUser() {
-        this.user.LoginAuthentication(this.userForm.controls.email, this.userForm.controls.employee, this.userForm.controls.mobilenumber).then((res: any) => {
 
-            if (res.success != 0) {
-                console.log(this.getData);
+        if (this.getData) {
+            this.user.editUser(this.userForm.value, this.getData.id).then((data) => {
+                console.log(data);
+                this.navCtrl.setRoot(LinkususermasterPage);
+            }).catch((err) => {
+                console.log(err)
+            })
+        } else {
 
-                if (this.getData) {
 
-                    this.user.editUser(this.userForm, this.getData.id).then((data) => {
-                        console.log(data);
-                        this.navCtrl.setRoot(LinkususermasterPage);
-                    }).catch((err) => {
-                        console.log(err)
-                    })
-                } else {
-                    this.user.adduser(this.userForm.value).then((data) => {
-                        console.log(data);
-                        let toast = this.toastCtrl.create({
-                            message: 'User Updated successfully',
-                            duration: 3000,
-                            position: 'middle',
-                        });
-                        toast.present();
-                        this.navCtrl.setRoot(LinkususermasterPage);
+            this.user.LoginAuthentication(this.userForm.controls.email, this.userForm.controls.employee, this.userForm.controls.mobilenumber).then((res: any) => {
 
-                    }).catch((err) => {
-                        console.log(err)
-                        if(err.code === 'auth/email-already-in-use'){
-                            this.isemail = true;
-                        } else {
-                            alert(err.message);
-                        }
-                       
-                    })
-                }
-            }
-        });
+                this.user.adduser(this.userForm.value).then((data) => {
+                    console.log(data);
+                    let toast = this.toastCtrl.create({
+                        message: 'User Updated successfully',
+                        duration: 3000,
+                        position: 'middle',
+                    });
+                    toast.present();
+                    this.navCtrl.setRoot(LinkususermasterPage);
+
+                }).catch((err) => {
+                    console.log(err)
+                    if(err.code === 'auth/email-already-in-use'){
+                        this.isemail = true;
+                    } else {
+                        alert(err.message);
+                    }
+                   
+                })
+
+            });
+
+
+        }
+
+
+       
     }
 
     gotoreset() {

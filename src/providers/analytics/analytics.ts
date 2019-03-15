@@ -11,7 +11,7 @@ export class AnalysticsProvider {
 
 
   firedata = firebase.database().ref('/users');
-  firegroup = firebase.database().ref('/groups1');
+  firegroup = firebase.database().ref('/groups');
   firegroupmessages = firebase.database().ref('/groups');
   fireopengroup = firebase.database().ref('/opengroups1');
   firebudddychats = firebase.database().ref('/buddychats');
@@ -77,18 +77,18 @@ todayuser = [];
 
   getinactiveGroups() {
     var promise = new Promise((resolve, reject) => {
-      this.firegroup.once('value', (snapshot) => {
+      this.firedata.orderByChild('uid').once('value', (snapshot) => {
         let userdata = snapshot.val();
         let temparr = [];
-        
+    
         for (var key in userdata) {
-          if(userdata[key].GroupStatus == "Inactive")
+          if(userdata[key].userStatus=="Inactive")
           {
             temparr.push(userdata[key]);
+         
           }
-      
         }
-       
+        console.log("temparr" +JSON.stringify(temparr));
         resolve(temparr);
       }).catch((err) => {
         reject(err);
@@ -113,7 +113,28 @@ todayuser = [];
          
           }
         }
-        console.log("temparr" +JSON.stringify(temparr));
+        resolve(temparr);
+      }).catch((err) => {
+        reject(err);
+      })
+    })
+    return promise;
+  }
+
+
+  getRemovedUser() {
+    var promise = new Promise((resolve, reject) => {
+      this.firedata.orderByChild('uid').once('value', (snapshot) => {
+        let userdata = snapshot.val();
+        let temparr = [];
+    
+        for (var key in userdata) {
+          if(userdata[key].userStatus=="Inactive")
+          {
+            temparr.push(userdata[key]);
+         console.log("temparrinacttt" +temparr)
+          }
+        }
         resolve(temparr);
       }).catch((err) => {
         reject(err);
@@ -132,7 +153,7 @@ todayuser = [];
         let temparr = [];
     
         for (var key in userdata) {
-          if(userdata[key].userStatus=="InActive")
+          if(userdata[key].userStatus=="Inactive")
           {
             temparr.push(userdata[key]);
          
@@ -146,10 +167,6 @@ todayuser = [];
     })
     return promise;
   }
-
-
-
-
 
 
 

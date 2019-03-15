@@ -24,9 +24,9 @@ export class ReadanalysisPage {
     {name:'121-240',value:[121,240],userCount:0},
     {name:'241-480',value:[241,480],userCount:0},
     {name:'>480',value:[480],userCount:0},
-
-
   ]
+
+
 
   isSearch:boolean = false;
   fromDate;
@@ -38,7 +38,6 @@ export class ReadanalysisPage {
     private userProvider: UserProvider,
     public navParams: NavParams) {
 
-    
       this.getUserList();
         
   }
@@ -77,37 +76,36 @@ export class ReadanalysisPage {
   getUserList() {
 
     this.timeRanges = [
-      {name:'0-15',value:[0,15],userCount:0},
+       {name:'0-15',value:[0,15],userCount:0},
       {name:'16-30',value:[16,30],userCount:0},
       {name:'31-60',value:[31,60],userCount:0},
       {name:'61-120',value:[61,120],userCount:0},
       {name:'121-240',value:[121,240],userCount:0},
       {name:'241-480',value:[241,480],userCount:0},
       {name:'>480',value:[480],userCount:0},
-  
     ]
- 
 
     this.AnalysticsService.getMessages().then((message: any) => {
       for (let i = 0; i < message.length; i++) {
         for (let key in message[i]) {
           if (key !== 'id') {                                
             for (let key1 in message[i][key]) {
-              for(let j=0;j < this.timeRanges.length;j++){
-                let Filedate = new Date(message[i][key][key1].Filedate); 
-                let start_date = this.fromDate;
-                let end_date = moment(Filedate, 'YYYY-MM-DD HH:mm:ss');
 
-                if(end_date.isBetween(this.fromDate, this.toDate)){
-
-
-                 let duration = moment.duration(start_date.diff(end_date));   
-                let minits = duration.asMinutes();  
-                           
-                let mini = Math.round(minits);     
+             if(message[i][key][key1].status==2){
+               let Filedate = new Date(message[i][key][key1].Filedate); 
+               let start_date =  moment(Filedate, 'YYYY-MM-DD HH:mm:ss');
+               let deliveryDate = new Date(message[i][key][key1].deliveryDate);
+               let end_date = moment(deliveryDate, 'YYYY-MM-DD HH:mm:ss');
+               let duration = moment.duration(end_date.diff(start_date)); 
+               let minits = duration.asMinutes();  
+               let mini = Math.round(minits); 
+               console.log(mini);
+               console.log(start_date)    
+               console.log(end_date)
+                for(let j=0;j < this.timeRanges.length;j++){
+                if(end_date.isBetween(this.fromDate, this.toDate)){   
                 if(this.timeRanges[j].value.length===2){
-             
-                  if(this.timeRanges[j].value[0]>= mini && this.timeRanges[j].value[1]<= mini){
+                  if(this.timeRanges[j].value[0]>= mini && this.timeRanges[j].value[j]<= mini){
                     this.timeRanges[j].userCount=this.timeRanges[j].userCount + 1;
                                                
                   }
@@ -119,16 +117,15 @@ export class ReadanalysisPage {
 
 
               }
-
-
               }
-             
-            }
+             }
+                        
+           }
           }
 
         }
       }
-    })
+     } )
         
   }
    

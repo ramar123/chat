@@ -34,7 +34,7 @@ export class LinkususermasterPage {
   pagedItems: any[];
   limit:number=10;
   selectedLeave : string = '';
-
+  options;
 
 
 
@@ -48,6 +48,7 @@ export class LinkususermasterPage {
     public afireauth: AngularFireAuth,
     public navParams: NavParams) {
     this.filterUser('userStatus','Active');
+    this.options="25";
     
   }
 

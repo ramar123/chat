@@ -199,8 +199,10 @@ export class LinkusAnalyticsPage {
 
       for (var i = 0; i < res.length; i++) {
         if (res[i].DOJ != undefined) {
-          let date = res[i].DOJ.substring(0, 4);//.substring(0,4);
+          let date = res[i].DOJ.substring(0, 4);                 //.substring(0,4);
           this.yearwUserListarray.push(date);
+          console.log('RRRRRRRRRR', this.yearwUserListarray.push(date));
+
         }
       }
 
@@ -211,9 +213,8 @@ export class LinkusAnalyticsPage {
 
           if (res[i].DOJ != undefined) {
             var getYear = res[i].DOJ.substring(0, 4);
-
+            console.log('MMMMMMMM', res[i].DOJ.substring(0, 4));  //date
             if (getYear == this.yearwUserListarray[j]) {
-
               countData++;
             }
 
@@ -226,24 +227,21 @@ export class LinkusAnalyticsPage {
             countData: countData
           })
         }
-        else {
+
+         else {
           this.storevalues.forEach(element => {
-
             if (element.Year != this.yearwUserListarray[j] && this.yearwUserListarray[j] != undefined && element.Year != undefined) {
-
               var index = this.getIndexIfObjWithOwnAttr(this.storevalues, 'Year', this.yearwUserListarray[j]);
-
-
+             console.log('SSSSSSSSS', this.storevalues);
               if (index == -1) {
                 if (this.yearwUserListarray[j] != null && this.yearwUserListarray[j].length != 0) {
                   this.storevalues.push({
-
-                    Year: this.yearwUserListarray[j],
+                   Year: this.yearwUserListarray[j],
                     countData: countData
+
                   })
                 }
               }
-
             }
 
           });
@@ -252,10 +250,15 @@ export class LinkusAnalyticsPage {
 
       }
 
-
     });
 
   }
+
+
+
+
+
+
 
   yearwTotalMessages() {
     this.AnalysticsService.getYearTotalmessages().then((res: any) => {
@@ -648,6 +651,9 @@ export class LinkusAnalyticsPage {
       }
     });
   }
+
+
+
 
   monthwTotalGroups() {
 
@@ -1237,6 +1243,12 @@ export class LinkusAnalyticsPage {
     this.viewCtrl.dismiss();
 }
 
+
+gotologout() {
+
+  alert('Are you sure want to Logout?')
+  this.navCtrl.push('LoginPage');
+}
 
 
 }

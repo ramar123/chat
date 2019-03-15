@@ -28,7 +28,7 @@
           <ion-label>
            User name
           </ion-label>
-          <ion-input type="text" class="form-control" [(ngModel)]="branch" (ionChange)="filterUser1()" placeholder="username" (clear)="onClearSearchbar($event)"></ion-input>
+          <ion-input type="text" class="form-control" [(ngModel)]="branch" (ionChange)="filterUser1()" placeholder="Username" (clear)="onClearSearchbar($event)"></ion-input>
         
         </ion-col>
 
@@ -96,7 +96,7 @@
             <!-- <span (click)="gotolinkusaddusermaster()">
               <ion-icon name="md-add" style="font-weight: 600;font-size: 15px;border: 1px solid #dadada;padding: 5px;padding-left: 10px;padding-right: 10px;"></ion-icon>
             </span> -->
-            <button ion-button (click)="gotolinkusaddusermaster()" class="addbtn"> Add User </button>
+      <button ion-button (click)="gotolinkusaddusermaster()" class="addbtn"> Add User </button>
           </div>
         </ion-col>
 
@@ -104,15 +104,13 @@
 
         <ion-col col-2 style="padding-top:15px;">
 
-          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
             <li [ngClass]="{disabled:pager.currentPage === 1}">
-              <!-- <a (click)="setPage(1)" style="border: 1px solid #dadada">First</a> -->
-            </li>
+           </li>
 
             <li [ngClass]="{disabled:pager.currentPage === 1}">
               <a (click)="setPage(pager.currentPage - 1)" class="sss"> Previous </a>
             </li>
-
 
             <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
               <a (click)="setPage(page)" style="padding: 5px">{{page}}/10</a>
@@ -123,16 +121,47 @@
             </li>
             
             <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            </li>
+          </ul> -->
+
+
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <!-- <a (click)="setPage(1)" style="border: 1px solid #dadada">First</a> -->
+              </li>
+
+  
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)" class="sss"> Previous </a>
+            </li>
+  
+  
+            <li  [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)" style="padding: 5px">{{pager.currentPage}} / {{pager.pages.length}} </a>
+            </li>
+
+  
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)" class="sss">Next</a>
+            </li>
+            
+            
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
               <!-- <a (click)="setPage(pager.totalPages)">Last</a> -->
             </li>
           </ul>
+
+
+
+
+
         </ion-col>
 
 
 
 
         <ion-col  col-1>
-          <label style="margin-left:97%; margin-top:2px;">show</label>
+          <label style="margin-left:97%; margin-top:13px;">show</label>
         </ion-col>
 
 

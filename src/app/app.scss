@@ -58,7 +58,7 @@
 
 }
 .show1{
-  top: -20px;
+  top: -9px !important;
     left: -32px;
     width: 40px;
     padding-left: 80%;
@@ -70,14 +70,23 @@
   font-weight: 500;
   font-size: 15px !important;
 }
+
 .addbtn{
   height: 3rem;text-transform: initial;color: #fff;background-color: #f68121 !important;
 }
 
 p,b,input,label,span,select,ion-label,ion-select,ion-input,textarea,h1,h2,h3,h4,h5,h6,div,table th,td,button{
   font-family:Calibri !important;
+  
  
 }
+
+
+// .text-input {
+//    margin-top: -23px;
+// }
+
+
 .pagination{
   padding: 0px !important;
   

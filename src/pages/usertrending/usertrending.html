@@ -1,17 +1,17 @@
-
 <ion-header>
   <ion-navbar color="primary">
-    <img src="assets/imgs/linkUslogo.png" style="width:40px;height:40px;"> 
-  <span style="color: #fff">LINKUS BO</span>
+    <img src="assets/imgs/linkUslogo.png" style="width:30px;height:32px;">
+    <span style="color: #fff">LINKUS BO</span>
     <ion-buttons end>
       <button ion-button icon-only (click)="gotologout()">
         <span> Welcome </span>
         <!-- <p>Sundar</p> -->
-       <ion-icon name="md-power"  style="background-color:#03a9f4 !important; color: #f68121;"></ion-icon>
-    </button>
+        <ion-icon name="md-power" style="background-color:#03a9f4 !important;  color: #f68121;"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
+
 
 
 
@@ -21,34 +21,34 @@
   <layout></layout>
 
   <div style="margin-left: 5%;background-color: aliceblue;margin-right:2%; margin-top: 2%;">
-<div style="padding: 5px;background-color: #f68121b9">
- <b style="color:white; text-align:center; padding-left:5px; width:0%;"> User Trending </b>
-</div>
+    <div style="padding: 5px;background-color: #f68121b9">
+      <b style="color:white; text-align:center; padding-left:5px; width:0%;"> User Trending </b>
+    </div>
 
 
 
-<!-- <ion-row class="outline-head">-->
-  <ion-row class="graph">
-    <ion-col >
-      Graph Type</ion-col>
-  </ion-row><br>
-  
+    <!-- <ion-row class="outline-head">-->
+    <ion-row class="graph">
+      <ion-col>
+        Graph Type</ion-col>
+    </ion-row><br>
 
-  <ion-grid class ="dropdown">
+
+    <ion-grid class="dropdown">
 
       <ion-row>
         <ion-col>
-             <select class="select-option" [(ngModel)] = "data" placeholder="select">
-                <option value="tillNow"> Till Now </option>
-                <option value="year"> Year Wise</option>
-                <option value="month"> Month Wise </option>
-                <option value="today"> Today </option>
-         
+          <select class="select-option" [(ngModel)]="data" placeholder="select">
+            <option value="tillNow"> Till Now </option>
+            <option value="year"> Year Wise</option>
+            <option value="month"> Month Wise </option>
+            <option value="today"> Today </option>
 
 
-                </select> 
 
-                <!-- <select  class="select-option" ng-model="data">
+          </select>
+
+          <!-- <select  class="select-option" ng-model="data">
                     <option value="TillNow" selected="true">Till Now</option>
                     <option value="Year">Year wise</option>
                     <option value="Month">Month wise</option>
@@ -56,149 +56,150 @@
                 </select> -->
 
         </ion-col>
-       
-        <ion-col class = "search">
-            <button class ="search-button" type="button"  class="search-button" (click)="search()"><span style="color:white;">SEARCH</span></button>
+
+        <ion-col class="search">
+          <button class="search-button" type="button" class="search-button" (click)="search()"><span
+              style="color:white;">SEARCH</span></button>
         </ion-col>
         <ion-col></ion-col>
         <ion-col></ion-col>
       </ion-row>
-      </ion-grid>
+    </ion-grid>
 
 
-<ion-row *ngIf="data == 'tillNow'">
-    <ion-row class="aa">
-        
-      
-     
-         
-
-
-          <ion-col  col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">New User</ion-card-title>
-                </ion-card-header>
-                <ion-card-content class="card-content-md-till">
-                    {{noOfUser}}
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-
-
-
-            <ion-col  col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">Removed User</ion-card-title>
-                </ion-card-header>
-                <ion-card-content class="card-content-md-till">
-                  {{noOfInactiveUser}}
-                </ion-card-content>
-              </ion-card>
-            </ion-col> 
+    <ion-row *ngIf="data == 'tillNow'">
+      <ion-row class="aa">
 
 
 
 
-            <ion-col  col-md-3 col-sm-3>
-                <ion-card class="card-md">
-                  <ion-card-header class="card-header-md">
-                    <ion-card-title class="card-title-md">Live User</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content class="card-content-md-till">
-                      {{noOfactUser}}
-                  </ion-card-content>
-                </ion-card>
-              </ion-col> 
-    
-            </ion-row>
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">New User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{noOfUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Removed User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{noOfInactiveUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
 
 
 
-            <ion-row class="aa">
-            <ion-col  col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">Top 10 Users (Sent Msgs)</ion-card-title>
-                  
-                </ion-card-header>
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Live User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{noOfactUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
-                <table *ngIf="isSearch">
-                  <tr>
-                    <th>Rank</th>
-                    <th>UserName</th>
-                    <th>Count</th>
-                  </tr>
-                  <tr *ngFor="let sendMsg of userSendmsgs">
-                    <td>{{sendMsg.rank}}</td>
-                    <td>{{sendMsg?.userDetails.displayName}}</td>
-                    <td>{{sendMsg.sendcount}}</td>
-                  </tr>
-                 
-                </table>
-              
-              </ion-card>
-            </ion-col>
+      </ion-row>
 
 
 
 
-            <ion-col  col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">Top 10 Users(Received msgs)</ion-card-title>
-                </ion-card-header>
+      <ion-row class="aa">
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users (Sent Msgs)</ion-card-title>
 
-                <table *ngIf="isSearch">
-                  <tr>
-                    <th>Rank</th>
-                    <th>UserName</th>
-                    <th>Count</th>
-                  </tr>
-                  <tr *ngFor="let sendMsg of userReceivemsgs">
-                    <td>{{sendMsg.rank}}</td>
-                    <td>{{sendMsg?.userDetails.displayName}}</td>
-                    <td>{{sendMsg.recievecount}}</td>
-                  </tr>
-                 
-                </table>
-              
-              </ion-card>
-            </ion-col>
+            </ion-card-header>
 
+            <table *ngIf="isSearch">
+              <tr>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userSendmsgs">
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.sendcount}}</td>
+              </tr>
 
-         
-            <ion-col  col-md-3 col-sm-3>
-                <ion-card class="card-md">
-                  <ion-card-header class="card-header-md">
-                    <ion-card-title class="card-title-md">Top 10 Groups</ion-card-title>
-                    <p> Received Messages</p> 
-                  </ion-card-header>
-  
-                  <table *ngIf="isSearch">
-                    <tr>
-                      <th>Group Name</th>
-                      <th>Count</th>
-                    </tr>
-                    <tr *ngFor="let groupcount of userGroupMessage">
-                      <td>{{groupcount.Name}}</td>
-                      <td>{{groupcount.count}}</td>
-                    </tr>
-                   
-                  </table>
-                
-                </ion-card>
-              </ion-col>
+            </table>
 
-
-              </ion-row>
-            </ion-row> 
+          </ion-card>
+        </ion-col>
 
 
 
-            <!-- <ion-col  col-md-3 col-sm-3>
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users(Received msgs)</ion-card-title>
+            </ion-card-header>
+
+            <table *ngIf="isSearch">
+              <tr>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userReceivemsgs">
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.recievecount}}</td>
+              </tr>
+
+            </table>
+
+          </ion-card>
+        </ion-col>
+
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Groups</ion-card-title>
+              <p> Received Messages</p>
+            </ion-card-header>
+
+            <table *ngIf="isSearch">
+              <tr>
+                <th>Group Name</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let groupcount of userGroupMessage">
+                <td>{{groupcount.Name}}</td>
+                <td>{{groupcount.count}}</td>
+              </tr>
+
+            </table>
+
+          </ion-card>
+        </ion-col>
+
+
+      </ion-row>
+    </ion-row>
+
+
+
+    <!-- <ion-col  col-md-3 col-sm-3>
                 <ion-card class="card-md">
                   <ion-card-header class="card-header-md">
                     <ion-card-title class="card-title-md">Total Groups</ion-card-title>
@@ -209,15 +210,15 @@
                 </ion-card>
               </ion-col> -->
 
-              
 
 
 
-    
-   
-     
-      
-       
+
+
+
+
+
+
 
 
 
@@ -226,29 +227,29 @@
 
     <ion-row *ngIf="data == 'year'">
 
-<div *ngFor="let item of yearwUserListarray">
-<p>{{item.year}}</p>
-<p>{{item.Count}}</p>
-</div>
+      <div *ngFor="let item of yearwUserListarray">
+        <p>{{item.year}}</p>
+        <p>{{item.Count}}</p>
+      </div>
 
       <ion-row class="aa">
 
 
         <ion-col col-md-3 col-sm-3>
           <ion-card class="card-md">
-           <ion-card-header class="card-header-md">
-            <ion-card-title class="card-title-md">Live User</ion-card-title>
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Live User</ion-card-title>
             </ion-card-header>
             <ion-card-content class="card-content-md">
-                <ion-row class="year-row-title-col">
-                    <ion-col class="year-col" ><b>Year</b></ion-col>
-                    <ion-col class="year-col"><b>Count</b></ion-col>
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
               </ion-row>
-              <ion-row class="year-row-title" *ngFor="let item of storeActvalues">
-                <ion-col class="year-data" > {{item.Year}}</ion-col>
-                  <ion-col class="year-data">{{item.countData}}</ion-col>
+              <ion-row class="year-row-title" *ngFor="let item of filteredInactyearArray">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
               </ion-row>
-            
+
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -257,21 +258,21 @@
 
         <ion-col col-md-3 col-sm-3>
           <ion-card class="card-md">
-              <ion-card-header class="card-header-md">
-                <ion-card-title class="card-title-md">New User</ion-card-title>
-              </ion-card-header>
-              <ion-card-content class="card-content-md">
-                      <ion-row class="year-row-title-col">
-                          <ion-col class="year-col" ><b>Year</b></ion-col>
-                          <ion-col class="year-col"><b>Count</b></ion-col>
-                    </ion-row>
-                    <ion-row class="year-row-title" *ngFor="let item of storevalues ">
-                        <ion-col class="year-data" > {{item.Year}}</ion-col>
-                          <ion-col class="year-data">{{item.countData}}</ion-col>
-                    </ion-row>
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">New User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of filteredyearArray ">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
+              </ion-row>
 
-              </ion-card-content>
-              </ion-card>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
 
 
@@ -279,208 +280,321 @@
 
 
 
-        <ion-col  col-md-3 col-sm-3>
-            <ion-card class="card-md">
-              <ion-card-header class="card-header-md">
-                <ion-card-title class="card-title-md">Removed User</ion-card-title>
-              </ion-card-header>
-              <ion-card-content class="card-content-md">
-                      <ion-row class="year-row-title-col">
-                          <ion-col class="year-col" ><b>Year</b></ion-col>
-                          <ion-col class="year-col"><b>Count</b></ion-col>
-                    </ion-row>
-                    <ion-row class="year-row-title" *ngFor="let item of storeInactiveGroups">
-                      <ion-col class="year-data" > {{item.Year}}</ion-col>
-                        <ion-col class="year-data">{{item.countData}}</ion-col>
-                    </ion-row>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-       </ion-row>
-
-
-
-        <ion-row class="aa">
-
-        <ion-col  col-md-3 col-sm-3>
-            <ion-card class="card-md">
-              <ion-card-header class="card-header-md">
-                <ion-card-title class="card-title-md">Top 10 Users (Sent Msgs)</ion-card-title>
-                
-              </ion-card-header>
-
-              <table *ngIf="isSearch">
-                <tr>
-                  <th>Rank</th>
-                  <th>UserName</th>
-                  <th>Count</th>
-                </tr>
-                <tr *ngFor="let sendMsg of userSendmsgs">
-                  <td>{{sendMsg.rank}}</td>
-                  <td>{{sendMsg?.userDetails.displayName}}</td>
-                  <td>{{sendMsg.sendcount}}</td>
-                </tr>
-               </table>
-              </ion-card>
-          </ion-col>
-
-
-
-          <ion-col  col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">Top 10 Users(Received msgs)</ion-card-title>
-                </ion-card-header>
-
-                <table *ngIf="isSearch">
-                  <tr>
-                    <th>Rank</th>
-                    <th>UserName</th>
-                    <th>Count</th>
-                  </tr>
-                  <tr *ngFor="let sendMsg of userReceivemsgs">
-                    <td>{{sendMsg.rank}}</td>
-                    <td>{{sendMsg?.userDetails.displayName}}</td>
-                    <td>{{sendMsg.recievecount}}</td>
-                  </tr>
-                 
-                </table>
-              
-              </ion-card>
-            </ion-col>
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Removed User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of filteredActyearArray">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
       </ion-row>
-        </ion-row>
 
 
 
-        <ion-row *ngIf="data == 'month'">
+      <ion-row class="aa">
 
-         <ion-row class="aa">
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users (Sent Msgs)</ion-card-title>
 
-            <ion-col col-md-3 col-sm-3>
-              <ion-card class="card-md">
-               <ion-card-header class="card-header-md">
-                <ion-card-title class="card-title-md">Live User</ion-card-title>
-                </ion-card-header>
-                <ion-card-content class="card-content-md">
-                    <ion-row class="year-row-title-col">
-                     <ion-col class="year-col" ><b>Year</b></ion-col>
-                      <ion-col class="year-col"><b>Month</b></ion-col>
-                    <ion-col class="year-col"><b>Count</b></ion-col>
-                    </ion-row>
-                  <ion-row class="year-row-title" *ngFor="let item of monthstoreActvalues">
-                    <ion-col class="year-data" > {{item.Year}}</ion-col>
-                    <ion-col class="year-col">{{item.Month}}</ion-col>
-                      <ion-col class="year-data">{{item.countData}}</ion-col>
-                  </ion-row>
-                    </ion-card-content>
-              </ion-card>
-            </ion-col>
+            </ion-card-header>
 
-
-
-            <ion-col col-md-3 col-sm-3>
-              <ion-card class="card-md">
-                  <ion-card-header class="card-header-md">
-                    <ion-card-title class="card-title-md">New User</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content class="card-content-md">
-                      <ion-row class="year-row-title-col">
-                          <ion-col class="year-col" ><b>Year</b></ion-col>
-                          <ion-col class="year-col"><b>Month</b></ion-col>
-                          <ion-col class="year-col"><b>Count</b></ion-col>
-                        
-                      </ion-row>
-                      <ion-row class="year-row-title" *ngFor="let item of monthstorevalues">
-                        <ion-col class="year-data" > {{item.Year}}</ion-col>
-                        <ion-col class="year-col">{{item.Month}}</ion-col>
-                          <ion-col class="year-data">{{item.countData}}</ion-col>
-                      </ion-row>
-
-                  </ion-card-content>
-                  </ion-card>
-            </ion-col>
+            <table *ngIf="isSearch">
+              <tr>
+                <th>Year</th>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userSendmsgs">
+                <td>{{sendMsg.year}}</td>
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.sendcount}}</td>
+              </tr>
+            </table>
+          </ion-card>
+        </ion-col>
 
 
 
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users(Received msgs)</ion-card-title>
+            </ion-card-header>
 
-            <ion-col col-md-3 col-sm-3>
-                <ion-card class="card-md">
-                 <ion-card-header class="card-header-md">
-                  <ion-card-title class="card-title-md">Removed User</ion-card-title>
-                  </ion-card-header>
-                  <ion-card-content class="card-content-md">
-                      <ion-row class="year-row-title-col">
-                              <ion-col class="year-col" ><b>Year</b></ion-col>
-                              <ion-col class="year-col"><b>Month</b></ion-col>
-                              <ion-col class="year-col"><b>Count</b></ion-col>
-                            
-                    </ion-row>
-                    <ion-row class="year-row-title" *ngFor="let item of monthstoreActvalues">
-                      <ion-col class="year-data" > {{item.Year}}</ion-col>
-                      <ion-col class="year-col">{{item.Month}}</ion-col>
-                        <ion-col class="year-data">{{item.countData}}</ion-col>
-                    </ion-row>
-                  
-                  </ion-card-content>
-                </ion-card>
-              </ion-col>
-                </ion-row>
-                </ion-row>
+            <table *ngIf="isSearch">
+              <tr>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userReceivemsgs">
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.recievecount}}</td>
+              </tr>
 
+            </table>
 
+          </ion-card>
+        </ion-col>
 
-
-
-
-
-                <ion-row *ngIf="data == 'today'">
-                    <ion-row class="aa">
-
-
-
-                        <ion-col  col-md-3 col-sm-3>
-                            <ion-card class="card-md">
-                              <ion-card-header class="card-header-md">
-                                <ion-card-title class="card-title-md">New User</ion-card-title>
-                              </ion-card-header>
-                              <ion-card-content class="card-content-md-till"  >
-                                   {{tdyUser}} 
-                              </ion-card-content>
-                            </ion-card>
-                          </ion-col>
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Group Users</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Group Name</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of yearGroupMessage">
+                <ion-col class="year-data"> {{item.year}}</ion-col>
+                <ion-col class="year-data"> {{item.groupName}}</ion-col>
+                <ion-col class="year-data">{{item.count}}</ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-row>
 
 
 
-                          <ion-col  col-md-3 col-sm-3>
-                              <ion-card class="card-md">
-                                <ion-card-header class="card-header-md">
-                                  <ion-card-title class="card-title-md">Removed User</ion-card-title>
-                                </ion-card-header>
-                                <ion-card-content class="card-content-md-till">
-                                    {{tdyinactiveUser}}
-                                </ion-card-content>
-                              </ion-card>
-                            </ion-col>
+    <ion-row *ngIf="data == 'month'">
+
+      <ion-row class="aa">
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Live User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Month</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of filteredActyearArray">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-col">{{item.Month}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
 
 
-                        <ion-col  col-md-3 col-sm-3>
-                            <ion-card class="card-md">
-                              <ion-card-header class="card-header-md">
-                                <ion-card-title class="card-title-md">Live User</ion-card-title>
-                              </ion-card-header>
-                              <ion-card-content class="card-content-md-till">
-                                  {{tdyactiveUser}}
-                              </ion-card-content>
-                            </ion-card>
-                          </ion-col>
-                          </ion-row>
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">New User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Month</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of filteredMonthUsers">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-col">{{item.Month}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
+              </ion-row>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
 
 
-                
-                    </ion-row> 
-                  </div>
-                
-           </ion-content>
 
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Removed User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Month</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of filteredInactyearArray">
+                <ion-col class="year-data"> {{item.Year}}</ion-col>
+                <ion-col class="year-col">{{item.Month}}</ion-col>
+                <ion-col class="year-data">{{item.countData}}</ion-col>
+              </ion-row>
+
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="aa">
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users (Sent Msgs)</ion-card-title>
+
+            </ion-card-header>
+
+            <table *ngIf="isSearch">
+              <tr>
+                <th>year</th>
+                <th>month</th>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userSendmsgs">
+                  <td>{{sendMsg.year}}</td>
+                  <td>{{sendMsg.month}}</td>
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.sendcount}}</td>
+              </tr>
+            </table>
+          </ion-card>
+        </ion-col>
+
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Users(Received msgs)</ion-card-title>
+            </ion-card-header>
+
+            <table *ngIf="isSearch">
+              <tr>
+                  <th>year</th>
+                  <th>month</th>
+                <th>Rank</th>
+                <th>UserName</th>
+                <th>Count</th>
+              </tr>
+              <tr *ngFor="let sendMsg of userReceivemsgs">
+                  <td>{{sendMsg.year}}</td>
+                  <td>{{sendMsg.month}}</td>
+                <td>{{sendMsg.rank}}</td>
+                <td>{{sendMsg?.userDetails.displayName}}</td>
+                <td>{{sendMsg.recievecount}}</td>
+              </tr>
+
+            </table>
+
+          </ion-card>
+        </ion-col>
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Top 10 Group Users</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md">
+              <ion-row class="year-row-title-col">
+                <ion-col class="year-col"><b>Year</b></ion-col>
+                <ion-col class="year-col"><b>Month</b></ion-col>
+                <ion-col class="year-col"><b>GroupName</b></ion-col>
+                <ion-col class="year-col"><b>Count</b></ion-col>
+              </ion-row>
+              <ion-row class="year-row-title" *ngFor="let item of monthGroupMessage">
+                <ion-col class="year-data"> {{item.year}}</ion-col>
+                <ion-col class="year-data"> {{item.month}}</ion-col>
+                <ion-col class="year-data"> {{item.groupName}}</ion-col>
+                <ion-col class="year-data">{{item.count}}</ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        
+      </ion-row>
+    </ion-row>
+
+
+    <ion-row *ngIf="data == 'today'">
+      <ion-row class="aa">
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">New User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{tdyUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Removed User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{tdyinactiveUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+
+
+        <ion-col col-md-3 col-sm-3>
+          <ion-card class="card-md">
+            <ion-card-header class="card-header-md">
+              <ion-card-title class="card-title-md">Live User</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="card-content-md-till">
+              {{tdyactiveUser}}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-col col-md-3 col-sm-3>
+        <ion-card class="card-md">
+          <ion-card-header class="card-header-md">
+            <ion-card-title class="card-title-md">Top 10 Group Users</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="card-content-md">
+            <ion-row class="year-row-title-col">
+              <ion-col class="year-col"><b>Group Name</b></ion-col>
+              <ion-col class="year-col"><b>Count</b></ion-col>
+            </ion-row>
+            <ion-row class="year-row-title" *ngFor="let item of todayGroupMessage">
+              <ion-col class="year-data"> {{item.groupName}}</ion-col>
+              <ion-col class="year-data">{{item.count}}</ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+  </div>
+
+</ion-content>

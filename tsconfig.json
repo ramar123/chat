@@ -1,3 +1,7 @@
+
+// specifies root files and compiler options required to compile a project
+
+
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
@@ -16,9 +20,13 @@
   "include": [
     "src/**/*.ts"
   ],
+
+
   "exclude": [
     "node_modules"
   ],
+
+
   "compileOnSave": false,
   "typeRoots": ["./node_modules/@types/"],
 

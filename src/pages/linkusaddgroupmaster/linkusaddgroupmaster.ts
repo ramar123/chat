@@ -67,9 +67,6 @@ constructor(public navCtrl: NavController,
 
 
 
-
-
-
 _formGroup() {
         let emailRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
@@ -208,9 +205,9 @@ _formGroup() {
 
   
         
-     search() {
-     this.searching = true;
-     this.searchList= this.users.filter((item) => {
+   search() {
+    this.searching = true;
+    this.searchList= this.users.filter((item) => {
     return item.displayName.toLowerCase().indexOf(this.searchTerm.toLowerCase()) > -1;
     }); 
 
@@ -220,18 +217,13 @@ _formGroup() {
   
         }
 
-
-
-        
-
-
-
-
-
-
-
-}
+  }
        
+
+
+
+
+
 
 
 

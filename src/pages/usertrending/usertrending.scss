@@ -66,15 +66,16 @@ page-usertrending {
              margin-left: 20px;
          }
          
-         .col{
-             //font-size: 14px;
-                 //padding:0px;
-                 display: inline-block;
-                 width: 130%;
-                 margin-bottom: 5px;
-                 //font-weight: 200;
+        //  .col{
+        //      //font-size: 14px;
+        //          //padding:0px;
+        //          display: inline-block;
+        //          width: 130%;
+        //          margin-bottom: 5px;
+        //          //font-weight: 200;
              
-         }
+        //  }
+         
          
          .item-cover {
              left: 0;
@@ -99,6 +100,8 @@ page-usertrending {
              margin-top: 2px;
              
          }
+
+
          .search-button{
              margin-left: 62px;
              height: 33px;
@@ -114,14 +117,16 @@ page-usertrending {
          .select-md {
              padding: 0px !important;
          }
+
+
          ion-select {
              display: -webkit-box;
              display: -webkit-flex;
              display: -ms-flexbox;
-          
              overflow: hidden;
              max-width: 100%;
          }
+
          
          .select-md .select-icon .select-icon-inner {
              left: 0%;
@@ -143,6 +148,14 @@ page-usertrending {
              height: auto;
              font-size: 10px;
              background: #fff;
+         }
+         .card-md-first {
+            margin:0px 0px 0px 0px;
+            border-radius: 2px;
+            width: 320px;
+            height: auto;
+            font-size: 10px;
+            background: #fff;
          }
          
          
@@ -219,9 +232,20 @@ page-usertrending {
              width:1200px;
              margin: 20px 0px 20px 47px;
          }
+
+         .firstrow{
+            padding: 0px 0px 0px 0px;
+            width: 0px;
+            margin-left: 0px;
+         }
+         .firstrowtwo{
+            padding: 0px 0px 0px 0px;
+            width: 0px;
+            margin-left: 100px;
+         }
+
     
-    
-         [col-md-3] {
+         .second {
              padding: 0px 0px 0px 0px;
              width: 260px;
              margin-left: 0px;
